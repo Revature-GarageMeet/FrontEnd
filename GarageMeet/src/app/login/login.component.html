@@ -46,7 +46,7 @@ button:hover {
 
 img.avatar {
   width: 15%;
- 
+
 
 }
 
@@ -57,7 +57,7 @@ img.avatar {
   background-color: #353D60;
   color: #F5756B;
   border-radius: 5%;
- 
+
 }
 
 span.psw {
@@ -68,46 +68,44 @@ span.psw {
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float: none;
   }
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 </style>
 </head>
 <body>
 
-
-<form >
-  <div class="imgcontainer">
-    <img src="../../assets/logo.svg" alt="Avatar" class="avatar">
-  </div>
-
-  <div class="container">
-    <div class = "input">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-    </div>
-    <div class = "input">
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+,
+  <form >
+    <div class="imgcontainer">
+      <img src="../../assets/logo.svg" alt="Avatar" class="img-fluid">
     </div>
 
-    <div class = "btn-group-sm" role="group" aria-label="Basic example">
-      <button type="submit">Login</button>
-      <button type="button">Register</button>
+    <div class="container">
+      <div class = "input">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+      </div>
+      <div class = "input">
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+      </div>
+
+      <div class = "btn-group-sm" role="group" aria-label="Basic example">
+        <button type="submit">Login</button>
+        <button type="button">Register</button>
+      </div>
+
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember" ><b> Remember me</b>
+      </label>
     </div>
-
-    
-    <label>
-      <input type="checkbox" checked="checked" name="remember" ><b> Remember me</b>
-    </label>
-  </div>
-
- 
-</form>
+  </form>
 
 </body>
 </html>

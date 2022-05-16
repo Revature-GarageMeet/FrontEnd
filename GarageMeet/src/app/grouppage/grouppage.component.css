@@ -1,0 +1,22 @@
+.header
+{
+    font-family: 'republican';
+    color: white;
+    font-size: 48px;
+    margin-left: 5%;
+}
+
+.header-bg
+{
+    background-color: #6B5FFF;
+}
+
+.body-bg
+{
+    margin: 0%;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    background-image: url("https://images.unsplash.com/photo-1582573732277-c5444fa37391?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFpbmJvdyUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80");
+}
+

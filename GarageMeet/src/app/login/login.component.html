@@ -2,112 +2,98 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
 
-
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #cf4c4c;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-input{
-  margin-left: 20%;
-  margin-right: 20%;
-}
-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 15%;
- 
-
-}
-
-.container {
-  padding: 1%;
-  margin-left: 40%;
-  margin-right: 40%;
-  background-color: #353D60;
-  color: #F5756B;
-  border-radius: 5%;
- 
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
-</style>
 </head>
 <body>
 
+  <section class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-4 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
 
-<form >
-  <div class="imgcontainer">
-    <img src="../../assets/logo.svg" alt="Avatar" class="avatar">
-  </div>
+                  <div class="text-center">
+                    <img src="../../assets/logo.svg"
+                      style="width: 350px;
+                      margin-bottom: 20px;"
 
-  <div class="container">
-    <div class = "input">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+                      alt="logo">
+
+                  </div>
+
+                  <form>
+
+
+                    <div class="form-outline mb-4">
+                      <input type="email" id="form2Example11" class="form-control"
+                        placeholder="Phone number or email address" />
+                      <label class="form-label" for="form2Example11">Username</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input type="password" id="form2Example22" class="form-control" />
+                      <label class="form-label" for="form2Example22">Password</label>
+                    </div>
+
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                        in</button>
+                      <a class="text-muted" href="#!">Forgot password?</a>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have an account?</p>
+                      <button type="button" class="btn btn-outline-danger">Create new</button>
+                    </div>
+
+                  </form>
+
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">We are more than just social media </h4>
+                  <p class="small mb-0">GarageMeet is a social media web application built for musicians, artists, and anyone who just wants to get together to jam out. With a sleek, modern bootstrap-based UI and Angular powered front-end, users have the ability to post about their latest projects for all their friends and fellow musicians to admire. In addition, users are able interact with others via liking, commenting, and replying to comments. GarageMeet's core feature will allow its users to create a band and recruit other users to come join the fun!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class = "input">
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+  </section>
+
+  <!-- <form>
+    <div class="imgcontainer">
+      <img src="../../assets/logo.svg" alt="Avatar" class="img-fluid">
     </div>
 
-    <div class = "btn-group-sm" role="group" aria-label="Basic example">
-      <button type="submit">Login</button>
-      <button type="button">Register</button>
+    <div class="container">
+      <div class = "input">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+      </div>
+      <div class = "input">
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+      </div>
+
+      <div class = "btn-group-sm" role="group" aria-label="Basic example">
+        <button type="submit">Login</button>
+        <button type="button">Register</button>
+      </div>
+
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember" ><b> Remember me</b>
+      </label>
     </div>
-
-    
-    <label>
-      <input type="checkbox" checked="checked" name="remember" ><b> Remember me</b>
-    </label>
-  </div>
-
- 
-</form>
-
+  </form> -->
 </body>
 </html>
+
+<!-- https://i.pinimg.com/736x/e1/72/7a/e1727aa63e7184b90239ed79aaaf16d1.jpg -->
+<!-- https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg -->

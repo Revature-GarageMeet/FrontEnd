@@ -28,18 +28,17 @@
 
 
                     <div class="form-outline mb-4">
-                      <input type="username" id="form2Example11" class="form-control"
-                        placeholder="" />
+                      <input type="username" id="form2Example11" class="form-control" placeholder="" [(ngModel)]="userToCheck.username" name = "username"/>
                       <label class="form-label" for="form2Example11">Username</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                      <input type="password" id="form2Example22" class="form-control" />
+                      <input type="password" id="form2Example22" class="form-control" [(ngModel)]="userToCheck.password" name = "password"/>
                       <label class="form-label" for="form2Example22">Password</label>
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                      <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="tryToLogin()">Log
                         in</button>
                       <a class="text-muted" href="#!">Forgot password?</a>
                     </div>

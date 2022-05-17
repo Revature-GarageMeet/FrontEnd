@@ -1,0 +1,16 @@
+
+<div>
+    
+    <form [formGroup]="userPost" (ngSubmit)="onSubmit()">
+        
+        <div class ="btn-group" role="group" aria-label="Basic Example" >
+            <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
+            <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
+            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Update');">Update</button>
+            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
+        </div>
+        <br>
+        <input id="postText" type="text" formControlName="text">
+        <button class="button" type="submit">Post</button>
+    </form>
+</div>

@@ -1,5 +1,8 @@
 
 <div>
+    <form id="DEBUG_ONLY">
+        
+    </form>
     
     <form [formGroup]="userPost" (ngSubmit)="onSubmit()">
         
@@ -10,6 +13,10 @@
             <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
         </div>
         <br>
+        <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
+        User ID(FOR DEBUG PURPOSES ONLY): <input id="userid" type="text" formControlName="userId">
+        <br>
+
         <input id="postText" type="text" formControlName="text">
         <button class="button" type="submit">Post</button>
     </form>

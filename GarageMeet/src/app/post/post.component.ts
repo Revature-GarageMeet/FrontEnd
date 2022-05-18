@@ -40,7 +40,7 @@ export class PostComponent implements OnInit {
     //No current user ID, as the site does not currently detect if user is logged in --Tucker
     this.SetPostType(this.postType);
     this.post.userId = this.userPost.value.userId;
-    this.post.text = this.userPost.value.text;
+    this.post.entry = this.userPost.value.text;
     this.post.type = this.userPost.value.type;
     this.ChangeCharacters();
     console.log(this.userPost.value);
@@ -51,7 +51,7 @@ export class PostComponent implements OnInit {
   private ChangeCharacters(): void
   {
     //#region replace spaces
-    this.post.text = this.post.text.replaceAll(' ', '%20');
+    this.post.entry = this.post.entry.replaceAll(' ', '%20');
     this.post.type = this.post.type.replaceAll(' ', '%20');
     //#endregion
   }

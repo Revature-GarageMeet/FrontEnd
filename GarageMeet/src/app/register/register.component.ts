@@ -3,6 +3,8 @@ import { User } from '../models/user'; //interface for the user class ~Leo
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import * as bcrypt from 'bcryptjs';
+
 
 
 @Component({
@@ -59,18 +61,21 @@ export class RegisterComponent implements OnInit {
             this.userToRegister = this.userToCheck;
             //hashing password ~mo
             // const bcrypt = require("bcrypt");
-            // const saltRounds = 10;
+            const saltRounds = 10;
 
-            // bcrypt
-            //   .hash(this.userToRegister.password, saltRounds)
-            //   .then((hash:any) => {
-            //     this.userToRegister.password = hash;
-            //     // Store hash in your password DB.
-            //   })
+            bcrypt
+              .hash(this.userToRegister.password, saltRounds)
+              .then((hash:any) => {
+                this.userToRegister.password = hash;
+                console.log(this.userToRegister.password);
+                this.api.createUser(this.userToRegister).subscribe();
+                this.clearFields();
+                // Store hash in your password DB.
+            })
 
-            this.api.createUser(this.userToRegister).subscribe();
+
+
             // this.message = `An account was created for ${this.userToRegister.username}`;
-            this.clearFields();
             // this.messageColor = this.greenColor;
           }
         });

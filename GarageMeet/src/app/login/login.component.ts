@@ -3,6 +3,7 @@ import { User } from '../models/user'; //interface for the user class ~Leo
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import * as bcrypt from 'bcryptjs';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     private api: LoginService
     ) { }
 
-  result: boolean = true;
+  result: boolean = false;
   userToCheck: User = {
     id: -1,
     username: '',
@@ -66,22 +67,24 @@ export class LoginComponent implements OnInit {
             this.api.loginUser(this.userToCheck.username).subscribe(res => {
               this.userLoggedIn = res;
 
-              //start hash comparison ~mo
+              // start hash comparison ~mo
               // const bcrypt = require("bcrypt");
-              // bcrypt
-              //   .compare(this.userToCheck.password, this.userLoggedIn.password)
-              //   .then((res:any) => {
-              //     this.result = res;
-              //   })
+              bcrypt
+                .compare(this.userToCheck.password, this.userLoggedIn.password)
+                .then((res:any) => {
+                  this.result = res;
+                  if (this.result) {
+                    //they will be redirected soon
+                    console.log("Nice");
+                  }
+                  else
+                    console.log("Not Nice");
+                  this.clearFields();
+                })
             });
 
-            this.clearFields();
           }
 
-          if (this.userLoggedIn.password == this.userToCheck.password) {
-            //they will be redirected soon
-            console.log("Nice");
-          }
 
           else {
             // this.message = `There is no account for ${this.userToLogin.username}. You can go back and register.`;

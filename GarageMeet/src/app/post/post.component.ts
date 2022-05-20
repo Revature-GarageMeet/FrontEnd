@@ -1,3 +1,4 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from '../post';
@@ -11,15 +12,19 @@ import { PostService } from '../services/post.service';
 })
 export class PostComponent implements OnInit {
   
+  isSubmitted : boolean = false;
+
   userPost = this.formBuilder.group({
     type: '',
     text: '',
     userId: 0,
   });
+  private response: number = 0;
+
   private post: Post = new Post();
   postType: string ='';
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient) { }
 
   ngOnInit(): void {
     
@@ -43,10 +48,25 @@ export class PostComponent implements OnInit {
     this.post.entry = this.userPost.value.text;
     this.post.type = this.userPost.value.type;
     this.ChangeCharacters();
-    console.log(this.userPost.value);
-    this.postService.postuser(this.post).subscribe();
+    //console.log(this.userPost.value);
     
+      this.postService.postuser(this.post).subscribe((res) => {
+        console.log(res.status);
+        this.response = res.status;
+      });
+
+      //response is between 200-299 (success)
+      
   }
+
+  //  addPokemon() {
+  //    this.pokemonService.getPokemonById(this.pokemonId).subscribe((res) => {
+  //      this.pokemonRetrieved.emit(res.body!); // Trigger an actual pokemonRetrieved event, where the object will represent
+  //      // an actual Pokemon
+  //    });
+  //  }
+
+
 
   private ChangeCharacters(): void
   {
@@ -56,4 +76,21 @@ export class PostComponent implements OnInit {
     //#endregion
   }
 
+  public GetCode(): number
+  {
+    return this.response;
+  }
+
+  public CheckPost(): boolean
+  {
+    
+    if (this.userPost.value.type != null || this.userPost.value.text != null || this.userPost.value.userId != null)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
 }

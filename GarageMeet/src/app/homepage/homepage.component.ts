@@ -28,11 +28,7 @@ export class HomepageComponent implements OnInit {
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
-    this.postService.getuserposts().subscribe((data: any) =>
-    {
-      console.log(data);
-      
-    });
+    
     
   }
 

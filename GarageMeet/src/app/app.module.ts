@@ -1,14 +1,16 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { PostComponent } from './post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    PostComponent
+    PostComponent,
+    RegisterComponent
+
   ],
   imports: [
     BrowserModule,

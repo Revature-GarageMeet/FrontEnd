@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+  <section class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-4 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+
+                  <div class="text-center">
+                    <img src="../../assets/logo.svg"
+                      style="width: 350px;
+                      margin-bottom: 20px;"
+
+                      alt="logo">
+
+                  </div>
+
+                  <form>
+
+
+
+                    <div class="form-outline mb-4">
+                      <div class="form-group row">
+                        <label for="inputFirstName" class="col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                          <input type="firstname" class="form-control" id="inputFirstName" [(ngModel)]="userToCheck.firstname" name = "firstname">
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-outline mb-4">
+                      <div class="form-group row">
+                        <label for="inputLastName" class="col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                          <input type="lastname" class="form-control" id="inputLastName" [(ngModel)]="userToCheck.lastname" name = "lastname">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                          <input type="email" class="form-control" id="inputEmail" [(ngModel)]="userToCheck.email" name = "email">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <div class="form-group row">
+                        <label for="inputUsername" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                          <input type="username" class="form-control" id="inputUsername" [(ngModel)]="userToCheck.username" name = "username">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                          <input type="password" class="form-control" id="inputPassword" [(ngModel)]="userToCheck.password" name = "password">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center pt-1 mb-3 pb-0">
+                      <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="tryToRegister()" >Sign up</button>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center pb-0">
+                      <p class="mb-0 me-2">Have an account?</p>
+                      <button type="button" routerLink="" class="btn btn-outline-danger">Login</button>
+                    </div>
+
+                  </form>
+
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">We are more than just social media </h4>
+                  <p class="small mb-0">GarageMeet is a social media web application built for musicians, artists, and anyone who just wants to get together to jam out. With a sleek, modern bootstrap-based UI and Angular powered front-end, users have the ability to post about their latest projects for all their friends and fellow musicians to admire. In addition, users are able interact with others via liking, commenting, and replying to comments. GarageMeet's core feature will allow its users to create a band and recruit other users to come join the fun!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
+<!-- https://i.pinimg.com/736x/e1/72/7a/e1727aa63e7184b90239ed79aaaf16d1.jpg -->
+<!-- https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg -->

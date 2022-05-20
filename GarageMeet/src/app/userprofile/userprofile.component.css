@@ -1,0 +1,11 @@
+.profile-img
+ {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+ }
+
+ .btn-edit {
+   background-color: transparent;
+   border-color: transparent;
+ }

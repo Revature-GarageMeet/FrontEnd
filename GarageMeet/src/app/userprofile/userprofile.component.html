@@ -1,0 +1,45 @@
+<!-- Navbar component could go up here unless its universally place elsewhere that calls this component ~Bailey -->
+<div class="container p-5">
+  <div class="row p-3 rounded-3" style="background-color: #353d60; color: #F5756B;">
+    <div class="col-3">
+      <img src="../../assets/Sadface.jpg" class="mx-auto profile-img" style="border: 3px solid #F5756B;" alt="User Profile Image"/>
+    </div>
+    <div class="col-5 d-flex flex-column justify-content-center">
+      <h1>SadBoi666</h1>
+      <h4>
+        Bailey Barton <!-- Output user's full name but will hide it if another user visits their account and they do not want it to be public ~Bailey -->
+        <h5 class="form-check mt-1">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Hide Full Name
+          </label>
+        </h5>
+      </h4>
+    </div>
+    <div class="col-2 d-flex flex-column justify-content-center">
+      <h2 class="ps-4">0</h2> <!-- Value will be based on total post count tied to this user ~Bailey -->
+      <h2>Posts</h2>
+    </div>
+    <div class="col-2 d-flex flex-column justify-content-center">
+      <h2 class="ps-4">0</h2> <!-- Value will be based on total groups that this user is a part of ~Bailey -->
+      <h2>Group</h2>
+    </div>
+  </div>
+  <div class="row border rounded-3 mt-3" style="background-color: #F5756B; color: #353d60;">
+    <div class="col-4">
+      <h1>User Bio</h1>
+      <p style="font-size: 23px; font-weight: 500;">
+        I like emo rock and sad things like a spilt cup of icecream. "Look at this Photograph" is an amazing lyric!!! <!-- The user's BIO will go here, but might need a different element for holding it ~Bailey -->
+      </p>
+    </div>
+    <div class="col-7 d-flex flex-column ">
+      <h1>Wall of Posts</h1>
+      <h4 *ngIf="true">~No Posts to show~</h4> <!-- Could use a less than 0 Posts.Count (Posts.Count < 0) ~Bailey -->
+      <!-- Placeholder for posts, ideally will be a ngfor loop that shows a few of this user's posts ~Bailey -->
+      <div *ngIf="false">POSTS</div> <!-- Posts.Count > 0 maybe? ~Bailey -->
+    </div>
+    <div class="col-1">
+        <button *ngIf="true" class="btn-edit" style="color: #353d60;"><h5 style="border-bottom: 2px solid #353d60;">Edit</h5></button> <!-- Button for editing information on a user profile page, will hide it if user does not own profile -->
+    </div>
+  </div>
+</div>

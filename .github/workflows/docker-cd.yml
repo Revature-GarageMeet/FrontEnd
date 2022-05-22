@@ -20,7 +20,7 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v3.0.0
       with:
-        context: .
+        context: ./GarageMeet
         file: ./GarageMeet/Dockerfile
         tags: index.docker.io/${{secrets.DOCKERHUB_USERNAME}}/garagemeetui:${{github.sha}}
         push: true

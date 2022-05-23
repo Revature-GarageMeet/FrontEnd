@@ -1,0 +1,8 @@
+<form #f="ngForm">
+    <div class="input-group mb-3">
+        <textarea type="text" name="entry" [(ngModel)]="textEntry" required #entry="ngModel" class="form-control"
+            id="commentEntry" placeholder="Comment..."></textarea>
+        <button type="button" class="btn btn-outline-secondary input-group-append"
+            (click)="submitComment()">Submit</button>
+    </div>
+</form>

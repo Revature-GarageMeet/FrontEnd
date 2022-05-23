@@ -1,1 +1,25 @@
-<p>homepage works!</p>
+
+<div>
+    <form id="DEBUG_ONLY">
+        
+    </form>
+    
+    <form>
+        
+        <div class ="btn-group" role="group" aria-label="Basic Example" >
+            <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
+            <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
+            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Update');">Update</button>
+            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
+        </div>
+        <br>
+        <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
+        User ID(FOR DEBUG PURPOSES ONLY): <input id="userid" type="text" [(ngModel)]="post.userId" name="name">
+        <button type="submit">Get Posts :)</button>
+        <br>
+
+    </form>
+    <h2>{{post.userId}}</h2>
+    <div><span>Type of post: {{post.type}}</span></div>
+    <div><span>{{post.entry}}</span></div>
+</div>

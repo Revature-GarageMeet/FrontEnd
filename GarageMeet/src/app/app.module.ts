@@ -8,8 +8,12 @@ import { AppComponent } from './app.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
+import { PostComponent } from './post/post.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+
 
 
 
@@ -20,13 +24,17 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     LoginComponent,
     RegisterComponent,
     UserprofileComponent,
-    EditprofileComponent
+    EditprofileComponent,
+    PostComponent,
+    RegisterComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     MdbModalModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

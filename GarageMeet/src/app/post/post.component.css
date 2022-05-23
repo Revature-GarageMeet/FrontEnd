@@ -1,0 +1,107 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    /* background: #fccb90; */
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    /* background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
+    }
+  
+    @media (min-width: 768px) {
+    .gradient-form {
+    height: 100vh !important;
+    }
+    }
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }
+
+    .content {
+        padding:20px;
+        width:710px;
+        position:relative;
+        background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+        background: rgba(204, 204, 204, 0.5);
+    }
+
+.postbutton
+{
+    position: relative;
+    display: block;  
+    max-width: 500px;
+    margin: auto;
+    
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+    background: #353d60;
+    border-radius: 10px;
+}
+
+.postbody
+{
+    position: relative;
+    max-width: 400px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.submitbutton
+{
+    position: relative;
+    display: block;
+    margin: auto;
+    max-width: 200px;
+}
+
+.textbody
+{
+display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+  border-style: solid;
+  border-width: 2px;
+}
+.textbody[contenteditable]:empty::before {
+    text-align: center;
+    content: "Enter Post Here";
+    color: black;
+  }
+
+.submission
+{
+    display: block;
+    margin: auto;
+    max-width: 400px;
+    text-align: center;
+}
+.alertType
+{
+    border-style: solid;
+    border-width: 2px;
+    margin: auto;
+    max-width: 300px;
+}
+
+.image
+{
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3%;
+    size: 50%;
+}
+
+.background
+{
+    background: #353d60;
+}

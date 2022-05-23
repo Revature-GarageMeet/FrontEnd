@@ -73,6 +73,7 @@ export class PostComponent implements OnInit {
   {
     //#region replace spaces
     this.post.entry = this.post.entry.replaceAll(' ', '%20');
+    this.post.entry = this.post.entry.replaceAll('\n', '[ENTER]' );
     this.post.type = this.post.type.replaceAll(' ', '%20');
     //#endregion
   }

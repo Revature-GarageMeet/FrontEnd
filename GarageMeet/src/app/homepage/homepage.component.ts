@@ -9,7 +9,7 @@ import { PostService } from '../services/post.service';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
+  
     post: Post = {
       type: '',
       entry: '',
@@ -25,9 +25,24 @@ export class HomepageComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private postService: PostService) { }
   postType: string ='';
-
+  userId: number = 0;
+  posts: any = [];
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
+    
+    
+    //async for some reason? what the fuck? --Tucker
+    this.postService.getUserPost(0)
+    .subscribe((res: {results: any;})=>{
+      console.log(res);
+      this.posts = res;
+      for(let i = 0; i < this.posts.length; i++)
+        {
+          this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
+          console.log(this.posts[i].entry);
+        }
+    });
+
     
     
   }
@@ -40,5 +55,19 @@ export class HomepageComponent implements OnInit {
   onSubmit(): void
   {
 
+  }
+
+  GetPosts()
+  {
+    console.log(this.posts);
+  }
+
+
+  private ChangeCharacters():void
+  {
+    for(let i = 0; i < this.posts.length; i++)
+    {
+      this.posts[i].entry.replaceAll("[ENTER]", '\n');
+    }
   }
 }

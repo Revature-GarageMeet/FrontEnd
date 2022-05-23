@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   apBaseURL: "https://localhost:7088"
+=======
+  apBaseURL: "https://garagemeet.azurewebsites.net"
+>>>>>>> 90d07cd2a424f41f537d9bf356522a958c6f0d84
 };
 
 /*

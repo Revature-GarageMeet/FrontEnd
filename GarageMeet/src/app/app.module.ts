@@ -5,12 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
+import { PostComponent } from './post/post.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-
-
 
 @NgModule({
   declarations: [
@@ -18,13 +20,17 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     HomepageComponent,
     LoginComponent,
     RegisterComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    EditprofileComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MdbModalModule,
     FormsModule,
+    MdbModalModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

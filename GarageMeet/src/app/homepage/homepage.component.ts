@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Post } from '../post';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-homepage',
@@ -8,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+    post: Post = {
+      type: '',
+      entry: '',
+      userId: 0,
+      bandId: 0,
+      id: 0,
+      likes: 0,
+      dateCreated: new Date(),
+      postComments: []
+    }
 
+    private initPosts: Array<Post> = new Array<Post>();
+
+  constructor(private formBuilder: FormBuilder, private postService: PostService) { }
+  postType: string ='';
+
+  //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
+    
+    
   }
 
+  public GetPostType(name: string): void{
+    this.postType = name;
+    console.log(name);
+    
+  }
+  onSubmit(): void
+  {
+
+  }
 }

@@ -3,7 +3,7 @@ import { User } from '../models/user'; //interface for the user class ~Leo
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs'; //make sure you "npm install bcrypt" ... also make sure youre in /FrontEnd/GarageMeet ~Donte
 
 
 @Component({

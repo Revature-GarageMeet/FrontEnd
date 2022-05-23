@@ -5,9 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 
 
@@ -16,12 +18,15 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserprofileComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MdbModalModule,
     HttpClientModule
   ],
   providers: [],

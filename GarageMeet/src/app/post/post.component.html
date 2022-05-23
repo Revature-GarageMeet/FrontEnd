@@ -1,26 +1,44 @@
-
-<div>
-    <form id="DEBUG_ONLY">
+ 
+    <div class="background">
+        <form id="DEBUG_ONLY">
+            <img class="image" src="../../assets/logoDark.svg">
+        </form>
         
-    </form>
+        <form class="postbutton" [formGroup]="userPost" (ngSubmit)="onSubmit()">
+            
+            <div  role="group" aria-label="Basic Example" >
+                <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
+                <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
+                <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Update');">Update</button>
+                <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
+            </div>
+            <br>
+            <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
+            
+            <br>
+            <div id="post" >
+                <span style="background: white" class="textbody" id="postText" formControlName="text" role="textbox" contenteditable></span>
+                <!-- <input class="textbody"  type="text"  height="200px"> -->
+                <br>
+                <button class="button" class="submitbutton" type="submit">Post</button>
+                <div id="submissionFeedback" class="submission">
+                    <div class="alertType">
+
+                        <p style="color: white"><u>
+                            Who this alerts:
+                        </u> 
+                        <body style="background: #353d60; color: white" *ngIf="GetType() == 'Meetup'">Band Members</body>
+                        <body style="background: #353d60; color: white" *ngIf="GetType() == 'Venue Announcement'">Band Followers</body>
+                        <body style="background: #353d60; color: white" *ngIf="GetType() == 'Update'">Band Members and Followers</body>
+                        <body style="background: #353d60; color: white" *ngIf="GetType() == 'Looking For Band'">Musicians not currently in a band</body>
+                        </p>
+                    </div>
     
-    <form [formGroup]="userPost" (ngSubmit)="onSubmit()">
-        
-        <div class ="btn-group" role="group" aria-label="Basic Example" >
-            <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
-            <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
-            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Update');">Update</button>
-            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
-        </div>
-        <br>
-        <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
-        
-        <br>
-
-        <input id="postText" type="text" formControlName="text">
-        <button class="button" type="submit">Post</button>
-        <body *ngIf="GetCode() == 0">No submission yet!</body>
-        <body *ngIf="CheckPost() && GetCode() >= 200 && GetCode() <= 299">Submission was Successful!</body>
-
-    </form>
-</div>
+                        <body style="background: #353d60; color: white" *ngIf="GetCode() == 0 || GetType() == ''"><b>No submission yet!</b></body>
+                        <body style="background: #353d60; color: white" *ngIf="CheckPost() && GetCode() >= 200 && GetCode() <= 299"><b>Submission was Successful!</b></body>
+                </div>
+            </div>
+    
+        </form>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>

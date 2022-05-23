@@ -27,7 +27,7 @@ export class PostComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient) { }
 
   ngOnInit(): void {
-    
+    console.log(this.postType);
   }
 
   public GetPostType(name: string): void{
@@ -45,7 +45,8 @@ export class PostComponent implements OnInit {
     //No current user ID, as the site does not currently detect if user is logged in --Tucker
     this.SetPostType(this.postType);
     this.post.userId = this.userPost.value.userId;
-    this.post.entry = this.userPost.value.text;
+    this.post.entry = document.getElementById("postText")!.innerText;
+    console.log("Post: " + this.post.entry);
     this.post.type = this.userPost.value.type;
     this.ChangeCharacters();
     //console.log(this.userPost.value);
@@ -81,6 +82,10 @@ export class PostComponent implements OnInit {
     return this.response;
   }
 
+  public GetType(): string
+  {
+    return this.postType;
+  }
   public CheckPost(): boolean
   {
     

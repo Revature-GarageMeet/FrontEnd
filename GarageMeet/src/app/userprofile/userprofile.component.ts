@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EditprofileComponent } from '../editprofile/editprofile.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { User } from '../user';
 
 @Component({
   selector: 'app-userprofile',
@@ -12,6 +13,16 @@ export class UserprofileComponent implements OnInit {
   modalRef: MdbModalRef<EditprofileComponent> | null = null;
 
   constructor(private modalService: MdbModalService) { }
+
+  userProfile : User = {
+    id: -1,
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    bio: ''
+  }
 
   opacity: string = "100%"
 

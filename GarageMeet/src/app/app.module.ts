@@ -29,7 +29,6 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     AppRoutingModule,
     MdbModalModule,
     FormsModule,
-    MdbModalModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-editprofile',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditprofileComponent implements OnInit {
 
-  constructor() { }
+  constructor(public modalRef: MdbModalRef<EditprofileComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  close() {
+    const opacity = "100%";
+    this.modalRef.close(opacity)
   }
 
 }

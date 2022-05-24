@@ -1,13 +1,19 @@
 <header>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0">
     <div class="container">
       <a class="navbar-brand" href="#!"><span style="color: #353d60;">Garage</span><span style="color: #F5756B;">Meet</span></a>
-      <!-- <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+      <ul class="navbar-nav d-flex flex-row">
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="#!">
+            <img src="../../assets/Sadface.jpg" class="mx-auto navbar-profile-img" style="border: 2px solid #F5756B;" alt="User Profile Image" />
+          </a>
+      </ul>
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
         data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="False"
         aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
-      </button> -->
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
@@ -22,75 +28,45 @@
           <li class="nav-item">
             <a class="nav-link" href="#!">Create a Post</a>
           </li>
-
-        </ul>
-        <ul class="navbar-nav d-flex flex-row">
-          <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#!">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-          </li>
-          <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#!">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#!">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
   <!-- Navbar -->
 
-
-
-<!-- Navbar component could go up here unless its universally placed elsewhere which would then call this component ~Bailey -->
-<!-- Need to update below background-image with Jose's new watermark free background ~Bailey -->
 <div class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
   <div class="container p-5">
     <div class="row p-3 rounded-3"
       style="background-color: #353d60; color: #F5756B; border: 4px solid; border-color: #F5756B;">
-      <div class="col-3">
+      <div class="col-lg-3 col-sm-7">
         <img src="../../assets/Sadface.jpg" class="mx-auto profile-img" style="border: 3px solid #F5756B;"
           alt="User Profile Image" />
       </div>
-      <div class="col-5 d-flex flex-column justify-content-center">
+      <div class="col-lg-5 col-sm-5 d-flex flex-column justify-content-center">
         <h1>SadBoi666</h1>
         <h4>
           Bailey Barton
-          <!-- Output user's full name but will hide it if another user visits their account and they do not want it to be public ~Bailey -->
-          <h5 class="form-check mt-1">
-            <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
-            <!-- <label class="form-check-label" for="flexCheckDefault">
-            Hide Full Name
-          </label> Will probably move this snippet of code to EditProfileComponent Modal to allow for hiding real name to other users ~Bailey -->
-          </h5>
         </h4>
       </div>
-      <div class="col-2 d-flex flex-column justify-content-center">
+      <div class="col-lg-2 col-sm-3 col-6 d-flex flex-column justify-content-center">
         <h2 class="ps-4">0</h2> <!-- Value will be based on total post count tied to this user ~Bailey -->
         <h2>Posts</h2>
       </div>
-      <div class="col-2 d-flex flex-column justify-content-center">
+      <div class="col-lg-2 col-sm-2 col-6 d-flex flex-column justify-content-center">
         <h2 class="ps-4">0</h2> <!-- Value will be based on total groups that this user is a part of ~Bailey -->
         <h2>Group</h2>
       </div>
     </div>
     <div class="row rounded-3 mt-3"
       style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">
-      <div class="col-3">
+      <div class="col-lg-3">
         <h1>User Bio</h1>
         <p style="font-size: 23px; font-weight: 500; color: white;">
-          I like emo rock and sad things like a spilt cup of icecream. "Look at this Photograph" is an amazing
-          lyric!!!
+          
           <!-- The user's BIO will go here, but might need a different element for holding it ~Bailey -->
         </p>
       </div>
-      <div class="col-8 d-flex flex-column ">
+      <div class="col-lg-8 d-flex flex-column ">
         <h1>Wall of Posts</h1>
         <h4 *ngIf="false" style="color: white;">~No Posts to show~</h4>
         <!-- Could use a less than 0 Posts.Count (Posts.Count < 0) ~Bailey -->
@@ -99,7 +75,7 @@
           <!-- Posts.Count > 0 maybe? ~Bailey -->
           <!-- Everything below is hardcoded to try and see how a for looped posts section could look like ~Bailey -->
           <div class="row">
-            <div class="col-5 card m-1" style="background-color: #353d60;">
+            <div class="col-lg-5 card m-lg-1" style="background-color: #353d60;">
               <div class="card-body">
                 <img class="card-img-top rounded-3" src="../../assets/ChemRomanceTest.jpg" style="width: 90%">
                 <h4 class="card-title">Sick Album Release (post title)</h4>
@@ -107,7 +83,7 @@
                   tears!!!</p>
               </div>
             </div>
-            <div class="col-5 card m-1" style="background-color: #353d60;">
+            <div class="col-lg-5 card m-lg-1 mt-1" style="background-color: #353d60;">
               <div class="card-body">
                 <h4 class="card-title">Comments</h4>
                 <!-- Might use a ngFor loop to show some comments attached to this post; Otherwise everything below is a placeholder to show end result look ~Bailey -->

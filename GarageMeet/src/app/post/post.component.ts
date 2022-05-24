@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from '../post';
 import { PostService } from '../services/post.service';
+import { UserdataService } from '../services/userdata.service';
 
 
 @Component({
@@ -24,10 +25,10 @@ export class PostComponent implements OnInit {
   private post: Post = new Post();
   postType: string ='';
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient, private userdata: UserdataService) { }
 
   ngOnInit(): void {
-    console.log(this.postType);
+    
   }
 
   public GetPostType(name: string): void{
@@ -44,7 +45,7 @@ export class PostComponent implements OnInit {
   {
     //No current user ID, as the site does not currently detect if user is logged in --Tucker
     this.SetPostType(this.postType);
-    this.post.userId = this.userPost.value.userId;
+    this.post.userId = this.userdata.GetUser().id;
     this.post.entry = document.getElementById("postText")!.innerText;
     console.log("Post: " + this.post.entry);
     this.post.type = this.userPost.value.type;

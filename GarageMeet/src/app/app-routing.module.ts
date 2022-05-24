@@ -7,6 +7,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { PostComponent } from './post/post.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
+
 const routes: Routes = [
   {path: '', component: LoginComponent  },
   {path: 'login', component: LoginComponent},

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
+import { UserdataService } from '../services/userdata.service';
+import { User } from '../user';
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  constructor(private userdata: UserdataService) { }
 
   ngOnInit(): void {
-  }
 
+    
+  }
 }

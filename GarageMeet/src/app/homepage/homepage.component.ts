@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from '../post';
 import { PostService } from '../services/post.service';
+import { UserdataService } from '../services/userdata.service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
+
+
+
+
 export class HomepageComponent implements OnInit {
   
     post: Post = {
@@ -23,7 +28,7 @@ export class HomepageComponent implements OnInit {
 
     private initPosts: Array<Post> = new Array<Post>();
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService) { }
   postType: string ='';
   userId: number = 0;
   posts: any = [];
@@ -39,7 +44,7 @@ export class HomepageComponent implements OnInit {
       for(let i = 0; i < this.posts.length; i++)
         {
           this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
-          console.log(this.posts[i].entry);
+          //console.log(this.posts[i].entry);
         }
     });
 
@@ -59,7 +64,12 @@ export class HomepageComponent implements OnInit {
 
   GetPosts()
   {
-    console.log(this.posts);
+    //console.log(this.posts);
+  }
+
+  GetPostID(id: number)
+  {
+    console.log(`${id}, ${this.userData.GetUser()}`);
   }
 
 

@@ -1,8 +1,8 @@
 <header>
-  <app-navbar></app-navbar>
-<!-- Navbar component could go up here unless its universally placed elsewhere which would then call this component ~Bailey -->
-<!-- Need to update below background-image with Jose's new watermark free background ~Bailey -->
-<div class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
+  <!-- Navbar component could go up here unless its universally placed elsewhere which would then call this component ~Bailey -->
+  <!-- Need to update below background-image with Jose's new watermark free background ~Bailey -->
+  <div class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
+    <app-navbar></app-navbar>
   <div class="container p-5">
     <div class="row p-3 rounded-3"
       style="background-color: #353d60; color: #F5756B; border: 4px solid; border-color: #F5756B;">
@@ -11,9 +11,9 @@
           alt="User Profile Image" />
       </div>
       <div class="col-5 d-flex flex-column justify-content-center">
-        <h1>SadBoi666</h1>
+        <h1>{{user.username}}</h1>
         <h4>
-          Bailey Barton
+          {{user.firstname}} {{user.lastname}}
           <!-- Output user's full name but will hide it if another user visits their account and they do not want it to be public ~Bailey -->
           <h5 class="form-check mt-1">
             <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
@@ -37,8 +37,7 @@
       <div class="col-3">
         <h1>User Bio</h1>
         <p style="font-size: 23px; font-weight: 500; color: white;">
-          I like emo rock and sad things like a spilt cup of icecream. "Look at this Photograph" is an amazing
-          lyric!!!
+          {{user.bio}}
           <!-- The user's BIO will go here, but might need a different element for holding it ~Bailey -->
         </p>
       </div>

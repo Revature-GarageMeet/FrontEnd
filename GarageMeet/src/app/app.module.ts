@@ -28,7 +28,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     EditprofileComponent,
     PostComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
 
   ],
   imports: [

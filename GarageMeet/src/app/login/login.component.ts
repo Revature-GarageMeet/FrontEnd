@@ -4,10 +4,13 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import * as bcrypt from 'bcryptjs'; //make sure you "npm install bcrypt" ... also make sure youre in /FrontEnd/GarageMeet ~Donte
+import { NavbarComponent } from '../navbar/navbar.component';
+import { UserdataService } from '../services/userdata.service';
 
 
 @Component({
   selector: 'app-login',
+
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -16,8 +19,10 @@ export class LoginComponent implements OnInit {
   //constructor(private api: HttpService) {} when we get the http service made
   constructor(
     private router: Router,
-    private api: LoginService
+    private api: LoginService,
+    private userdata: UserdataService,
     ) { }
+
 
   result: boolean = false;
   userToCheck: User = {
@@ -75,7 +80,17 @@ export class LoginComponent implements OnInit {
                   this.result = res;
                   if (this.result) {
                     //they will be redirected soon
+                    
+                    this.userLoggedIn.password = "";
                     console.log("Nice");
+                    this.userdata.SetUser(
+                      this.userLoggedIn.id,
+                      this.userLoggedIn.username,
+                      this.userLoggedIn.firstname,
+                      this.userLoggedIn.lastname,
+                      this.userLoggedIn.email,
+                      this.userLoggedIn.bio
+                    );
                   }
                   else
                     console.log("Not Nice");
@@ -97,6 +112,8 @@ export class LoginComponent implements OnInit {
       }
   }
 
+
+
   forgotPassword() {
     /*
       an option i guess, ask others if we want it
@@ -110,6 +127,11 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+  }
+
+  GetUser(): User
+  {
+    return this.userLoggedIn;
   }
 
 }

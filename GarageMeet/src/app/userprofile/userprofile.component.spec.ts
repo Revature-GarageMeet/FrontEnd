@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 import { UserprofileComponent } from './userprofile.component';
 
@@ -8,7 +9,7 @@ describe('UserprofileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserprofileComponent ]
+      declarations: [ UserprofileComponent, NavbarComponent ]
     })
     .compileComponents();
   });

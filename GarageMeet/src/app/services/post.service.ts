@@ -19,6 +19,12 @@ export class PostService {
     private http: HttpClient,
   ) { }
 
+    returnPost = {
+      next: (x: number) => console.log(x),
+      error: (err: Error) => console.log(err),
+      complete: () => console.log("Complete"),
+    };
+    
     responseCode: number = 0;
     postuser(post: Post): Observable<HttpResponse<Post>>
     {
@@ -32,7 +38,12 @@ export class PostService {
       return new Observable<HttpResponse<Post>>();
     }
 
+    getUserPost(userid: number): Observable<any>
+    {
 
+     return this.http.get<any>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
+    //  return this.http.get<Array<Post>>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
+    }
 
     private handleError<T>(operation = 'operation', result?: T)
     {

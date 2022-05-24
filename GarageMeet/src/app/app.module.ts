@@ -13,16 +13,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    RegisterComponent,
     UserprofileComponent,
     EditprofileComponent,
     PostComponent,
+    RegisterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

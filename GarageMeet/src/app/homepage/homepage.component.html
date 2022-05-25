@@ -36,7 +36,7 @@
                         <body>{{post.entry}}</body>
                     </div>
                     <table id="likeButton" class="likeTable">
-                        <td><button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000"><img style="width: 20px;"src="../../assets/vectors/heart-svgrepo-com.svg"></button></td>
+                        <td><button (click)="LikePost(post.id, GetUser().id, post.likes)" style="border-width: 0px; background: #00000000"><img style="width: 20px;"src="../../assets/vectors/heart-svgrepo-com.svg"></button></td>
                         <td class="likeFont">Likes: {{post.likes}}</td>
                         
                     </table>

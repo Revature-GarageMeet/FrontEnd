@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from '../post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-homepage',
@@ -15,6 +16,7 @@ import { UserdataService } from '../services/userdata.service';
 
 export class HomepageComponent implements OnInit {
   
+    
     post: Post = {
       type: '',
       entry: '',
@@ -39,7 +41,7 @@ export class HomepageComponent implements OnInit {
     //async for some reason? what the fuck? --Tucker
     this.postService.getUserPost(0)
     .subscribe((res: {results: any;})=>{
-      console.log(res);
+
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
         {
@@ -62,14 +64,14 @@ export class HomepageComponent implements OnInit {
 
   }
 
-  GetPosts()
+  public GetUser(): User
   {
-    //console.log(this.posts);
+    return this.userData.GetUser();
   }
 
   GetPostID(id: number)
   {
-    console.log(`${id}, ${this.userData.GetUser()}`);
+    console.log(`${id}, ${this.userData.GetUser().id}`);
   }
 
 
@@ -80,4 +82,22 @@ export class HomepageComponent implements OnInit {
       this.posts[i].entry.replaceAll("[ENTER]", '\n');
     }
   }
+
+
+  LikePost(postid: number, userid: number, likes: number)
+  {
+    let _post = new Post();
+    _post.id = postid;
+    _post.likes = likes;
+    this.postService.SetLikes(_post, userid).subscribe((res) =>{
+      console.log(_post);
+    });
+
+
+    
+  }
+
+  
+
+
 }

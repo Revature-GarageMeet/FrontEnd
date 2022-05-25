@@ -8,6 +8,7 @@ import { catchError } from 'rxjs';
 import { Post} from '../post';
 import { User } from '../user';
 import { map, tap } from 'rxjs';
+import { PostComponent } from '../post/post.component';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +59,16 @@ export class PostService {
     private log(message: string){
       console.log(message);
     }
+
+
+    GetLikes(postid: number): Observable<any>
+    {
+      return this.http.get<Post>(`${environment.apBaseURL}/Post/GetPostByPostID/${postid}`);
+    }
+
+    SetLikes(_post: Post, userid: number): Observable<any>
+    {
+      return this.http.put<Post>(`${environment.apBaseURL}/Post/LikePost/${_post.id}/${userid}`, _post);
+    }
+
 }

@@ -54,6 +54,7 @@ export class PostComponent implements OnInit {
     
       this.postService.postuser(this.post).subscribe((res) => {
         console.log(res.status);
+        
         this.response = res.status;
       });
 

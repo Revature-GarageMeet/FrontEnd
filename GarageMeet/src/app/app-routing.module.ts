@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { PostComponent } from './post/post.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { resolve } from 'dns';
 
 
 const routes: Routes = [
@@ -14,8 +15,10 @@ const routes: Routes = [
   {path: 'post', component: PostComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'homepage', component: HomepageComponent},
-  {path: 'userprofile', component: UserprofileComponent}
-
+  {path: 'userprofile', component: UserprofileComponent},
+  // resolve:{
+  //   singlePost: singlepost
+  // },
 ];
 
 @NgModule({

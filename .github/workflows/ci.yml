@@ -25,7 +25,7 @@ jobs:
       - name: WriteLcov
         run: |
           npm install
-          npm install --save-dev @angular-devkit/build-angular:karma
+          npm install --save-dev @angular-devkit/build-angular
           cd ./GarageMeet
           ng test --no-watch --code-coverage
     

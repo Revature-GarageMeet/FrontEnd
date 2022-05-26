@@ -40,14 +40,7 @@ export class HomepageComponent implements OnInit {
     
     
     //async for some reason? what the fuck? --Tucker
-<<<<<<< HEAD
-    this.postService.getUserPost(0)
-    .subscribe((res: {results: any;})=>{
-
-      this.posts = res;
-=======
     this.postService.getUserPost(0).subscribe((res: {results: any;})=>{ console.log(res); this.posts = res;
->>>>>>> 1ac345e150734317c9e3b92ff0922274218fb888
       for(let i = 0; i < this.posts.length; i++)
         {
           this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');

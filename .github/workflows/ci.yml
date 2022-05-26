@@ -24,6 +24,7 @@ jobs:
         uses: mayurrawte/github-angular-actions@latest
       - name: WriteLcov
         run: |
+          npm install
           cd ./GarageMeet
           ng test --no-watch --code-coverage
     

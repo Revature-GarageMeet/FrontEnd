@@ -1,25 +1,16 @@
 <header>
-<<<<<<< HEAD
   <!-- Navbar component could go up here unless its universally placed elsewhere which would then call this component ~Bailey -->
   <!-- Need to update below background-image with Jose's new watermark free background ~Bailey -->
   <div class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover; ">
-=======
-  <div class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png); background-repeat: no-repeat; background-size: cover ;" [ngStyle]="{'opacity': opacity}">
->>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
     <app-navbar></app-navbar>
   <div class="container" style="padding-top: 125px;">
     <div class="row p-3 rounded-3"
       style="background-color: #353d60; color: #F5756B; border: 4px solid; border-color: #F5756B;">
-<<<<<<< HEAD
-      
-      <div class="col-5 d-flex flex-column justify-content-center">
-=======
       <div class="col-lg-3 col-sm-12 col-7">
         <img src="../../assets/GM_ProfileAvatar.jpg" class="mx-auto profile-img" style="border: 3px solid #F5756B;"
           alt="User Profile Image" />
       </div>
       <div class="col-lg-5 col-sm-6 col-12 d-flex flex-column justify-content-center">
->>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
         <h1>{{user.username}}</h1>
         <h4>
           {{user.firstname}} {{user.lastname}}
@@ -36,9 +27,7 @@
       </div>
     </div>
     <div class="row rounded-3 mt-3"
-      style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">
-<<<<<<< HEAD
-      
+      style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">      
       <div class="col-8 d-flex flex-column ">
         <div id="contentHolder">
           <table >
@@ -68,26 +57,13 @@
           </table>
         </div>
         <h4 *ngIf="false" style="color: white;">~No Posts to show~</h4>
-=======
-      <div class="col-lg-3">
-        <h1>User Bio</h1>
-        <p style="font-size: 23px; font-weight: 500; color: white;">
-          {{user.bio}}
-        </p>
-      </div>
-      <div class="col-lg-8 d-flex flex-column ">
-        <h1>Wall of Posts</h1>
-        <h4 *ngIf="hasPosts === false" style="color: white;">~No Posts to show~</h4>
->>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
+
         <!-- Could use a less than 0 Posts.Count (Posts.Count < 0) ~Bailey -->
         <!-- Placeholder for posts, ideally will be a ngfor loop that shows a few of this user's posts ~Bailey -->
         <div *ngIf="hasPosts" style="color:white;">
           <!-- Posts.Count > 0 maybe? ~Bailey -->
           <!-- Everything below is hardcoded to try and see how a for looped posts section could look like ~Bailey -->
-<<<<<<< HEAD
-          
-          
-=======
+
           <div class="row">
             <div class="col-lg-5 card m-lg-1" style="background-color: #353d60;">
               <div class="card-body">
@@ -113,7 +89,6 @@
               </div>
             </div>
           </div>
->>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
         </div>
       </div>
       <div class="col-1">

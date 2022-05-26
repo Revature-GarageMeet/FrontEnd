@@ -24,6 +24,7 @@ jobs:
         uses: mayurrawte/github-angular-actions@latest
       - name: WriteLcov
         run: |
+          cd ./GarageMeet
           npm install
           npm install --save-dev @angular-devkit/build-angular
           npm install karma

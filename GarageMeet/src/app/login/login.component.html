@@ -76,7 +76,7 @@ span.psw {
 </head>
 <body>
 
-  <section class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
+  <section class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png) ; background-repeat: no-repeat; background-size: cover ;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-10">
@@ -98,25 +98,25 @@ span.psw {
 
 
                     <div class="form-outline mb-4">
-                      <input type="email" id="form2Example11" class="form-control"
-                        placeholder="Phone number or email address" />
+                      <input type="username" id="form2Example11" class="form-control" placeholder="" [(ngModel)]="userToCheck.username" name = "username"/>
                       <label class="form-label" for="form2Example11">Username</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                      <input type="password" id="form2Example22" class="form-control" />
+                      <input type="password" id="form2Example22" class="form-control" [(ngModel)]="userToCheck.password" name = "password"/>
                       <label class="form-label" for="form2Example22">Password</label>
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                      <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" routerLink="../userprofile" type="button" (click)="tryToLogin()">Log
                         in</button>
                       <a class="text-muted" href="#!">Forgot password?</a>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center pb-4">
                       <p class="mb-0 me-2">Don't have an account?</p>
-                      <button type="button" class="btn btn-outline-danger">Create new</button>
+
+                      <button type="button" routerLink="../register" class="btn btn-outline-danger">Create new</button>
                     </div>
 
                   </form>

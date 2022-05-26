@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apBaseURL: "https://localhost:7088"
+  //apBaseURL: "https://garagemeet.azurewebsites.net"
+
 };
 
 /*

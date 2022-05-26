@@ -1,7 +1,7 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "typeRoots": ["node_modules/@types"],
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -20,13 +20,15 @@
     "module": "es2020",
     "lib": [
       "es2020",
-      "dom"
+      "dom",
+      "ES2021.String"
     ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "types": ["node", "jasmine"]
   }
 }

@@ -1,0 +1,105 @@
+<header>
+  <!-- Navbar component could go up here unless its universally placed elsewhere which would then call this component ~Bailey -->
+  <!-- Need to update below background-image with Jose's new watermark free background ~Bailey -->
+  <div class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover ;">
+    <app-navbar></app-navbar>
+  <div class="container p-5">
+    <div class="row p-3 rounded-3"
+      style="background-color: #353d60; color: #F5756B; border: 4px solid; border-color: #F5756B;">
+      <div class="col-3">
+        <img src="../../assets/Sadface.jpg" class="mx-auto profile-img" style="border: 3px solid #F5756B;"
+          alt="User Profile Image" />
+      </div>
+      <div class="col-5 d-flex flex-column justify-content-center">
+        <h1>{{user.username}}</h1>
+        <h4>
+          {{user.firstname}} {{user.lastname}}
+          <!-- Output user's full name but will hide it if another user visits their account and they do not want it to be public ~Bailey -->
+          <h5 class="form-check mt-1">
+            <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
+            <!-- <label class="form-check-label" for="flexCheckDefault">
+            Hide Full Name
+          </label> Will probably move this snippet of code to EditProfileComponent Modal to allow for hiding real name to other users ~Bailey -->
+          </h5>
+        </h4>
+      </div>
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <h2 class="ps-4">0</h2> <!-- Value will be based on total post count tied to this user ~Bailey -->
+        <h2>Posts</h2>
+      </div>
+      <div class="col-2 d-flex flex-column justify-content-center">
+        <h2 class="ps-4">0</h2> <!-- Value will be based on total groups that this user is a part of ~Bailey -->
+        <h2>Group</h2>
+      </div>
+    </div>
+    <div class="row rounded-3 mt-3"
+      style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">
+      <div class="col-3">
+        <h1>User Bio</h1>
+        <p style="font-size: 23px; font-weight: 500; color: white;">
+          {{user.bio}}
+          <!-- The user's BIO will go here, but might need a different element for holding it ~Bailey -->
+        </p>
+      </div>
+      <div class="col-8 d-flex flex-column ">
+        <h1>Wall of Posts</h1>
+        <h4 *ngIf="false" style="color: white;">~No Posts to show~</h4>
+        <!-- Could use a less than 0 Posts.Count (Posts.Count < 0) ~Bailey -->
+        <!-- Placeholder for posts, ideally will be a ngfor loop that shows a few of this user's posts ~Bailey -->
+        <div *ngIf="true" style="color:white;">
+          <!-- Posts.Count > 0 maybe? ~Bailey -->
+          <!-- Everything below is hardcoded to try and see how a for looped posts section could look like ~Bailey -->
+          <div class="row">
+            <div class="col-5 card m-1" style="background-color: #353d60;">
+              <div class="card-body">
+                <img class="card-img-top rounded-3" src="../../assets/ChemRomanceTest.jpg" style="width: 90%">
+                <h4 class="card-title">Sick Album Release (post title)</h4>
+                <p class="card-text">I heard the latest album from my chemical romance and it has me balling up in
+                  tears!!!</p>
+              </div>
+            </div>
+            <div class="col-5 card m-1" style="background-color: #353d60;">
+              <div class="card-body">
+                <h4 class="card-title">Comments</h4>
+                <!-- Might use a ngFor loop to show some comments attached to this post; Otherwise everything below is a placeholder to show end result look ~Bailey -->
+                <div class="row gradient-custom-2 rounded-3 p-1 mb-1">
+                  <div class="col-12">
+                    <img src="../../assets/Sadface.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
+                    SadBoi666
+                  </div>
+                  <div class="col-12">
+                    <p class="card-text">Probably wont stay just to appease Donte</p>
+                  </div>
+                </div>
+                <div class="row gradient-custom-2 rounded-3 p-1 mb-1">
+                  <div class="col-12">
+                    <img src="../../assets/Sadface.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
+                    Edgyman1234
+                  </div>
+                  <div class="col-12">
+                    <p class="card-text">That album helped me through a bad league match.... hardstuck bronze</p>
+                  </div>
+                </div>
+                <div class="row gradient-custom-2 rounded-3 p-1 mb-1">
+                  <div class="col-12">
+                    <img src="../../assets/Sadface.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
+                    Trollzar
+                  </div>
+                  <div class="col-12">
+                    <p class="card-text">Hey why did you kick me from the band group?????</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+        <button *ngIf="true" class="btn-edit" style="color: #353d60;" (click)="openEditModal()"><!-- If edit button is clicked then the EditProfileComponent Modal will pop up for access to editing some profile information  -->
+          <h5 style="border-bottom: 2px solid #353d60;">Edit</h5>
+        </button>
+        <!-- Button for editing information on a user profile page, will hide it if user does not own profile ~Bailey-->
+      </div>
+    </div>
+  </div>
+</div>

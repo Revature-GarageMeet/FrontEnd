@@ -1,0 +1,46 @@
+ 
+    <div class="background">
+        <app-navbar></app-navbar>
+
+        <form id="DEBUG_ONLY">
+            <img class="image" src="../../assets/logoDark.svg">
+        </form>
+        
+        <form class="postbutton" [formGroup]="userPost" (ngSubmit)="onSubmit()">
+            
+            <div  id="buttons" class="buttonGroup" >
+                <button type="button" id="Meetup" (click)="GetPostType('Meetup');">Meetup<img class="icon" src ="../../assets/vectors/garage-svgrepo-com.svg"></button>
+                <button type="button" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement<img class="icon" src="../../assets/vectors/spotlight-svgrepo-com.svg"></button>
+                <button type="button" id="Update" (click)="GetPostType('Update');">Update<img class="icon" src="../../assets/vectors/update-icon-svgrepo-com.svg"></button>
+                <button type="button" id="Looking For Band" (click)="GetPostType('Looking For Band');">Looking for Band<img class="icon" src="../../assets/vectors/music-instruments-drums-svgrepo-com.svg"></button>
+            </div>
+            
+            <br>
+            <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
+            
+            <br>
+            <div id="post" >
+                <span style="background: white" class="textbody" id="postText" formControlName="text" role="textbox" contenteditable></span>
+                <!-- <input class="textbody"  type="text"  height="200px"> -->
+                <br>
+                <button class="button" class="submitbutton" type="submit">Post</button>
+                <div id="submissionFeedback" class="submission">
+                    <div>
+                        <body class="alertClass">
+                            Who this alerts:
+                        </body>
+                        <body class ="alertType" style="background: #353d6000; color: #d1d1d1" *ngIf="GetType() == 'Meetup'">Band Members</body>
+                        <body class ="alertType" style="background: #353d6000; color: #d1d1d1" *ngIf="GetType() == 'Venue Announcement'">Band Followers</body>
+                        <body class ="alertType" style="background: #353d6000; color: #d1d1d1" *ngIf="GetType() == 'Update'">Band Members and Followers</body>
+                        <body class ="alertType" style="background: #353d6000; color: #d1d1d1" *ngIf="GetType() == 'Looking For Band'">Musicians not currently in a band</body>
+                        
+                    </div>
+    
+                        <body class ="noSub" *ngIf="GetCode() == 0 || GetType() == ''"><b>No submission yet!</b></body>
+                        <body class ="passSub" *ngIf="CheckPost() && GetCode() >= 200 && GetCode() <= 299"><b>Submission was Successful! :)</b></body>
+                </div>
+            </div>
+    
+        </form>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>

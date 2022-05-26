@@ -3,15 +3,20 @@ import { flush } from '@angular/core/testing';
 import { RouterModule, Routes } from '@angular/router';
 import { GrouppageComponent } from './grouppage/grouppage.component';
 import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './header/header.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { RegisterComponent } from './register/register.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 import { CommentComponent } from './comment/comment.component';
+import { PostComponent } from './post/post.component';
+import { HomepageComponent } from './homepage/homepage.component';
+
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: '', component: GrouppageComponent },
-  { path: '', component: HeaderComponent },
-  { path: '', component: HomepageComponent },
+  {path: '', component: LoginComponent  },
+  {path: 'login', component: LoginComponent},
+  {path: 'post', component: PostComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'homepage', component: HomepageComponent},
+  {path: 'userprofile', component: UserprofileComponent},
   { path: 'comment', component: CommentComponent }
 ];
 

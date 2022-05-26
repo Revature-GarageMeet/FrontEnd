@@ -1,0 +1,90 @@
+.postBox
+{
+    position: relative;
+    display: block;
+    
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    overflow-wrap: anywhere;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    
+
+    
+}
+
+.post
+{
+    width: 450px;
+    background: #F5756B;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+table.postFeed
+{
+
+    margin-left: auto;
+    margin-right: auto;
+    margin: auto;
+    white-space: pre-line;
+    
+}
+
+.likeTable
+{
+    margin-left: 5%;
+}
+
+.scrollBox
+{
+margin-top: 4.5%;
+    height:  800px;
+    width: 600px;
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page
+{
+    height: 100vh;
+    
+    background: #353d60;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #353d60;
+    
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #353d60;
+    background: #F5756B; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #F5756B; 
+  }
+
+  .likeFont
+  {
+      font-family: "republican";
+
+      border-style: solid;
+  }

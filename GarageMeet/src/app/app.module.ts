@@ -39,8 +39,8 @@ import { GrouppageComponent } from './grouppage/grouppage.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     MdbModalModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

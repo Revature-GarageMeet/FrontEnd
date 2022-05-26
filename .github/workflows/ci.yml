@@ -26,6 +26,7 @@ jobs:
         run: |
           npm install
           npm install --save-dev @angular-devkit/build-angular
+          npm install karma
           cd ./GarageMeet
           ng test --no-watch --code-coverage
     

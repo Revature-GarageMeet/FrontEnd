@@ -26,26 +26,44 @@
         <h2>Group</h2>
       </div>
     </div>
-    <div class="row rounded-3 mt-3"
+    <div class="row rounded-3 mt-3 profileBody"
       style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">      
       <div class="col-8 d-flex flex-column ">
+        <div class="col-1">
+          <button *ngIf="true" class="btn-edit" style="color: #353d60;" (click)="openEditModal()"><!-- If edit button is clicked then the EditProfileComponent Modal will pop up for access to editing some profile information  -->
+            <h5 style="border-bottom: 2px solid #353d60;">Edit</h5>
+          </button>
+          <!-- Button for editing information on a user profile page, will hide it if user does not own profile ~Bailey-->
+        </div>
         <div id="contentHolder">
-          <table >
+          <table class="profileTable" >
             <tr>
               <td  class="debugBorders">
-                <h1>User Bio</h1>
+                <h1 class="card-title">User Bio</h1>
                 <p style="font-size: 23px; font-weight: 500; color: white;">
                   {{user.bio}}
                   <!-- The user's BIO will go here, but might need a different element for holding it ~Bailey -->
                 </p>
               </td>
               
-              
-            </tr>
-            <tr>
               <td  class="debugBorders">
-                <h4>Posts</h4>
-                
+                <h4 class="card-title">Posts</h4>
+                <div class="scrollBox">
+                  <table class="postFeed">
+                      <tr *ngFor="let post of posts">
+                          <div class="post">
+                              <div id="postContent" class="postBox">
+                                  <body>User ID: {{post.userId}}</body>
+                                  <body>Type of post: {{post.type}}</body>
+                                  <body>{{post.entry}}</body>
+                              </div>
+                              
+                              <br><br><br>
+                          </div>
+                          <br>
+                      </tr>
+                  </table>
+              </div>
               </td>
               <td  class="debugBorders">
                 <div class="card-body">
@@ -54,6 +72,7 @@
                 </div>
               </td>
             </tr>
+            
           </table>
         </div>
         <h4 *ngIf="false" style="color: white;">~No Posts to show~</h4>
@@ -91,12 +110,7 @@
           </div>
         </div>
       </div>
-      <div class="col-1">
-        <button *ngIf="true" class="btn-edit" style="color: #353d60;" (click)="openEditModal()"><!-- If edit button is clicked then the EditProfileComponent Modal will pop up for access to editing some profile information  -->
-          <h5 style="border-bottom: 2px solid #353d60;">Edit</h5>
-        </button>
-        <!-- Button for editing information on a user profile page, will hide it if user does not own profile ~Bailey-->
-      </div>
+      
     </div>
   </div>
 </div>

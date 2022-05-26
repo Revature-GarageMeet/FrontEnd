@@ -5,6 +5,7 @@ import { UserdataService } from '../services/userdata.service';
 import { User } from '../user';
 import { PostService } from '../services/post.service';
 import { EditProfileService } from '../services/edit-profile.service';
+import { Post } from '../post';
 
 @Component({
   selector: 'app-userprofile',
@@ -25,6 +26,18 @@ export class UserprofileComponent implements OnInit {
     bio: ''
   }
 
+  post: Post = {
+    type: '',
+    entry: '',
+    userId: 0,
+    bandId: 0,
+    id: 0,
+    likes: 0,
+    dateCreated: new Date(),
+    postComments: []
+  }
+
+  posts: any = [];
   opacity: string = "100%";
   ownsProfile: boolean = true;
 
@@ -48,6 +61,17 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userData.GetUser();
+    this.postData.getUserPost(this.user.id)
+    .subscribe((res: {results: any;})=>{
+
+      this.posts = res;
+      console.log(this.posts);
+      for(let i = 0; i < this.posts.length; i++)
+        {
+          this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
+          //console.log(this.posts[i].entry);
+        }
+    });
   }
 
 }

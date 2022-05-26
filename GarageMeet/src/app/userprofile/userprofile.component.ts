@@ -3,6 +3,8 @@ import { EditprofileComponent } from '../editprofile/editprofile.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { UserdataService } from '../services/userdata.service';
 import { User } from '../user';
+import { PostService } from '../services/post.service';
+import { EditProfileService } from '../services/edit-profile.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -22,24 +24,29 @@ export class UserprofileComponent implements OnInit {
     email: '',
     bio: ''
   }
-  constructor(private modalService: MdbModalService,
-    private userData: UserdataService) { }
 
-  opacity: string = "100%"
+  opacity: string = "100%";
+  ownsProfile: boolean = true;
+
+  // Used to notify user of no posts to show or show posts if there are any ~Bailey
+  hasPosts: boolean = false;
+
+  constructor(private modalService: MdbModalService,
+    private userData: UserdataService, private postData: PostService, private editProfileData: EditProfileService ) { }
 
   openEditModal() {
     this.opacity = "25%";
     this.modalRef = this.modalService.open(EditprofileComponent, {
-      modalClass: 'modal-dialog-centered'
-      // data: { currPlayer } Might use for passing in profile user information to be able to edit BIO, Username, Real name visibility, and profile img
+      modalClass: 'modal-dialog-centered',
+      data: { editUser: this.user }
     })
     this.modalRef.onClose.subscribe((message: any) => {
       this.opacity = message;
+      this.editProfileData.updateUserData(this.user).subscribe();
     });
   }
 
   ngOnInit(): void {
-
     this.user = this.userData.GetUser();
   }
 

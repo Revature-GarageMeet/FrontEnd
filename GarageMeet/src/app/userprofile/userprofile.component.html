@@ -1,36 +1,43 @@
 <header>
+<<<<<<< HEAD
   <!-- Navbar component could go up here unless its universally placed elsewhere which would then call this component ~Bailey -->
   <!-- Need to update below background-image with Jose's new watermark free background ~Bailey -->
   <div class="h-100 gradient-form" style="background-image: url(https://thumbs.dreamstime.com/b/defocused-dark-concert-background-purple-light-blurred-lighting-stage-live-perfomance-105569984.jpg); background-repeat: no-repeat; background-size: cover; ">
+=======
+  <div class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png); background-repeat: no-repeat; background-size: cover ;" [ngStyle]="{'opacity': opacity}">
+>>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
     <app-navbar></app-navbar>
-  <div class="container p-5">
+  <div class="container" style="padding-top: 125px;">
     <div class="row p-3 rounded-3"
       style="background-color: #353d60; color: #F5756B; border: 4px solid; border-color: #F5756B;">
+<<<<<<< HEAD
       
       <div class="col-5 d-flex flex-column justify-content-center">
+=======
+      <div class="col-lg-3 col-sm-12 col-7">
+        <img src="../../assets/GM_ProfileAvatar.jpg" class="mx-auto profile-img" style="border: 3px solid #F5756B;"
+          alt="User Profile Image" />
+      </div>
+      <div class="col-lg-5 col-sm-6 col-12 d-flex flex-column justify-content-center">
+>>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
         <h1>{{user.username}}</h1>
         <h4>
           {{user.firstname}} {{user.lastname}}
           <!-- Output user's full name but will hide it if another user visits their account and they do not want it to be public ~Bailey -->
-          <h5 class="form-check mt-1">
-            <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
-            <!-- <label class="form-check-label" for="flexCheckDefault">
-            Hide Full Name
-          </label> Will probably move this snippet of code to EditProfileComponent Modal to allow for hiding real name to other users ~Bailey -->
-          </h5>
         </h4>
       </div>
-      <div class="col-2 d-flex flex-column justify-content-center">
+      <div class="col-lg-2 col-sm-3 col-6 d-flex flex-column justify-content-center">
         <h2 class="ps-4">0</h2> <!-- Value will be based on total post count tied to this user ~Bailey -->
         <h2>Posts</h2>
       </div>
-      <div class="col-2 d-flex flex-column justify-content-center">
+      <div class="col-lg-2 col-sm-3 col-6 d-flex flex-column justify-content-center">
         <h2 class="ps-4">0</h2> <!-- Value will be based on total groups that this user is a part of ~Bailey -->
         <h2>Group</h2>
       </div>
     </div>
     <div class="row rounded-3 mt-3"
       style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">
+<<<<<<< HEAD
       
       <div class="col-8 d-flex flex-column ">
         <div id="contentHolder">
@@ -61,13 +68,52 @@
           </table>
         </div>
         <h4 *ngIf="false" style="color: white;">~No Posts to show~</h4>
+=======
+      <div class="col-lg-3">
+        <h1>User Bio</h1>
+        <p style="font-size: 23px; font-weight: 500; color: white;">
+          {{user.bio}}
+        </p>
+      </div>
+      <div class="col-lg-8 d-flex flex-column ">
+        <h1>Wall of Posts</h1>
+        <h4 *ngIf="hasPosts === false" style="color: white;">~No Posts to show~</h4>
+>>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
         <!-- Could use a less than 0 Posts.Count (Posts.Count < 0) ~Bailey -->
         <!-- Placeholder for posts, ideally will be a ngfor loop that shows a few of this user's posts ~Bailey -->
-        <div *ngIf="true" style="color:white;">
+        <div *ngIf="hasPosts" style="color:white;">
           <!-- Posts.Count > 0 maybe? ~Bailey -->
           <!-- Everything below is hardcoded to try and see how a for looped posts section could look like ~Bailey -->
+<<<<<<< HEAD
           
           
+=======
+          <div class="row">
+            <div class="col-lg-5 card m-lg-1" style="background-color: #353d60;">
+              <div class="card-body">
+                <img class="card-img-top rounded-3" src="#" style="width: 90%" alt="Post image"> <!-- If they attached an image to their post it would go here ~Bailey -->
+                <h4 class="card-title"><!-- Post Title --></h4>
+                <p class="card-text"> <!-- Post Text Box --></p>
+              </div>
+            </div>
+            <div class="col-lg-5 card m-lg-1 mt-1" style="background-color: #353d60;">
+              <div class="card-body">
+                <h4 class="card-title">Comments</h4>
+                <!-- Might use a ngFor loop to show some comments attached to this post; Otherwise everything below is a placeholder to show end result look ~Bailey -->
+                <!-- Maybe also an ngIf in case no comments were made on this post ~Bailey -->
+                <div class="row gradient-custom-2 rounded-3 p-1 mb-1">
+                  <div class="col-12">
+                    <img src="../../assets/GM_ProfileAvatar.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
+                    <!-- Commentors Username -->
+                  </div>
+                  <div class="col-12">
+                    <p class="card-text"><!-- Commentors Comment Message --></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+>>>>>>> 2c275c80c366189a41ad2cd8dd71044b9bf872e3
         </div>
       </div>
       <div class="col-1">

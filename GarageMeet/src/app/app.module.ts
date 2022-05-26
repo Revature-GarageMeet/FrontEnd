@@ -15,27 +15,22 @@ import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    RegisterComponent,
     UserprofileComponent,
     EditprofileComponent,
     PostComponent,
     RegisterComponent,
     NavbarComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     MdbModalModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

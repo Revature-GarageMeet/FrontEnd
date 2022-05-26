@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { subscribeOn } from 'rxjs';
 import { Post } from '../post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-
-
-
 
 export class HomepageComponent implements OnInit {
   
@@ -25,8 +24,11 @@ export class HomepageComponent implements OnInit {
       dateCreated: new Date(),
       postComments: []
     }
-
-    private initPosts: Array<Post> = new Array<Post>();
+  
+  private initPosts: Array<Post> = new Array<Post>();
+  @Input() like!: number;
+  @Output() likeChange = new EventEmitter<number>();
+  clickedIndex: number = 0;
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService) { }
   postType: string ='';
@@ -37,19 +39,14 @@ export class HomepageComponent implements OnInit {
     
     
     //async for some reason? what the fuck? --Tucker
-    this.postService.getUserPost(0)
-    .subscribe((res: {results: any;})=>{
-      console.log(res);
-      this.posts = res;
+    this.postService.getUserPost(0).subscribe((res: {results: any;})=>{ console.log(res); this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
         {
           this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
-          //console.log(this.posts[i].entry);
+          // console.log(this.posts[i]);
+          this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
         }
-    });
-
-    
-    
+    });    
   }
 
   public GetPostType(name: string): void{
@@ -69,7 +66,16 @@ export class HomepageComponent implements OnInit {
 
   GetPostID(id: number)
   {
+
     console.log(`${id}, ${this.userData.GetUser()}`);
+    
+    //this.postService.putLikePost(id).subscribe();
+    this.postService.getPostById(id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
+  }
+
+  test(postid: number, i: number, posts: Array<Post>): boolean
+  {
+    return (posts.findIndex(x => x.id == postid)) == i;
   }
 
 

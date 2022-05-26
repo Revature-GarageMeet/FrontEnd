@@ -10,13 +10,10 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-    - name: Angular Full CI
+      - name: Angular Github Actions
       # You may pin to the exact commit or the version.
-      # uses: colbyhill21/angular-full-ci@a3489087f6a715db335078f999c01d422a254a6c
-      uses: colbyhill21/angular-full-ci@v1.0
-      with:
-        # Command to run tests on your project, do not prepend with "npm", it is already included.
-        testcommand: ng test --no-watch --code-coverage
+      # uses: mayurrawte/github-angular-actions@babc38d81371a05fbe9b9b6d50d241efb96d4faf
+        uses: mayurrawte/github-angular-actions@latest
     
 #   sonarcloud:
 #     name: SonarCloud

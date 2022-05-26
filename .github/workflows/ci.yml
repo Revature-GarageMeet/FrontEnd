@@ -20,6 +20,7 @@ jobs:
           npm install -g @angular/cli
           npm install --force @angular-devkit/build-angular
           ng test --no-watch --code-coverage
+          cat ./coverage/garage-meet/lcov.info
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest

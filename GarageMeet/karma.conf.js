@@ -30,7 +30,8 @@ module.exports = function (config) {
       reporters: [
         { type: 'html' },
         { type: 'text-summary' },
-        { type: 'lcovonly', subdir: '.', file: 'report-lcovonly.txt' }
+        { type: 'lcovonly', subdir: '.', file: 'report-lcovonly.txt' },
+        { type: 'lcov' }
       ]
     },
     reporters: ['progress', 'kjhtml'],

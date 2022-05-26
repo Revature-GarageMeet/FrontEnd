@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -74,7 +75,7 @@
                       </div>
                     </div>
 
-                    <div class="text-center pt-1 mb-3 pb-0">
+                    <div class="text-center pt-1 mb-3 pb-0" *ngIf="canClick">
                       <button class="d-grid col-6 mx-auto btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="tryToRegister()" >Sign up</button>
                     </div>
 

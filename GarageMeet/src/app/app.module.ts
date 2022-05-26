@@ -14,6 +14,8 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NgToastModule } from 'ng-angular-popup' //npm i ng-angular-popup ~Leo, pop ups for login and register page
+import { CommonModule } from '@angular/common'; //did we really not have this? ~Leo
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     MdbModalModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgToastModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

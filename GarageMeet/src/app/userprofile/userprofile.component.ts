@@ -6,6 +6,7 @@ import { User } from '../user';
 import { PostService } from '../services/post.service';
 import { EditProfileService } from '../services/edit-profile.service';
 import { Post } from '../post';
+import { StringconversionService } from '../services/stringconversion.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -37,7 +38,7 @@ export class UserprofileComponent implements OnInit {
     postComments: []
   }
 
-  posts: any = [];
+  posts: Array<Post> = [];
   opacity: string = "100%";
   ownsProfile: boolean = true;
 
@@ -45,7 +46,8 @@ export class UserprofileComponent implements OnInit {
   hasPosts: boolean = false;
 
   constructor(private modalService: MdbModalService,
-    private userData: UserdataService, private postData: PostService, private editProfileData: EditProfileService ) { }
+    private userData: UserdataService, private postData: PostService, private editProfileData: EditProfileService,
+    private entryChange: StringconversionService ) { }
 
   openEditModal() {
     this.opacity = "25%";
@@ -61,16 +63,24 @@ export class UserprofileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userData.GetUser();
-    this.postData.getUserPost(this.user.id)
-    .subscribe((res: {results: any;})=>{
+    // this.postData.getUserPost(this.user.id)
+    // .subscribe((res: {results: Post[];})=>{
 
+    //   this.posts = res;
+    //   console.log(this.posts);
+    //   for(let i = 0; i < this.posts.length; i++)
+    //     {
+    //       this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
+    //       //console.log(this.posts[i].entry);
+    //     }
+    // });
+    this.postData.getUserPost(this.user.id).subscribe(res => {
       this.posts = res;
-      console.log(this.posts);
       for(let i = 0; i < this.posts.length; i++)
-        {
-          this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
-          //console.log(this.posts[i].entry);
-        }
+      {
+        this.posts[i].entry = this.entryChange.ChangeCharacter(this.posts[i].entry);
+      }
+      console.log(this.posts.length);
     });
   }
 

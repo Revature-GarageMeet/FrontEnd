@@ -4,6 +4,7 @@ import { subscribeOn } from 'rxjs';
 import { Post } from '../post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
+import { StringconversionService } from '../services/stringconversion.service';
 import { User } from '../user';
 
 @Component({
@@ -25,29 +26,52 @@ export class HomepageComponent implements OnInit {
       dateCreated: new Date(),
       postComments: []
     }
+    user: User = {
+      id: -1,
+      username: '',
+      password: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      bio: ''
+    }
+  
   
   private initPosts: Array<Post> = new Array<Post>();
   @Input() like!: number;
   @Output() likeChange = new EventEmitter<number>();
   clickedIndex: number = 0;
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
+    private postConvert: StringconversionService) { }
   postType: string ='';
   userId: number = 0;
-  posts: any = [];
+  posts: Array<Post> = [];
+
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     
+    this.user = this.userData.GetUser();
+    console.log(this.user.id);
     
-    //async for some reason? what the fuck? --Tucker
-    this.postService.getUserPost(0).subscribe((res: {results: any;})=>{ console.log(res); this.posts = res;
+
+    // this.postService.getUserPost(this.userId).subscribe((res: {results: Array<Post>;})=>{ console.log(res); this.posts = res;
+    //   for(let i = 0; i < this.posts.length; i++)
+    //     {
+    //       this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
+    //       // console.log(this.posts[i]);
+    //       this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
+    //     }
+    // });    
+    this.postService.getUserPost(this.user.id).subscribe(res => {
+      this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
-        {
-          this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
-          // console.log(this.posts[i]);
-          this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
-        }
-    });    
+      {
+        //this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
+        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+        //console.log(this.posts[i].entry);
+      }
+    });
   }
 
   public GetPostType(name: string): void{
@@ -68,14 +92,40 @@ export class HomepageComponent implements OnInit {
   GetPostID(id: number)
   {
 
-    console.log(`${id}, ${this.userData.GetUser()}`);
+    console.log(`${id}, ${this.userData.GetUser().id}`);
     
-    //this.postService.putLikePost(id).subscribe();
-    this.postService.getPostById(id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
+    this.postService.putLikePost(id, this.user.id).subscribe((res) =>{
+        this.postService.getPostById(id).subscribe(result =>
+          {
+            this.like = result.likes; this.likeChange.emit(this.like);
+            this.posts.find((obj) => {
+              if(obj.id === id)
+              {
+                obj.likes = this.like;
+                
+              }
+            });
+          });
+    });
+    // this.postService.getPostById(id).subscribe(result => 
+    //   {
+    //     this.like = result.likes; this.likeChange.emit(this.like);
+    //     this.posts.find((obj) => 
+    //     {
+    //       if(obj.id === id)
+    //       {
+    //         obj.likes = this.like;
+    //         console.log(obj.likes);
+    //       }
+    //     });
+    //   });
+    
+
   }
 
   test(postid: number, i: number, posts: Array<Post>): boolean
   {
+    console.log((posts.findIndex(x => x.id == postid)) == i);
     return (posts.findIndex(x => x.id == postid)) == i;
   }
 

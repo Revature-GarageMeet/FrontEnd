@@ -30,6 +30,7 @@ jobs:
           npm install karma-jasmine
           npm install karma-chrome-launcher
           npm install karma-jasmine-html-reporter
+          npm install karma-coverage
           cd ./GarageMeet
           ng test --no-watch --code-coverage
     

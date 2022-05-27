@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-// import { Router } from '@angular/router';
-// import { FormBuilder, Validators  } from '@angular/forms';
-=======
 import { User } from '../models/user'; //interface for the user class ~Leo
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -10,8 +6,6 @@ import { LoginService } from '../services/login.service';
 import * as bcrypt from 'bcryptjs'; //make sure you "npm install bcrypt" ... also make sure youre in /FrontEnd/GarageMeet ~Donte
 import { NavbarComponent } from '../navbar/navbar.component';
 import { UserdataService } from '../services/userdata.service';
->>>>>>> main
-
 
 @Component({
   selector: 'app-login',
@@ -85,7 +79,7 @@ export class LoginComponent implements OnInit {
                   this.result = res;
                   if (this.result) {
                     //they will be redirected soon
-                    
+
                     this.userLoggedIn.password = "";
                     console.log("Nice");
                     this.userdata.SetUser(

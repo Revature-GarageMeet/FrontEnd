@@ -1,3 +1,10 @@
+.submit-btn {
+  background-color: #F5756B;
+}
+.submit-btn:hover {
+  background-color: #c45f58;
+}
+
 .gradient-custom-2 {
   /* fallback for old browsers */
   /* background: #fccb90; */
@@ -21,10 +28,9 @@
   }
   }
 
-  .bandmember {
-    color: #F5756B;
-  }
-
-  .bandmember:hover {
-    color: #bd5952;
-  }
+.band-btn {
+  background-color: #F5756B;
+}
+.band-btn:hover {
+  background-color: #c45f58;
+}

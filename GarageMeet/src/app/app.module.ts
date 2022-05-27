@@ -17,6 +17,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommentComponent } from './comment/comment.component';
 import { GrouppageComponent } from './grouppage/grouppage.component';
+import { BandHomePageComponent } from './band-home-page/band-home-page.component';
+import { CreategroupComponent } from './creategroup/creategroup.component';
 
 
 
@@ -33,7 +35,9 @@ import { GrouppageComponent } from './grouppage/grouppage.component';
     PostComponent,
     RegisterComponent,
     NavbarComponent,
-    CommentComponent
+    CommentComponent,
+    BandHomePageComponent,
+    CreategroupComponent
 
   ],
   imports: [

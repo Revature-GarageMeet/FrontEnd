@@ -9,6 +9,8 @@ export class GrouppageComponent implements OnInit {
 
   constructor() { }
 
+  // bandmembers!: bandmember[];
+
   ngOnInit(): void {
   }
 

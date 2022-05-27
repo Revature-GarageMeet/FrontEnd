@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apBaseURL: "https://localhost:7088"
-  apBaseURL: "https://garagemeet.azurewebsites.net"
+   apBaseURL: "https://localhost:7088"
+  //apBaseURL: "https://garagemeet.azurewebsites.net"
 
 };
 

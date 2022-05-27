@@ -15,6 +15,7 @@
  .btn-edit {
    background-color: transparent;
    border-color: transparent;
+   
  }
 
  .gradient-custom-2 {
@@ -43,7 +44,114 @@
 
 
 
+.boxData
+{
+  height: 600px;
+}
 
+.debugBorders
+{
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  
+  border-radius: 10px;
+}
+
+.col-1
+{
+  position: relative;
+ 
+  
+}
+
+.profileTable
+{
+  table-layout: fixed;
+  width: 150%;
+  
+}
+
+.card-title
+{
+  font-size: 32px;
+  top: 0%;
+  
+}
 
   /* navbar styling*/
 
+
+  .scrollBox
+{
+
+    height: 430px;
+    width: 100%;
+    overflow-y: scroll;
+
+}
+
+
+table.postFeed
+{
+
+  margin:auto;
+    width: 100%;
+    white-space: pre-line;
+    
+}
+
+.post
+{
+    width: 100%;
+    background: #f5746b00;
+    
+}
+
+.postBox
+{
+    position: relative;
+    display: block;
+    
+    border-width: 2px;
+   
+    border-style: solid;
+    overflow-wrap: anywhere;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    
+
+    
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #353d60;
+  
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #353d60;
+  background: #F5756B; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #F5756B; 
+}
+
+.profileBody
+{
+  height: 60vh;
+}

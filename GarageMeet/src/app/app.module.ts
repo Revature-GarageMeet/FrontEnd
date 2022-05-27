@@ -19,6 +19,7 @@ import { CommentComponent } from './comment/comment.component';
 import { GrouppageComponent } from './grouppage/grouppage.component';
 import { BandHomePageComponent } from './band-home-page/band-home-page.component';
 import { CreategroupComponent } from './creategroup/creategroup.component';
+import { BandComponent } from './band/band.component';
 
 
 
@@ -29,7 +30,6 @@ import { CreategroupComponent } from './creategroup/creategroup.component';
     LoginComponent,
     GrouppageComponent,
     HeaderComponent,
-    RegisterComponent,
     UserprofileComponent,
     EditprofileComponent,
     PostComponent,
@@ -37,7 +37,8 @@ import { CreategroupComponent } from './creategroup/creategroup.component';
     NavbarComponent,
     CommentComponent,
     BandHomePageComponent,
-    CreategroupComponent
+    CreategroupComponent,
+    BandComponent
 
   ],
   imports: [

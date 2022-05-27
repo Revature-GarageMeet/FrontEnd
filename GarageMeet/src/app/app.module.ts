@@ -13,6 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NgToastModule } from 'ng-angular-popup' //npm i ng-angular-popup ~Leo, pop ups for login and register page
+import { CommonModule } from '@angular/common'; //did we really not have this? ~Leo
 import { ChatComponent } from './chat/chat.component';
 
 
@@ -23,21 +26,23 @@ import { ChatComponent } from './chat/chat.component';
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    RegisterComponent,
     UserprofileComponent,
     EditprofileComponent,
     PostComponent,
     RegisterComponent,
+    NavbarComponent,
     ChatComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     MdbModalModule,
+    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgToastModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

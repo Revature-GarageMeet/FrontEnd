@@ -1,17 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { Injectable } from '@angular/core';
-import { PostService } from './post.service';
 
+import { EditProfileService } from './edit-profile.service';
 
-
-
-
-describe('PostService', () => {
-  let service: PostService;
+describe('EditProfileService', () => {
+  let service: EditProfileService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PostService);
+    service = TestBed.inject(EditProfileService);
   });
 
   xit('should be created', () => {

@@ -33,7 +33,7 @@ jobs:
         run: |
           pwd
           ls
-          ls /home/runner/work/FrontEnd/FrontEnd/GarageMeet/coverage/garage-meet
+          ls /home/runner/work/FrontEnd/FrontEnd/GarageMeet
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

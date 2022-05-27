@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
                 this.result = res;
                 if (this.result) {
                   //they will be redirected soon
-
                   this.userLoggedIn.password = "";
                   console.log("Nice");
                   this.userdata.SetUser(

@@ -63,7 +63,7 @@ export class HomepageComponent implements OnInit {
     //       this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
     //     }
     // });    
-    this.postService.getUserPost(this.user.id).subscribe(res => {
+    this.postService.getUserPost(11).subscribe(res => {
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {

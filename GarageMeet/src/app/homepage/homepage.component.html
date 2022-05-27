@@ -4,31 +4,16 @@
 <tr>
     <app-navbar></app-navbar>
 </tr>
-
-
     </table>
-    <form id="DEBUG_ONLY">
-        
+    <form id="DEBUG_ONLY">   
     </form>
     
     <form>
-        
-        <!-- <div class ="btn-group" role="group" aria-label="Basic Example" >
-            <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
-            <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
-            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Update');">Update</button>
-            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
-        </div> -->
         <br>
-        <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
-        <!-- User ID(FOR DEBUG PURPOSES ONLY): <input id="userid" type="text" [(ngModel)]="post.userId" name="name">
-        <button type="submit">Get Posts :)</button>  "
-        <br> -->
-
     </form>
     <div class="scrollBox">
         <table class="postFeed">
-            <tr *ngFor="let post of posts; let i = index;" [ngClass] = "{i}">
+            <tr *ngFor="let post of posts;">
                 <div class="post">
                     <div id="postContent" class="postBox">
                         <body>User ID: {{post.userId}}</body>
@@ -37,7 +22,7 @@
                     </div>
                     <table id="likeButton" class="likeTable">
                         <td><button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000"><img style="width: 20px;"src="../../assets/vectors/heart-svgrepo-com.svg"></button></td>
-                        <td class="likeFont" *ngIf = "test(post.id, i, posts)">Likes: {{like}}</td>
+                        <td class="likeFont">Likes: {{post.likes}}</td>
                     </table>
                     <br><br><br>
                 </div>

@@ -1,41 +1,41 @@
   /* Color of the links BEFORE scroll */
-  .navbar-scroll .nav-link,
+  /* .navbar-scroll .nav-link,
   .navbar-scroll .navbar-toggler-icon,
   .navbar-scroll .navbar-brand {
     color: #fff;
-  }
-  
+  } */
+
   /* Color of the links AFTER scroll */
-  .navbar-scrolled .nav-link,
+  /* .navbar-scrolled .nav-link,
   .navbar-scrolled .navbar-toggler-icon,
   .navbar-scrolled .navbar-brand {
     color: #fff;
-  }
-  
+  } */
+
   /* Color of the navbar AFTER scroll */
-  .navbar-scroll,
+  /* .navbar-scroll,
   .navbar-scrolled {
     background-color: #cbbcb1;
-  }
-  
-  .mask-custom {
+  } */
+
+  /* .mask-custom {
     backdrop-filter: blur(10px);
     border-width: 2px;
     border-style: solid;
     background-color: #f5746b83;
-    
-    /* background-color: rgba(255, 255, 255, .15); */
-  }
-  
-  .navbar-brand {
+
+    background-color: rgba(255, 255, 255, .15);
+  } */
+
+  /* .navbar-brand {
     font-size: 1.75rem;
     letter-spacing: 3px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 
-  }
+  } */
 
-  .navGradient
+  /* .navGradient
 {
     background: linear-gradient(to right black, white);
     position: sticky;
@@ -45,4 +45,20 @@
 .imgbackground
 {
   margin-left: 5%;
+} */
+
+
+.btn {
+  padding: .45rem 1.5rem .35rem;
+}
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #c471f5;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B)
 }

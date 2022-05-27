@@ -1,18 +1,17 @@
-
 <div class="page">
     <table>
-<tr>
-    <app-navbar></app-navbar>
-</tr>
+        <tr>
+            <app-navbar></app-navbar>
+        </tr>
 
 
     </table>
     <form id="DEBUG_ONLY">
-        
+
     </form>
-    
+
     <form>
-        
+
         <!-- <div class ="btn-group" role="group" aria-label="Basic Example" >
             <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
             <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
@@ -28,25 +27,29 @@
     </form>
     <div class="scrollBox">
         <table class="postFeed">
-            
-            <tr *ngFor="let post of posts; let i = index;" [ngClass] = "{i}">
-                
-                
+
+            <tr *ngFor="let post of posts; let i = index;" [ngClass]="{i}">
+
+
                 <div class="post">
                     <div id="postContent" class="postBox">
+
                         <body>User ID: {{post.userId}}</body>
+
                         <body>Type of post: {{post.type}}</body>
+
                         <body>{{post.entry}}</body>
                     </div>
                     <table id="likeButton" class="likeTable">
-                        <td><button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000"><img style="width: 20px;"src="../../assets/vectors/heart-svgrepo-com.svg"></button></td>
-                        <td class="likeFont" >Likes: {{post.likes}}</td>
+                        <td><button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000"><img
+                                    style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg"></button></td>
+                        <td class="likeFont">Likes: {{post.likes}}</td>
                     </table>
-                    
+                    <app-comment [post]="post"></app-comment>
                 </div>
                 <br>
             </tr>
         </table>
     </div>
-    
+
 </div>

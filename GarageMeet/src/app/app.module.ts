@@ -18,8 +18,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CommentComponent } from './comment/comment.component';
 import { GrouppageComponent } from './grouppage/grouppage.component';
 import { BandComponent } from './band/band.component';
-
-
+import { NgToastModule } from 'ng-angular-popup' //npm i ng-angular-popup ~Leo, pop ups for login and register page
+import { CommonModule } from '@angular/common'; //did we really not have this? ~Leo
 
 @NgModule({
   declarations: [
@@ -44,7 +44,9 @@ import { BandComponent } from './band/band.component';
     MdbModalModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgToastModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
 
 export class ChatService {
 
-  private  connection: any = new signalR.HubConnectionBuilder().withUrl("https://localhost:44379/chatsocket")
+  private  connection: any = new signalR.HubConnectionBuilder().withUrl("https://localhost:7088/chatsocket")
     .configureLogging(signalR.LogLevel.Information)
     .build();
-  readonly POST_URL = "https://localhost:44379/chat/send"
+  readonly POST_URL = "https://localhost:7088/Chat/send"
   
   private receivedMessageObj :chatMessage = new chatMessage();
 
@@ -25,37 +25,38 @@ export class ChatService {
       this.connection.onclose(async () => {
         await this.start();
       });
-    this.connection.on("ReceiveOne", (username : string, message : string) => { this.mapReceivedMessage(username, message); });
+    this.connection.on("MessageReceived", (username : string, message : string) => { this.mapReceivedMessage(username, message); });
     this.start();                 
-   }
- 
- 
-   // Start the connection
-   public async start() {
-     try {
-       await this.connection.start();
-       console.log("connected");
-     } catch (err) {
-       console.log(err);
-       setTimeout(() => this.start(), 5000);
-     } 
-   }
- 
-   private mapReceivedMessage(user: string, message: string): void {
-     this.receivedMessageObj.username = user;
-     this.receivedMessageObj.message = message;
-     this.sharedObj.next(this.receivedMessageObj);
   }
- 
+
+
+   // Start the connection
+  public async start() {
+    try {
+      await this.connection.start();
+      console.log("connected");
+    } catch (err) {
+      console.log(err);
+      console.log("Hi, this isn't working right now")
+      setTimeout(() => this.start(), 5000);
+    } 
+  }
+
+  private mapReceivedMessage(user: string, message: string): void {
+    this.receivedMessageObj.username = user;
+    this.receivedMessageObj.message = message;
+    this.sharedObj.next(this.receivedMessageObj);
+  }
+
    /* ****************************** Public Mehods **************************************** */
- 
+
    // Calls the controller method
-   public broadcastMessage(msg: any) {
-     this.http.post(this.POST_URL, msg).subscribe(data => console.log(data));
+public broadcastMessage(msg: any) {
+  this.http.post(this.POST_URL, msg).subscribe(data => console.log(data));
      // this.connection.invoke("SendMessage1", msgDto.user, msgDto.msgText).catch(err => console.error(err));    // This can invoke the server method named as "SendMethod1" directly.
-   }
- 
-   public retrieveMappedObject(): Observable<chatMessage> {
-     return this.sharedObj.asObservable();
-   }
+  }
+
+  public retrieveMappedObject(): Observable<chatMessage> {
+    return this.sharedObj.asObservable();
+  }
 }

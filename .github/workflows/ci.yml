@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
+#  push:
+#    branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -21,19 +21,27 @@ jobs:
           npm install --force @angular-devkit/build-angular
           ng test --no-watch --code-coverage
           cat ./coverage/garage-meet/lcov.info
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Run a multi-line script
-        run: |
-          pwd
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+#   sonarcloud:
+#     name: SonarCloud
+#     runs-on: ubuntu-latest
+#     needs: test
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+#       - name: Run a multi-line script
+#         run: |
+#           pwd
+#           ls
+#           ls /home/runner/work/FrontEnd/FrontEnd/GarageMeet
+#       - name: SonarCloud Scan
+#         uses: SonarSource/sonarcloud-github-action@master
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Bandmember } from '../models/bandmember';
+import { BandmemberService } from '../services/bandmember.service';
+import { UserdataService } from '../services/userdata.service';
 
 @Component({
   selector: 'app-grouppage',
@@ -7,11 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrouppageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bandmemberService: BandmemberService, private userService: UserdataService) { }
 
-  // bandmembers!: bandmember[];
+  bandmembers: Bandmember[] = [];
 
   ngOnInit(): void {
+  }
+
+  getUsername(member: Bandmember) {
+
   }
 
 }

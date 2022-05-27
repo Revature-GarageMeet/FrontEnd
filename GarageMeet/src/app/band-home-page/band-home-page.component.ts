@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { CreategroupComponent } from '../creategroup/creategroup.component';
+import { Band } from '../models/band';
+import { BandService } from '../services/band.service';
 
 @Component({
   selector: 'app-band-home-page',
@@ -11,11 +13,13 @@ export class BandHomePageComponent implements OnInit {
 
   modalRef: MdbModalRef<CreategroupComponent> | null = null;
 
-  constructor(private modalService: MdbModalService) { }
+  constructor(private modalService: MdbModalService, private bandservice: BandService) { }
 
   opacity: string = "100%";
+  bands: Band[] = [];
 
   ngOnInit(): void {
+    // this.bandservice get all currently created bands
   }
 
   openCreateGroupModal() {
@@ -26,6 +30,10 @@ export class BandHomePageComponent implements OnInit {
     this.modalRef.onClose.subscribe((message: any) => {
       this.opacity = message;
     });
+  }
+
+  attemptToJoin() {
+    // Check if there are still slots left to fill and deny a join if there isn't ~Bailey
   }
 
 }

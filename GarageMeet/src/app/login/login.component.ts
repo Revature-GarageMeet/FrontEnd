@@ -10,7 +10,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { UserdataService } from '../services/userdata.service';
 import { NgToastService } from 'ng-angular-popup'; //npm i ng-angular-popup ~Leo
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -64,7 +63,6 @@ export class LoginComponent implements OnInit {
                 this.result = res;
                 if (this.result) {
                   //they will be redirected soon
-
                   this.userLoggedIn.password = "";
                   console.log("Nice");
                   this.userdata.SetUser(

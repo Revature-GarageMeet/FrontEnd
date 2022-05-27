@@ -21,10 +21,16 @@
   }
   }
 
-  .bandmember {
-    color: #F5756B;
-  }
+.band-btn {
+  background-color: #F5756B;
+}
+.band-btn:hover {
+  background-color: #c45f58;
+}
 
-  .bandmember:hover {
-    color: #bd5952;
-  }
+.create-band {
+  background-color: #353d60;
+}
+.create-band:hover {
+  background-color: #262c44;
+}

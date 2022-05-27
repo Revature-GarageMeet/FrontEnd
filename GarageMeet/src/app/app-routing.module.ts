@@ -8,6 +8,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { CommentComponent } from './comment/comment.component';
 import { PostComponent } from './post/post.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { BandHomePageComponent } from './band-home-page/band-home-page.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'homepage', component: HomepageComponent},
   {path: 'userprofile', component: UserprofileComponent},
-  { path: 'comment', component: CommentComponent }
+  {path: 'comment', component: CommentComponent},
+  {path: 'bandPage', component: BandHomePageComponent}
 ];
 
 @NgModule({

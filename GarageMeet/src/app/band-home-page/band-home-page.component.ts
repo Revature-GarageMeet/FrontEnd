@@ -19,7 +19,7 @@ export class BandHomePageComponent implements OnInit {
   bands: Band[] = [];
 
   ngOnInit(): void {
-    // this.bandservice get all currently created bands
+    // this.bandservice.Get
   }
 
   openCreateGroupModal() {

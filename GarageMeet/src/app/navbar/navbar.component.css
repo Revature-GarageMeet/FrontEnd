@@ -57,8 +57,8 @@
   background: #c471f5;
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(196, 113, 245, 1), rgba(250, 113, 205, 1));
+  background: -webkit-linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(196, 113, 245, 1), rgba(250, 113, 205, 1))
+  background: linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B)
 }

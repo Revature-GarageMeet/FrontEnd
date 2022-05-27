@@ -34,7 +34,7 @@
 {
     position: relative;
     display: block;
-    box-sizing: border-box;  
+    box-sizing: border-box;
     padding: 10px;
     max-width: 1000px;
     margin: auto;
@@ -61,23 +61,20 @@
 }
 .buttonGroup button
 {
-
+    padding-left: 30px;
     font-size: 16px;
     border-radius: 20px;
     font-kerning: none;
-    background-color: #e5706a; 
+    background-color: #e5706a;
     width: 70%;
     height: 70%;
     display: block;
-    margin: 10px 10px;
+    margin: 10px auto;
     padding: 10px;
     border: solid;
-    margin-left: 5px;
+
     /*padding: 10px 24px;  Some padding */
     cursor: pointer; /* Pointer/hand icon */
-    display: flex;
-    justify-items: center;
-    
 }
 
 .icon
@@ -116,7 +113,7 @@
     max-width: 300px;
     border-color: #0d6efd;
     background: linear-gradient(to right, #353d60, #454261,
-        #654b63,  #955965, #a55e66, 
+        #654b63,  #955965, #a55e66,
         #b56267, #c56768,  #e5706a, #F5756B);
 }
 .submitbutton:hover{background: #955965;}
@@ -144,7 +141,7 @@
     text-align: center;
     content: "Enter Post Here";
     color: black;
-    
+
 }
 
 .submission
@@ -211,7 +208,7 @@
     display: block;
     position: relative;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
     padding: 1%;
     width: 220px;
 }
@@ -220,12 +217,12 @@
 {
     background: #353d60;
     height: 100vh;
-    
+
 }
 
 .buttonType
 {
     min-width: 200px;
-    height: 100px; 
+    height: 100px;
 }
 

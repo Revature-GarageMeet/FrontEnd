@@ -16,10 +16,9 @@
           <div class="card-text d-flex justify-content-center list-group">
             <ul> <!-- ngFor loop every bandmember username here -->
               <!-- Route to individual user's profile -->
-              <!-- <div *ngFor="member in bandmembers"></div> -->
-              <li><button class="list-group-item bandmember" style="background: transparent; border-color: transparent; font-weight: 600; font-size: larger;">Sadboi666</button></li>
-              <li><button class="list-group-item bandmember" style="background: transparent; border-color: transparent; font-weight: 600; font-size: larger;">Edgyguy123</button></li>
-              <li><button class="list-group-item bandmember" style="background: transparent; border-color: transparent; font-weight: 600; font-size: larger;">Celticrocker</button></li>
+              <div *ngFor="let member of bandmembers">
+                <li><button class="list-group-item bandmember" style="background: transparent; border-color: transparent; font-weight: 600; font-size: larger;">{{getUsername(member)}}</button></li>
+              </div>
             </ul>
           </div>
         </div>

@@ -91,7 +91,7 @@ export class HomepageComponent implements OnInit {
 
   GetPostID(id: number)
   {
-
+    
     console.log(`${id}, ${this.userData.GetUser().id}`);
     
     this.postService.putLikePost(id, this.user.id).subscribe((res) =>{
@@ -147,10 +147,10 @@ export class HomepageComponent implements OnInit {
     this.postService.SetLikes(_post, userid).subscribe((res) =>{
       console.log(_post);
     });
-
-
-    
   }
+
+
+ 
 
   
 

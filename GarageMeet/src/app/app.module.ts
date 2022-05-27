@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -26,7 +27,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     UserprofileComponent,
     EditprofileComponent,
     PostComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChatComponent
 
   ],
   imports: [

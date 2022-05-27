@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
+#  push:
+#    branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -33,6 +33,7 @@ jobs:
         run: |
           pwd
           ls
+          ls /home/runner/work/FrontEnd/FrontEnd/GarageMeet/coverage/garage-meet
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

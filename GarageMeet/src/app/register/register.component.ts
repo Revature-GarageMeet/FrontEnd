@@ -58,29 +58,29 @@ export class RegisterComponent implements OnInit {
           //hashing password ~mo
           // const bcrypt = require("bcrypt");
           const saltRounds = 10;
-
           bcrypt
             .hash(this.userToRegister.password, saltRounds)
             .then((hash: any) => {
               this.userToRegister.password = hash;
-              console.log(this.userToRegister.password);
+              this.api.createUser(this.userToRegister).subscribe(
+                res => {
+                  this.userToRegister = res;
+                  this.userdata.SetUser(
+                    this.userToRegister.id,
+                    this.userToRegister.username,
+                    this.userToRegister.firstname,
+                    this.userToRegister.lastname,
+                    this.userToRegister.email,
+                    this.userToRegister.bio
+                  );
+                  this.toast.success({ detail: "Registration Successful", summary: 'Welcome!', duration: 5000 });
+                }
+              );
+              this.router.navigate(["../homepage"]);
               this.clearFields();
-              this.api.createUser(this.userToRegister).subscribe(res => {
-                this.userToRegister = res;
-                this.userdata.SetUser(
-                  this.userToRegister.id,
-                  this.userToRegister.username,
-                  this.userToRegister.firstname,
-                  this.userToRegister.lastname,
-                  this.userToRegister.email,
-                  this.userToRegister.bio
-                );
-                this.toast.success({ detail: "Registration Successful", summary: 'Welcome!', duration: 5000 });
-                this.router.navigate(["../homepage"]);
-                // Store hash in your password DB.
-              })
             })
-        }});
+        }
+      });
     } else {
       this.toast.error({ detail: "Invalid Username", summary: 'Usernames Contain Invalid Symbols', sticky: true });
       this.canClick = true;

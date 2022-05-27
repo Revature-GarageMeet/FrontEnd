@@ -29,9 +29,9 @@ import { ChatComponent } from './chat/chat.component';
     UserprofileComponent,
     EditprofileComponent,
     PostComponent,
+    ChatComponent,
     RegisterComponent,
     NavbarComponent,
-    ChatComponent
 
   ],
   imports: [

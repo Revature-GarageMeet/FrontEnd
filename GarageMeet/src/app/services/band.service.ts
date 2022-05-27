@@ -14,4 +14,12 @@ export class BandService {
   createABand(newBand: Band): Observable<Band> {
     return this.http.post<Band>(`${environment.apBaseURL}/Band`, newBand);
   }
+
+  getAllBands(): Observable<Band[]> {
+    return this.http.get<Band[]>(`${environment.apBaseURL}/Band/GetBands`);
+  }
+
+  updateBand(bandUpdate: Band): Observable<unknown> {
+    return this.http.put(`${environment.apBaseURL}/Band`, bandUpdate);
+  }
 }

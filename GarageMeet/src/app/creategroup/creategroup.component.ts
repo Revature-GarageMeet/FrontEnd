@@ -15,12 +15,18 @@ export class CreategroupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Need to call a Band Http Service for Post of a new Band ~Bailey
-  newband!: Band;
+  newband: Band = {
+    id: 1,
+    title: "",
+    description: "",
+    memberlimit: 2
+  }
 
   close() {
     const opacity: string = "100%";
-    this.bandService
+    this.bandService.createABand(this.newband).subscribe(message => {
+      this.newband = message;
+    });
     this.modalRef.close(opacity);
   }
 }

@@ -65,7 +65,8 @@
 {
 display: block;
   width: 100%;
-  overflow: hidden;
+  max-height: 100px;
+  overflow: auto;
   resize: both;
   min-height: 40px;
   line-height: 20px;
@@ -138,27 +139,33 @@ display: block;
 
 .image
 {
+    z-index: 1;
+    
+    
     display: block;
     position: relative;
     margin-left: auto;
-    margin-right: auto;
-    padding: 3%;
-    size: 50%;
+    margin-right: auto; 
+     padding: 1%;
+    width: 220px;
 }
 
 .background
 {
+    
     background: #353d60;
+    height: 100vh;
     
 }
 
 .icon
 {
    
-    width: 100px;
-    height: 100px;
-    margin-left: auto;
-    margin-top: -5%;
+    width: 80px;
+    height: 80px;
+    max-width: 50px;
+    
+    margin: auto;
     display: block;
 }
 
@@ -173,7 +180,9 @@ display: block;
 {
 text-align: left;
 font-family: "republican";
-font-size: 32px;
+text-align: center;
+font-size: 16px;
+
 font-kerning: none;
     background-color: #e5706a; /* Green background */
     width: 100%;
@@ -189,6 +198,12 @@ font-kerning: none;
 .buttonGroup button:hover
 {
     background-color: #955965;
+}
+
+.tableButtons
+{
+    table-layout: fixed;
+    width: 100%;
 }
 
 

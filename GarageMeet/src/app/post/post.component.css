@@ -1,5 +1,5 @@
-.navbar{
-    padding-bottom: 150px;
+.test{
+    margin-bottom: 150px;
 }
 
 .gradient-custom-2 {
@@ -41,7 +41,7 @@
     border-width: 5px;
     border-style: hidden;
     border-color: black;
-    background: white;
+    background: radial-gradient(#353d60, #F5756B);
     border-radius: 10px;
 }
 
@@ -55,24 +55,29 @@
 
 
 /*Controls the meetup buttons*/
+#Meetup button{
+    display: flex;
+    justify-items: center;
+}
 .buttonGroup button
 {
+
     font-size: 16px;
     border-radius: 20px;
     font-kerning: none;
     background-color: #e5706a; 
     width: 70%;
-    height: 70px;
+    height: 70%;
     display: block;
-    margin: 10px 0;
+    margin: 10px 10px;
     padding: 10px;
-    margin-right: 5px;
-    border: none;
-    
+    border: solid;
+    margin-left: 5px;
     /*padding: 10px 24px;  Some padding */
     cursor: pointer; /* Pointer/hand icon */
     display: flex;
-    justify-items: flex-end;
+    justify-items: center;
+    
 }
 
 .icon
@@ -213,14 +218,13 @@
 
 .background
 {
-    /*background: #353d60;*/
+    background: #353d60;
     height: 100vh;
-    background: white;
+    
 }
 
 .buttonType
 {
-    
     min-width: 200px;
     height: 100px; 
 }

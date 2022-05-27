@@ -1,14 +1,15 @@
+.navbar{
+    padding-bottom: 150px;
+}
+
 .gradient-custom-2 {
     /* fallback for old browsers */
     /* background: #fccb90; */
-  
     /* Chrome 10-25, Safari 5.1-6 */
     /* background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
-  
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
     }
-  
     @media (min-width: 768px) {
     .gradient-form {
     height: 100vh !important;
@@ -37,11 +38,10 @@
     padding: 10px;
     max-width: 1000px;
     margin: auto;
-    
     border-width: 5px;
-    border-style: solid;
+    border-style: hidden;
     border-color: black;
-    background: radial-gradient(#353d60, #F5756B);
+    background: white;
     border-radius: 10px;
 }
 
@@ -53,31 +53,94 @@
     margin-right: 20%;
 }
 
+
+/*Controls the meetup buttons*/
+.buttonGroup button
+{
+    font-size: 16px;
+    border-radius: 20px;
+    font-kerning: none;
+    background-color: #e5706a; 
+    width: 70%;
+    height: 70px;
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    margin-right: 5px;
+    border: none;
+    
+    /*padding: 10px 24px;  Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    display: flex;
+    justify-items: flex-end;
+}
+
+.icon
+{
+    width: 30px;
+    height: 30px;
+    max-width: 50px;
+    margin: auto;
+    display: block;
+}
+
+.buttonGroup button:hover
+{
+    background-color: #955965;
+}
+
+.tableButtons
+{
+    table-layout: fixed;
+    width: 100%;
+}
+/*end of meetup buttons*/
+
+
+/* This controls the post button*/
 .submitbutton
 {
     position: relative;
+    border-radius: 10px;
+    align-self: center;
     display: block;
     margin: auto;
-    max-width: 200px;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    max-width: 300px;
+    border-color: #0d6efd;
+    background: linear-gradient(to right, #353d60, #454261,
+        #654b63,  #955965, #a55e66, 
+        #b56267, #c56768,  #e5706a, #F5756B);
 }
+.submitbutton:hover{background: #955965;}
+.submitbutton:active{background: #353d60;}
+/* end of post button*/
+
 
 .textbody
 {
-display: block;
-  width: 100%;
-  max-height: 100px;
-  overflow: auto;
-  resize: both;
-  min-height: 40px;
-  line-height: 20px;
-  border-style: solid;
-  border-width: 2px;
+    display: block;
+    width: 100%;
+    max-height: 100px;
+    overflow: auto;
+    resize: both;
+    min-height: 40px;
+    line-height: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    resize: none;
 }
 .textbody[contenteditable]:empty::before {
     text-align: center;
     content: "Enter Post Here";
     color: black;
-  }
+    
+}
 
 .submission
 {
@@ -89,8 +152,8 @@ display: block;
 }
 .alertClass
 {
-    color: white;
-    font-family: "republican";
+    color: black;
+    /*font-family: "republican";*/
     font-size: 48px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
@@ -126,10 +189,10 @@ display: block;
 
 .alertType
 {
-    font-family: "republican";
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     font-size: 30px;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+    /*-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;*/
     letter-spacing: 1px;
     font-kerning: 10%;
     background: #00000000;
@@ -140,33 +203,19 @@ display: block;
 .image
 {
     z-index: 1;
-    
-    
     display: block;
     position: relative;
     margin-left: auto;
     margin-right: auto; 
-     padding: 1%;
+    padding: 1%;
     width: 220px;
 }
 
 .background
 {
-    
-    background: #353d60;
+    /*background: #353d60;*/
     height: 100vh;
-    
-}
-
-.icon
-{
-   
-    width: 80px;
-    height: 80px;
-    max-width: 50px;
-    
-    margin: auto;
-    display: block;
+    background: white;
 }
 
 .buttonType
@@ -175,35 +224,4 @@ display: block;
     min-width: 200px;
     height: 100px; 
 }
-
-.buttonGroup button
-{
-text-align: left;
-font-family: "republican";
-text-align: center;
-font-size: 16px;
-
-font-kerning: none;
-    background-color: #e5706a; /* Green background */
-    width: 100%;
-    height: 150px;
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    
-}
-
-.buttonGroup button:hover
-{
-    background-color: #955965;
-}
-
-.tableButtons
-{
-    table-layout: fixed;
-    width: 100%;
-}
-
 

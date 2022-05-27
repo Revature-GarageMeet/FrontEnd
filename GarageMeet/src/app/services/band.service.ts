@@ -9,7 +9,7 @@ export class BandService {
 
   constructor() { }
 
-  createABand(newBand: Band): Observable<any> {
+  /*createABand(newBand: Band): Observable<any> {
     
-  }
+  }*/
 }

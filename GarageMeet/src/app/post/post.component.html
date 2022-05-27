@@ -1,34 +1,44 @@
     <div class="background">
-        <app-navbar></app-navbar>
-        <br><br><br><br><br>
+        <app-navbar class="navbar"></app-navbar>
         
-        <form id="DEBUG_ONLY">
+        <!--<form id="DEBUG_ONLY">
         </form>
-        <img class="image" src="../../assets/logoDark.svg">
+        <img class="image" src="../../assets/logoDark.svg">-->
         <form class="postbutton" [formGroup]="userPost" (ngSubmit)="onSubmit()">
             
             <div  id="buttons" class="buttonGroup" >
                 <table class ="tableButtons">
-                    <td>                <button type="button" id="Meetup" (click)="GetPostType('Meetup');"><br>Meetup<img class="icon" src ="../../assets/vectors/garage-svgrepo-com.svg"></button>
+                    <td>
+                        <button type="button" id="Meetup" (click)="GetPostType('Meetup');">
+                            <!--<br>Meetup--><img class="icon" src ="../../assets/vectors/garage-svgrepo-com.svg">
+                        </button>
                     </td>
-                    <td>                <button type="button" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement<img class="icon" src="../../assets/vectors/spotlight-svgrepo-com.svg"></button>
+                    <td>
+                        <button type="button" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">
+                            <!--Venue<br>Announcement--><img class="icon" src="../../assets/vectors/spotlight-svgrepo-com.svg">
+                        </button>
                     </td>
-                    <td>                <button type="button" id="Update" (click)="GetPostType('Update');"><br>Update<img class="icon" src="../../assets/vectors/update-icon-svgrepo-com.svg"></button>
+                    <td>
+                        <button type="button" id="Update" (click)="GetPostType('Update');">
+                            <!--<br>Update--><img class="icon" src="../../assets/vectors/update-icon-svgrepo-com.svg">
+                        </button>
                     </td>
-                    <td>                <button type="button" id="Looking For Band" (click)="GetPostType('Looking For Band');"><br>Looking for Band<img class="icon" src="../../assets/vectors/music-instruments-drums-svgrepo-com.svg"></button>
+                    <td>
+                        <button type="button" id="Looking For Band" (click)="GetPostType('Looking For Band');">
+                            <!--<br>Looking for Band--><img class="icon" src="../../assets/vectors/music-instruments-drums-svgrepo-com.svg">
+                        </button>
                     </td>
                 </table>
             </div>
             
             
             <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
-            
-           
             <div id="post" >
                 <span style="background: white" class="textbody" id="postText" formControlName="text" role="textbox" contenteditable></span>
                 <!-- <input class="textbody"  type="text"  height="200px"> -->
                 <br>
                 <button class="button" class="submitbutton" type="submit">Post</button>
+                
                 <div id="submissionFeedback" class="submission">
                     <div>
                         <body class="alertClass">

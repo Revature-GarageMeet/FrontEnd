@@ -1,0 +1,171 @@
+* 
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.text-center { text-align: center; }
+
+h2 { margin: 0; }
+
+.msg-italic-style 
+{
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+.ud-header 
+{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+
+    background-color: rgb(25, 29, 50);
+    height: 8vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;  
+}
+
+.ud-header h2 { color: #FDFFFF;}
+
+.ud-body 
+{
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0;
+    right: 0;
+
+
+    margin: 9vh 10% 2vh;
+    padding: 0 10% 0;
+}
+
+.ud-body .msg-box 
+{
+    width: 100%;
+    height: calc(100% - 140px); 
+    margin-top: 20px;
+    border: 2px solid #191D32;
+    border-radius: .5em;
+    padding: 10px 30px;
+    font-size: 14px;
+
+    overflow: auto;
+}
+
+.ud-body .msg-box ul { list-style: none;}
+
+.ud-body .msg-box ul .ex-msg 
+{
+    margin-bottom: 10px;
+    color: #459c1a;
+
+    text-align: left;
+}
+
+.ud-body .msg-box ul .in-msg {
+    margin-bottom: 10px;
+    color: #DD1155;
+    text-align: right;
+}
+
+.ud-body .ud-flex-row {
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ud-body .ud-flex-row .msg-input {
+    height: 100%;
+    border-radius: .5em;
+    border: 0px solid rgba(0, 0, 0, 0);
+    padding: 10px;
+    flex: 1 1 0;
+    border: 1.5px solid #DD1155;
+}
+
+.ud-body .ud-flex-row .msg-input:focus {
+    outline: none;
+    border-color: #DD1155;
+    box-shadow: 0 0 5px #DD1155;
+}
+
+.ud-body .ud-flex-row .send-btn {
+    height: 100%;
+    width: 100px;
+    border-radius: .3em;
+    background-color: #DD1155;
+    margin-left: 20px;
+    border: 0px solid rgba(0, 0, 0, 0);
+    font-size: 25px;
+    color: #FDFFFF;
+    position: relative;
+}
+
+.ud-body .ud-flex-row .send-btn:focus {
+    outline: none;
+    border-color: #DD1155;
+    box-shadow: 0 0 5px #DD1155;
+}
+
+@media screen and (max-width: 500px) {
+        .ud-body .ud-flex-row {
+            flex-direction: column;
+            align-items: flex-start;
+            height: 80px;
+        }
+    }
+
+@media screen and (max-width: 500px) {
+    .ud-body .msg-input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .ud-body .send-btn {
+    margin-left: 0px;
+    font-size: 20px;
+    margin-top: 7px;
+    height: 80%;
+    }
+}
+
+.ud-body .name-box {
+    margin-top: 10px;
+    height: 40px;
+    width: 180px;
+    border-radius: .5em;
+    border: 0px solid rgba(0, 0, 0, 0);
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #b423d1;
+}
+
+.ud-body .name-box:focus {outline: none;}
+
+@media screen and (max-width: 500px) {
+    .ud-body {
+        margin: 9vh 5% 2vh;
+        padding: 0 5% 0;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .msg-box {
+        height: calc(100% - 180px);  
+        padding: 10px 10px;
+    }
+}

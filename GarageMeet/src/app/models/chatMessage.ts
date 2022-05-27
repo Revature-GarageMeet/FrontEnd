@@ -1,9 +1,6 @@
-export interface chatMessage
+export class chatMessage
 {
     // userid, message, type, dateCreated
-    uniqueId : string;
-    username : string;
-    message: string;
-    type: string;
-    dateCreated : Date;
+    username : string = "";
+    message: string = "";
 }

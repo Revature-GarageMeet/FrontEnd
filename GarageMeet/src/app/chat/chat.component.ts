@@ -1,50 +1,40 @@
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ChatService } from 'src/app/services/chat.service';
 import { chatMessage } from '../models/chatMessage';
-import { ChatService } from '../services/chat.service';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class ChatComponent implements OnInit {
-  title = 'ClientApp';
-  txtMessage: string = "";
-  uniqueID: string = new Date().getTime.toString();
-  messages = new Array<chatMessage>();
-  message = {} as chatMessage;
-  username:string = "";
-  constructor(private chatService: ChatService, private _ngZone: NgZone) {  this.subscribeToEvents(); }
+export class AppComponent implements OnInit {
 
+  constructor(private chatService: ChatService) {}
 
-  sendMessage(): void {
-    if(this.txtMessage) {
-      this.message = {} as chatMessage;
-      this.message.uniqueId = this.uniqueID;
-      this.message.type = "sent";
-      this.message.message = this.txtMessage;
-      this.message.dateCreated = new Date();
-      this.message.username = this.username;
-      this.messages.push(this.message);
-      this.chatService.sendMessage(this.message);
-      this.txtMessage= '';
+  ngOnInit(): void {
+    this.chatService.retrieveMappedObject().subscribe( (receivedObj: chatMessage) => { this.addToInbox(receivedObj);});  
+    // calls the service method to get the new messages sent
+  }
+
+  msgDto: chatMessage = new chatMessage();
+  msgInboxArray: chatMessage[] = [];
+
+  send(): void {
+    if(this.msgDto) {
+      if(this.msgDto.username.length == 0 || this.msgDto.username.length == 0){
+        window.alert("Both fields are required.");
+        return;
+      } else {
+        this.chatService.broadcastMessage(this.msgDto);                   // Send the message via a service
+      }
     }
   }
 
-  private subscribeToEvents(): void {
-    this.chatService.messageRecieved.subscribe((message : chatMessage) =>
-      this._ngZone.run(() => {
-        if (message.uniqueId !== this.uniqueID)
-        {
-          message.type = "received";
-          this.messages.push(message);
-        }
-      })
-    );
-  }
+  addToInbox(obj: chatMessage) {
+    let newObj = new chatMessage();
+    newObj.username = obj.username;
+    newObj.message = obj.message;
+    this.msgInboxArray.push(newObj);
 
-  ngOnInit(): void {
   }
-
 }

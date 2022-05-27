@@ -8,6 +8,8 @@ import { catchError } from 'rxjs';
 import { Post} from '../post';
 import { User } from '../user';
 import { map, tap } from 'rxjs';
+import { PostComponent } from '../post/post.component';
+import { NumberValueAccessor } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -33,18 +35,23 @@ export class PostService {
     
 
 
-    getPostById(id: number): Observable<HttpResponse<Post>>
+    getPostById(id: number): Observable<Post>
     {
-      return new Observable<HttpResponse<Post>>();
+      //console.log(id);
+      return this.http.get<Post>(`${environment.apBaseURL}/Post/GetPostByPostID/${id}`);
     }
 
-    getUserPost(userid: number): Observable<any>
+    getUserPost(userid: number): Observable<Post[]>
     {
 
-     return this.http.get<any>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
+     return this.http.get<Post[]>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
     //  return this.http.get<Array<Post>>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
     }
 
+    putLikePost(postId: number, userId: number)
+    {
+      return this.http.put(`${environment.apBaseURL}/Post/LikePost/${postId}/${userId}`, postId);
+    }
     private handleError<T>(operation = 'operation', result?: T)
     {
       return (error: any): Observable<T> =>{
@@ -58,4 +65,16 @@ export class PostService {
     private log(message: string){
       console.log(message);
     }
+
+
+    GetLikes(postid: number): Observable<any>
+    {
+      return this.http.get<Post>(`${environment.apBaseURL}/Post/GetPostByPostID/${postid}`);
+    }
+
+    SetLikes(_post: Post, userid: number): Observable<any>
+    {
+      return this.http.put<Post>(`${environment.apBaseURL}/Post/LikePost/${_post.id}/${userid}`, _post);
+    }
+
 }

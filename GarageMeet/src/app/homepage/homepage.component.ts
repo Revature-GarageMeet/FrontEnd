@@ -60,7 +60,7 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  public GetPostType(name: string): void{
+  public GetPostType(name: string): void {
     this.postType = name;
     console.log(name);
     

@@ -13,7 +13,7 @@
 
   @media (min-width: 768px) {
   .gradient-form {
-  height: 100vh !important;
+  height: auto !important;
   }
   }
   @media (min-width: 769px) {

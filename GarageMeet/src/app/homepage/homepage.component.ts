@@ -50,8 +50,24 @@ export class HomepageComponent implements OnInit {
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     
+<<<<<<< HEAD
     this.user = this.userData.GetUser();   
     this.postService.getUserPost(this.user.id).subscribe(res => {
+=======
+    this.user = this.userData.GetUser();
+    console.log(this.user.id);
+    
+
+    // this.postService.getUserPost(this.userId).subscribe((res: {results: Array<Post>;})=>{ console.log(res); this.posts = res;
+    //   for(let i = 0; i < this.posts.length; i++)
+    //     {
+    //       this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
+    //       // console.log(this.posts[i]);
+    //       this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
+    //     }
+    // });    
+    this.postService.getUserPost(11).subscribe(res => {
+>>>>>>> main
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {

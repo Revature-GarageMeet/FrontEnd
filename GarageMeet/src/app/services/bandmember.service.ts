@@ -20,6 +20,6 @@ export class BandmemberService {
   }
 
   isInABand(userId: number): Observable<boolean> {
-    return this.http.get<boolean>(`${environment.apBaseURL}/IsInABand/${userId}`);
+    return this.http.get<boolean>(`${environment.apBaseURL}/BandMember/IsInABand/${userId}`);
   }
 }

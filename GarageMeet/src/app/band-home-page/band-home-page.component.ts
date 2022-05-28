@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Console } from 'console';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { NgToastService } from 'ng-angular-popup';
 import { CreategroupComponent } from '../creategroup/creategroup.component';
 import { Band } from '../models/band';
 import { Bandmember } from '../models/bandmember';
@@ -18,7 +19,13 @@ export class BandHomePageComponent implements OnInit {
 
   modalRef: MdbModalRef<CreategroupComponent> | null = null;
 
-  constructor(private modalService: MdbModalService, private bandservice: BandService, private bandMemberService: BandmemberService, private userData: UserdataService) { }
+  constructor(
+    private modalService: MdbModalService,
+    private bandservice: BandService,
+    private bandMemberService: BandmemberService,
+    private userData: UserdataService,
+    private toast: NgToastService
+    ) { }
 
   opacity: string = "100%";
   n!: number;
@@ -57,9 +64,11 @@ export class BandHomePageComponent implements OnInit {
               BandId: bandId,
               DateJoined: new Date('0')
             }
-            this.bandMemberService.addBandMem(this.newBandMem);
+            this.bandMemberService.addBandMem(this.newBandMem).subscribe();
           }
         });
+      } else {
+        this.toast.info({ detail: "Already In A Band", summary: 'Can not join another band', sticky: true })
       }
     });
   }

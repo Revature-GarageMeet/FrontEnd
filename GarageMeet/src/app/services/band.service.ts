@@ -11,12 +11,16 @@ export class BandService {
 
   constructor(private http: HttpClient) { }
 
-  createABand(newBand: Band): Observable<Band> {
-    return this.http.post<Band>(`${environment.apBaseURL}/Band`, newBand);
+  createABand(newBand: Partial<Band>): Observable<any> {
+    return this.http.post(`${environment.apBaseURL}/Band`, newBand);
   }
 
   getAllBands(): Observable<Band[]> {
     return this.http.get<Band[]>(`${environment.apBaseURL}/Band/GetBands`);
+  }
+
+  getBandMemberLimit(bandId: number): Observable<any> {
+    return this.http.get(`${environment.apBaseURL}/Band/GetBandMemLimit/${bandId}`);
   }
 
   updateBand(bandUpdate: Band): Observable<unknown> {

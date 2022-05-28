@@ -2,7 +2,7 @@
 {
     position: relative;
     display: block;
-    
+
     border-width: 2px;
     border-radius: 5px;
     border-style: solid;
@@ -11,9 +11,9 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-    
 
-    
+
+
 }
 
 .post
@@ -31,7 +31,7 @@ table.postFeed
     margin-right: auto;
     margin: auto;
     white-space: pre-line;
-    
+
 }
 
 .likeTable
@@ -51,8 +51,8 @@ margin-top: 4.5%;
 
 .page
 {
-    height: 100vh;
-    
+    height: 115vh; /* This was causing the white part to appear on the bottom of the page, used to be: 100vh ~Bailey */
+
     background: #353d60;
 }
 
@@ -60,26 +60,26 @@ margin-top: 4.5%;
 ::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #353d60;
-    
+
     border-radius: 10px;
   }
-   
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-width: 2px;
     border-style: solid;
     border-color: #353d60;
-    background: #F5756B; 
+    background: #F5756B;
     border-radius: 10px;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #F5756B; 
+    background: #F5756B;
   }
 
   .likeFont

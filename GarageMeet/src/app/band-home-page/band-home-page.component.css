@@ -34,3 +34,9 @@
 .create-band:hover {
   background-color: #262c44;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+}

@@ -29,15 +29,15 @@ export class CreategroupComponent implements OnInit {
   newBandMem: Bandmember = {
     id: 0,
     userId: this.userData.GetUser().id,
-    BandId: 0,
-    DateJoined: new Date(0)
+    bandId: 0,
+    dateJoined: new Date(0)
   }
 
   close() {
     const opacity: string = "100%";
     this.bandService.createABand(this.newband).subscribe((message) => {
       this.newband = message;
-      this.newBandMem.BandId = this.newband.id;
+      this.newBandMem.bandId = this.newband.id;
       this.bandMemberService.addBandMem(this.newBandMem).subscribe((res) => {
         res;
         this.newband.memberLimit -= 1;

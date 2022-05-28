@@ -28,3 +28,10 @@
   .bandmember:hover {
     color: #bd5952;
   }
+
+  .leave-btn {
+    background-color: #F5756B;
+  }
+  .leave-btn:hover {
+    background-color: #c45f58;
+  }

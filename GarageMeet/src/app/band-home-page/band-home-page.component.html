@@ -4,7 +4,7 @@
 
 
 
-<div class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png); background-repeat: no-repeat; background-size: cover ; padding-top: 110px;" [ngStyle]="{'opacity': opacity}">
+<div class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png); background-repeat: no-repeat; background-size: cover ; padding-top: 10px;" [ngStyle]="{'opacity': opacity}">
   <div class="container">
 
     <h1 class="d-flex justify-content-center" style="color: #F5756B;"> Band Groups </h1>
@@ -23,11 +23,14 @@
             <div class="card-footer row rounded-3" style="background-color: #353d60;">
               <h5 class="col-12">Member Slots Left: {{band.memberLimit}}</h5>
               <!-- Might have to add ngif to control whether it says "Join Group" or "Enter" if already joined and even "Closed" *Maybe even hide button?* if member limit is reached -->
-              <div *ngIf="band.memberLimit > 0" class="d-flex justify-content-end">
-                <a class="btn btn-primary col-12 band-btn" style="height: 40px; font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="attemptToJoin(band.id)">Join</a> <!-- Reminder Bailey, mess with button size later ;p -->
+              <div *ngIf="band.memberLimit > 0 && currBandMem.bandId != band.id" class="d-flex justify-content-end">
+                <a class="btn btn-primary col-12 band-btn" style="height: 40px; font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="attemptToJoin(band)">Join</a> <!-- Reminder Bailey, mess with button size later ;p -->
               </div>
-              <div *ngIf="band.memberLimit === 0">
-                <a class="btn btn-primary col-12 band-btn" style="height: 40px; font-weight: 700; color: #353d60; border-color: aliceblue;" disabled>Full</a> <!-- Reminder Bailey, mess with button size later ;p -->
+              <div *ngIf="currBandMem.bandId === band.id" class="d-flex justify-content-end">
+                <a class="btn btn-primary col-12 band-btn" style="height: 40px; font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="goToPage(band)">Enter</a> <!-- Reminder Bailey, mess with button size later ;p -->
+              </div>
+              <div *ngIf="band.memberLimit === 0 && currBandMem.bandId != band.id">
+                <a class="btn btn-primary col-12 band-btn disabled" style="height: 40px; font-weight: 700; color: #353d60; border-color: aliceblue;">Full</a> <!-- Reminder Bailey, mess with button size later ;p -->
               </div>
             </div>
           </div>

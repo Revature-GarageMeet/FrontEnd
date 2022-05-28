@@ -15,6 +15,10 @@ export class BandService {
     return this.http.post(`${environment.apBaseURL}/Band`, newBand);
   }
 
+  getBandDetails(bandTitle: string): Observable<Band> {
+    return this.http.get<Band>(`${environment.apBaseURL}/Band/GetBandDetails/${bandTitle}`);
+  }
+
   getAllBands(): Observable<Band[]> {
     return this.http.get<Band[]>(`${environment.apBaseURL}/Band/GetBands`);
   }
@@ -25,5 +29,9 @@ export class BandService {
 
   updateBand(bandUpdate: Band): Observable<unknown> {
     return this.http.put(`${environment.apBaseURL}/Band`, bandUpdate);
+  }
+
+  removeBand(bandId: number): Observable<any> {
+    return this.http.delete(`${environment.apBaseURL}/Band/RemoveBand/${bandId}`);
   }
 }

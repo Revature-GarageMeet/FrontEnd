@@ -11,9 +11,9 @@
           alt="User Profile Image" />
       </div>
       <div class="col-lg-5 col-sm-6 col-12 d-flex flex-column justify-content-center">
-        <h1>{{user.username}}</h1>
+        <h1>{{profUser.username}}</h1>
         <h4>
-          {{user.firstname}} {{user.lastname}}
+          {{profUser.firstname}} {{profUser.lastname}}
         </h4>
       </div>
       <div class="col-lg-2 col-sm-3 col-6 d-flex flex-column justify-content-center">
@@ -24,18 +24,13 @@
     <div class="row rounded-3 mt-3 profileBody"
       style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">
       <div class="col-8 d-flex flex-column ">
-        <div class="col-1">
-          <button *ngIf="true" class="btn-edit" style="color: #353d60;" (click)="openEditModal()">
-            <h5 style="border-bottom: 2px solid #353d60;">Edit</h5>
-          </button>
-        </div>
         <div id="contentHolder">
           <table class="profileTable" >
             <tr>
               <td  class="debugBorders">
                 <h1 class="card-title">User Bio</h1>
                 <p style="font-size: 23px; font-weight: 500; color: white;">
-                  {{user.bio}}
+                  {{profUser.bio}}
                 </p>
               </td>
 

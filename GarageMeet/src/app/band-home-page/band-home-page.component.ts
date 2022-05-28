@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Console } from 'console';
+import { Router } from '@angular/router';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { NgToastService } from 'ng-angular-popup';
 import { CreategroupComponent } from '../creategroup/creategroup.component';
@@ -24,47 +24,71 @@ export class BandHomePageComponent implements OnInit {
     private bandservice: BandService,
     private bandMemberService: BandmemberService,
     private userData: UserdataService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private router: Router
     ) { }
 
   opacity: string = "100%";
   n!: number;
   user!: User;
   newBandMem!: Bandmember;
+  currBandMem: Bandmember = {
+    id: 0,
+    userId: 0,
+    dateJoined: new Date(0),
+    bandId: 0
+  };
   bands: Band[] = [];
+  check!: number;
 
   ngOnInit(): void {
     this.user = this.userData.GetUser();
     this.bandservice.getAllBands().subscribe(message => {
       this.bands = message;
     });
-  }
-
-  openCreateGroupModal() {
-    console.log(this.bands);
-    this.opacity = "25%";
-    this.modalRef = this.modalService.open(CreategroupComponent, {
-      modalClass: 'modal-dialog-centered',
-    })
-    this.modalRef.onClose.subscribe((message: any) => {
-      this.opacity = message;
+    this.bandMemberService.getBandMember(this.user.id).subscribe((res) => {
+      this.currBandMem.bandId = res.bandId;
+      this.currBandMem.dateJoined = res.dateJoined;
+      this.currBandMem.id = res.id;
+      this.currBandMem.userId = res.userId;
     });
   }
 
+  openCreateGroupModal() {
+    if(this.currBandMem.bandId > 0) {
+      this.toast.info({ detail: "Already In A Band", summary: 'Can not create a new band', sticky: true })
+    } else {
+      this.opacity = "25%";
+      this.modalRef = this.modalService.open(CreategroupComponent, {
+        modalClass: 'modal-dialog-centered',
+      })
+      this.modalRef.onClose.subscribe((message: any) => {
+        this.opacity = message;
+      });
+    }
+  }
+
+  goToPage(band: Band) {
+    this.router.navigate(['groupPage', band.title]);
+  }
+
   // Checks if the user is already in a band or if the band does not have any available member slots in the database
-  attemptToJoin(bandId: number) {
+  attemptToJoin(band: Band) {
     this.bandMemberService.isInABand(this.user.id).subscribe((message) => {
       if(message === false) {
-        this.bandservice.getBandMemberLimit(bandId).subscribe((res) => {
+        this.bandservice.getBandMemberLimit(band.id).subscribe((res) => {
           const num = res;
           if(num > 0) {
             this.newBandMem = {
               id: 0,
               userId: this.user.id,
-              BandId: bandId,
-              DateJoined: new Date('0')
+              bandId: band.id,
+              dateJoined: new Date('0')
             }
             this.bandMemberService.addBandMem(this.newBandMem).subscribe();
+            band.memberLimit -= 1;
+            this.bandservice.updateBand(band).subscribe();
+            this.goToPage(band);
           }
         });
       } else {

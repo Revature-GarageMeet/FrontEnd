@@ -7,6 +7,7 @@ export class Post {
     bandId: number = 0;
     type: string = "";
     postComments: Array<Comments> = new Array<Comments>();
+    showComments: boolean = false;
 }
 
 export class Comments {

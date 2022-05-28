@@ -2,36 +2,26 @@
 {
     position: relative;
     display: block;
-    
-    border-width: 2px;
-    border-radius: 5px;
-    border-style: solid;
     overflow-wrap: anywhere;
     width: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-    
-
-    
 }
 
 .post
 {
     width: 450px;
-    background: #F5756B;
-    border-radius: 10px;
     border-style: solid;
+    border-width: 1px;
 }
 
 table.postFeed
 {
-
     margin-left: auto;
     margin-right: auto;
     margin: auto;
     white-space: pre-line;
-    
 }
 
 .likeTable
@@ -41,7 +31,17 @@ table.postFeed
 
 .scrollBox
 {
-margin-top: 4.5%;
+    margin-top: 7%;
+    height:  800px;
+    width: 600px;
+    overflow-y: scroll;
+    margin-left: 35%;
+    margin-right: auto;
+}
+
+.commentsScrollBox
+{
+    margin-top: 7%;
     height:  800px;
     width: 600px;
     overflow-y: scroll;
@@ -49,42 +49,35 @@ margin-top: 4.5%;
     margin-right: auto;
 }
 
+.comment
+{
+    width: 450px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.commentsBox
+{
+    position: relative;
+    display: block;
+    overflow-wrap: anywhere;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
 .page
 {
     height: 100vh;
-    
-    background: #353d60;
+    display: flex;
 }
 
-/* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #353d60;
-    
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-width: 2px;
-    border-style: solid;
-    border-color: #353d60;
-    background: #F5756B; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #F5756B; 
-  }
+    display: none;
+}
 
-  .likeFont
-  {
-      font-family: "republican";
-
-      border-style: solid;
-  }
+.likeFont
+{
+    font-family: "Arial";
+}

@@ -38,7 +38,7 @@ export class BandHomePageComponent implements OnInit {
     dateJoined: new Date(0),
     bandId: 0
   };
-  bands: Band[] = [];
+  bands: Band[] = [{id:0, title: "", memberLimit: 0, description: ""}];
   check!: number;
 
   ngOnInit(): void {
@@ -64,6 +64,7 @@ export class BandHomePageComponent implements OnInit {
       })
       this.modalRef.onClose.subscribe((message: any) => {
         this.opacity = message;
+        this.ngOnInit();
       });
     }
   }
@@ -85,10 +86,12 @@ export class BandHomePageComponent implements OnInit {
               bandId: band.id,
               dateJoined: new Date('0')
             }
-            this.bandMemberService.addBandMem(this.newBandMem).subscribe();
-            band.memberLimit -= 1;
-            this.bandservice.updateBand(band).subscribe();
-            this.goToPage(band);
+            this.bandMemberService.addBandMem(this.newBandMem).subscribe((res) => {
+              band.memberLimit -= 1;
+              this.bandservice.updateBand(band).subscribe((res) => {
+                this.goToPage(band);
+              });
+            });
           }
         });
       } else {

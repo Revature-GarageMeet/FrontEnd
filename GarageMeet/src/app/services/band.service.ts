@@ -27,6 +27,10 @@ export class BandService {
     return this.http.get(`${environment.apBaseURL}/Band/GetBandMemLimit/${bandId}`);
   }
 
+  checkIfExists(bandTitle: string): Observable<boolean> {
+    return this.http.get<boolean>(`${environment.apBaseURL}/Band/CheckIfExists/${bandTitle}`);
+  }
+
   updateBand(bandUpdate: Band): Observable<unknown> {
     return this.http.put(`${environment.apBaseURL}/Band`, bandUpdate);
   }

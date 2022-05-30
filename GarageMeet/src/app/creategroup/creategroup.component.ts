@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Band } from '../models/band';
 import { Bandmember } from '../models/bandmember';
-import { User } from '../models/user';
+import { NgToastService } from 'ng-angular-popup';
 import { BandService } from '../services/band.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { UserdataService } from '../services/userdata.service';
@@ -12,12 +12,15 @@ import { UserdataService } from '../services/userdata.service';
   templateUrl: './creategroup.component.html',
   styleUrls: ['./creategroup.component.css']
 })
-export class CreategroupComponent implements OnInit {
+export class CreategroupComponent {
 
-  constructor(public modalRef: MdbModalRef<CreategroupComponent>, private bandService: BandService, private bandMemberService: BandmemberService, private userData: UserdataService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(
+    public modalRef: MdbModalRef<CreategroupComponent>,
+    private bandService: BandService,
+    private bandMemberService: BandmemberService,
+    private userData: UserdataService,
+    private toast: NgToastService
+    ) { }
 
   newband: Band = {
     id: 0,
@@ -33,17 +36,32 @@ export class CreategroupComponent implements OnInit {
     dateJoined: new Date(0)
   }
 
-  close() {
-    const opacity: string = "100%";
-    this.bandService.createABand(this.newband).subscribe((message) => {
-      this.newband = message;
-      this.newBandMem.bandId = this.newband.id;
-      this.bandMemberService.addBandMem(this.newBandMem).subscribe((res) => {
-        res;
-        this.newband.memberLimit -= 1;
-        this.bandService.updateBand(this.newband).subscribe();
-      });
+  bandExists!: boolean;
+
+  attemptToClose() {
+    this.bandService.checkIfExists(this.newband.title).subscribe((res) => {
+      this.bandExists = res;
+
+      // Check if band name is already taken
+      if(this.bandExists)
+      {
+        this.toast.error({ detail: "Name Taken", summary: 'Choose a different band name', sticky: true })
+      }
+      else
+      {
+        // Create new band via Band Post call and reset main page opacity to 100%
+        const opacity: string = "100%";
+        this.bandService.createABand(this.newband).subscribe((message) => {
+          this.newband = message;
+          this.newBandMem.bandId = this.newband.id;
+          this.bandMemberService.addBandMem(this.newBandMem).subscribe((res) => {
+            this.newband.memberLimit -= 1;
+            this.bandService.updateBand(this.newband).subscribe((res) => {
+              this.modalRef.close(opacity);
+            });
+          });
+        });
+      }
     });
-    this.modalRef.close(opacity);
   }
 }

@@ -58,18 +58,21 @@ export class GrouppageComponent implements OnInit {
 
   leaveBand() {
     this.bandmemberService.getBandMember(this.currUser.id).subscribe((res) => {
-      this.bandmemberService.removeBandMem(res.id).subscribe();
-      this.currBand.memberLimit += 1;
-      this.bandService.updateBand(this.currBand).subscribe();
-      this.bandmemberService.getAllBandMems(this.currBand.id).subscribe((message) => {
-        if (message.length - 1 > 0) {
-          this.route.navigate(['bandPage']);
-        }
-        else
-        {
-          this.bandService.removeBand(this.currBand.id).subscribe();
-          this.route.navigate(['bandPage']);
-        }
+      this.bandmemberService.removeBandMem(res.id).subscribe((res) => {
+        this.currBand.memberLimit += 1;
+        this.bandService.updateBand(this.currBand).subscribe((res) => {
+          this.bandmemberService.getAllBandMems(this.currBand.id).subscribe((message) => {
+            if (message.length > 0) {
+              this.route.navigate(['bandPage']);
+            }
+            else
+            {
+              this.bandService.removeBand(this.currBand.id).subscribe((res) => {
+                this.route.navigate(['bandPage']);
+              });
+            }
+          });
+        });
       });
     });
   }

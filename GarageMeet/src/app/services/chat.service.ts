@@ -4,24 +4,21 @@ import { Subject, Observable } from 'rxjs';
 import { chatMessage } from '../models/chatMessage';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 
 export class ChatService {
 
-  private  connection: any = new signalR.HubConnectionBuilder().withUrl("https://localhost:7088/chatsocket")
+  private connection: any = new signalR.HubConnectionBuilder().withUrl("https://localhost:7088/chatsocket")
     .configureLogging(signalR.LogLevel.Information)
     .build();
-  readonly POST_URL = "https://localhost:7088/Chat/send"
+  readonly POST_URL = "https://localhost:7088/chat/send"
   
   private receivedMessageObj :chatMessage = new chatMessage();
 
-  private connectionIsEstablished = false;
   private sharedObj = new Subject<chatMessage>();
 
-  // probably won't work tbh
   constructor(private http: HttpClient) {
+    // probably nonfunctional as it is right now ~ Rey
       this.connection.onclose(async () => {
         await this.start();
       });
@@ -29,14 +26,15 @@ export class ChatService {
     this.start();                 
   }
 
-
-   // Start the connection
   public async start() {
+    // Start the connection
     try {
       await this.connection.start();
       console.log("connected");
     } catch (err) {
-      console.log(err);
+      console.log("This is the url I want to connect to " + this.POST_URL);
+      console.log(this.connection);
+      //console.log(err);
       console.log("Hi, this isn't working right now")
       setTimeout(() => this.start(), 5000);
     } 
@@ -47,9 +45,7 @@ export class ChatService {
     this.receivedMessageObj.message = message;
     this.sharedObj.next(this.receivedMessageObj);
   }
-
    /* ****************************** Public Mehods **************************************** */
-
    // Calls the controller method
 public broadcastMessage(msg: any) {
   this.http.post(this.POST_URL, msg).subscribe(data => console.log(data));

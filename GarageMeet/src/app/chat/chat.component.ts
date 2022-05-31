@@ -12,8 +12,8 @@ export class ChatComponent implements OnInit {
   constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
-    this.chatService.retrieveMappedObject().subscribe( (receivedObj: chatMessage) => { this.addToInbox(receivedObj);});  
     // calls the service method to get the new messages sent
+    this.chatService.retrieveMappedObject().subscribe( (receivedObj: chatMessage) => { this.addToInbox(receivedObj);});  
   }
 
   msgDto: chatMessage = new chatMessage();
@@ -25,7 +25,8 @@ export class ChatComponent implements OnInit {
         window.alert("Both fields are required.");
         return;
       } else {
-        this.chatService.broadcastMessage(this.msgDto);                   // Send the message via a service
+        // Send the message via a service
+        this.chatService.broadcastMessage(this.msgDto);
       }
     }
   }

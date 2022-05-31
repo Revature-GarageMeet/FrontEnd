@@ -4,7 +4,9 @@
 <div class="ud-body">
   <div class="msg-box">
     <ul>
-      <li *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.username === msgDto.username ? 'in-msg' : 'ex-msg'">{{mObj.username}} :<br /><span class="msg-italic-style">{{mObj.message}}</span></li>
+      <li *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.username === msgDto.username ? 'in-msg' : 'ex-msg'">
+        {{mObj.username}} :<br /><span class="msg-italic-style">{{mObj.message}}</span>
+      </li>
     </ul>
   </div>
   <div class="ud-flex-row">

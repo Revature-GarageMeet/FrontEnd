@@ -7,6 +7,9 @@ import { UserdataService } from '../services/userdata.service';
 import { StringconversionService } from '../services/stringconversion.service';
 import { User } from '../user';
 import { CommentService } from '../services/comment.service';
+import { BandmemberService } from '../services/bandmember.service';
+import { Bandmember } from '../models/bandmember';
+import { Band } from '../models/band';
 
 @Component({
   selector: 'app-homepage',
@@ -45,7 +48,7 @@ export class HomepageComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
-    private postConvert: StringconversionService, private commentService: CommentService) { }
+    private postConvert: StringconversionService, private commentService: CommentService, private bandService: BandmemberService) { }
   postType: string = '';
   userId: number = 0;
   posts: Array<Post> = [];
@@ -127,6 +130,84 @@ export class HomepageComponent implements OnInit {
     });
   }
 
+  // ==========================================
+  //
+  //          GETTING ALL POST THEN
+  //        FILTERING BY USER RELEVANCE
+  //         Authors: Jose M, Brandon C
+  //
+  // ==========================================
+
+  userFilteredPosts: Array<Post> = [];
+  unFilteredPosts: Array<Post> = [];
+
+  currentUserBandMember: Bandmember = {
+    id: 0,
+    userId: 0,
+    BandId: 0,
+    DateJoined: new Date()
+  }
+
+  GetUserBandID(): void {
+    this.bandService.getBandMember(this.user.id).subscribe(res => {
+      this.currentUserBandMember = res;
+      this.GetBandLimit();
+    });
+  }
+
+  band: Band = {
+    id: 0,
+    title: '',
+    description: '',
+    memberlimit: 0
+  }
+
+  GetBandLimit(): void {
+    this.bandService.getBandMemberLimit(this.currentUserBandMember.BandId).subscribe(res => {
+      this.band.memberlimit = res;
+      this.GetRelevantPost();
+    });
+  }
+
+  GetRelevantPost(): void {
+    let tempArray = this.posts.filter(a => a.bandId == this.currentUserBandMember.BandId);
+
+    tempArray.forEach(element => {
+      this.userFilteredPosts.push(element);
+    });
+
+    if (this.band.memberlimit < 4) {
+      tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+      tempArray.forEach(element => {
+        this.userFilteredPosts.push(element);
+      });
+    }
+
+    tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+    tempArray.forEach(element => {
+      this.userFilteredPosts.push(element);
+    });
+
+    this.posts = this.userFilteredPosts;
+  }
+
+  GetAllPost(): void {
+    this.postService.getAllPosts().subscribe(res => {
+      this.unFilteredPosts = res;
+      this.GetUserBandID();
+      for (let i = 0; i < this.unFilteredPosts.length; i++) {
+        this.unFilteredPosts[i].entry = this.postConvert.ChangeCharacter(this.unFilteredPosts[i].entry);
+      }
+    });
+  }
+
+  // ==========================================
+  //
+  //        FILTERING BY POST TYPE
+  //                Jose M
+  //
+  // ==========================================
+
   selectedMeetup: boolean = false;
   selectedVenue: boolean = false;
   selectedUpdate: boolean = false;
@@ -197,7 +278,6 @@ export class HomepageComponent implements OnInit {
     this.filteredPosts = [];
 
     if (this.selectedMeetup || this.selectedVenue || this.selectedUpdate || this.selectedLooking) {
-      console.log("at least one selected! filtering!");
       this.posts.forEach((element) => {
         if (element.type == "Meetup" && this.selectedMeetup)
           this.filteredPosts.push(element);
@@ -208,9 +288,7 @@ export class HomepageComponent implements OnInit {
         if (element.type == "Looking For Band" && this.selectedLooking)
           this.filteredPosts.push(element);
       })
-      console.log(this.filteredPosts);
     } else {
-      console.log("none selected");
       this.filteredPosts = this.posts;
     }
   }

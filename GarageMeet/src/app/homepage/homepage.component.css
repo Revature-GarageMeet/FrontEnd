@@ -1,90 +1,56 @@
-.postBox
+.homeFlex
 {
-    position: relative;
-    display: block;
-    
-    border-width: 2px;
-    border-radius: 5px;
-    border-style: solid;
-    overflow-wrap: anywhere;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-    
-
-    
-}
-
-.post
-{
-    width: 450px;
-    background: #F5756B;
-    border-radius: 10px;
-    border-style: solid;
-}
-
-table.postFeed
-{
-
-    margin-left: auto;
-    margin-right: auto;
-    margin: auto;
-    white-space: pre-line;
-    
-}
-
-.likeTable
-{
-    margin-left: 5%;
+    display: flex;
 }
 
 .scrollBox
 {
-margin-top: 4.5%;
-    height:  800px;
-    width: 600px;
-    overflow-y: scroll;
-    margin-left: auto;
-    margin-right: auto;
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    border-left: 1px solid #353d60;
+    border-right: 1px solid #353d60;
 }
 
-.page
+.post
 {
-    height: 100vh;
-    
-    background: #353d60;
+    border: 1px transparent;
 }
 
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #353d60;
-    
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-width: 2px;
-    border-style: solid;
-    border-color: #353d60;
-    background: #F5756B; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #F5756B; 
-  }
+.postFeed
+{
+    margin-top: 38.5px;
+}
 
-  .likeFont
-  {
-      font-family: "republican";
+.post:hover
+{
+    border-radius: 2px;
+    /* background-color: rgb(229, 112, 106, .3); */
+    background-color: rgb(53, 61, 96, .1);
+}
 
-      border-style: solid;
-  }
+.postButtons
+{
+    width: 33.3%;
+}
+
+.commentsScrollBox
+{
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentsFeed
+{
+    margin-top: 38.5px;
+}
+
+.commentPost
+{
+    width: fit-content;
+    border: 2px solid rgb(229, 112, 106);
+    border-radius: 20px;
+}
+

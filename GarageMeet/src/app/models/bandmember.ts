@@ -2,6 +2,6 @@ export interface Bandmember
 {
   id: number;
   userId: number;
-  BandId: number;
+  bandId: number;
   DateJoined: Date;
 }

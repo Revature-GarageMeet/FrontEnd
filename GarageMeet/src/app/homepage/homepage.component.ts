@@ -1,11 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { subscribeOn } from 'rxjs';
-import { Post } from '../post';
+import { Post, Comments } from '../post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
 import { StringconversionService } from '../services/stringconversion.service';
 import { User } from '../user';
+import { CommentService } from '../services/comment.service';
+import { BandmemberService } from '../services/bandmember.service';
+import { Bandmember } from '../models/bandmember';
+import { resourceLimits } from 'worker_threads';
 
 @Component({
   selector: 'app-homepage',
@@ -15,7 +19,14 @@ import { User } from '../user';
 
 export class HomepageComponent implements OnInit {
   
-    
+    member: Bandmember = 
+    {
+      id: 0,
+      userId: 0,
+      bandId: 0,
+      DateJoined: new Date()
+    }
+
     post: Post = {
       type: '',
       entry: '',
@@ -24,8 +35,10 @@ export class HomepageComponent implements OnInit {
       id: 0,
       likes: 0,
       dateCreated: new Date(),
-      postComments: []
+      postComments: [],
+      showComments: false
     }
+    
     user: User = {
       id: -1,
       username: '',
@@ -36,45 +49,62 @@ export class HomepageComponent implements OnInit {
       bio: ''
     }
   
-  
-  private initPosts: Array<Post> = new Array<Post>();
-  @Input() like!: number;
-  @Output() likeChange = new EventEmitter<number>();
-  clickedIndex: number = 0;
+  Meetup: string = "Meetup";
+  Venue: string = "Venue Announcement";
+  Update: string = "Update";
+  LFB: string = "Looking For Band";
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
-    private postConvert: StringconversionService) { }
+
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService, 
+    private postConvert: StringconversionService, private commentService: CommentService, private bandMemberService: BandmemberService) { }
   postType: string ='';
   userId: number = 0;
   posts: Array<Post> = [];
+  comments: Array<Comments> = [];
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
-    
-    this.user = this.userData.GetUser();
-    console.log(this.user.id);
-    
-
-    // this.postService.getUserPost(this.userId).subscribe((res: {results: Array<Post>;})=>{ console.log(res); this.posts = res;
+    this.user = this.userData.GetUser();   
+    // this.postService.getUserPost(this.user.id).subscribe(res => {
+    //   this.posts = res;
     //   for(let i = 0; i < this.posts.length; i++)
-    //     {
-    //       this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
-    //       // console.log(this.posts[i]);
-    //       this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
-    //     }
-    // });    
-    this.postService.getUserPost(11).subscribe(res => {
+    //   {
+    //     this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+    //   }
+    // });
+
+    this.postService.getAllPosts().subscribe(res => {
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {
-        //this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
         this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-        //console.log(this.posts[i].entry);
       }
+      this.posts = this.filterPosts(this.posts, this.user);
     });
   }
 
-  public GetPostType(name: string): void{
+  public filterPosts(posts: Array<Post>, user: User): Array<Post>
+  {
+    // for(let i = 0; i < this.posts.length; i++)
+    // {
+    //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+    //     this.member = res;
+    //     this.posts.filter((a => a.bandId != this.member.BandId))
+    //   })
+    // }
+
+    this.bandMemberService.getBandMember(user.id).subscribe(res => {
+      this.member = res;
+      console.log(posts);
+      console.log(this.member);
+      this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
+      console.log(this.posts);
+    })
+
+    return posts;
+  }
+
+  public GetPostType(name: string): void {
     this.postType = name;
     console.log(name);
     
@@ -96,48 +126,47 @@ export class HomepageComponent implements OnInit {
     
     this.postService.putLikePost(id, this.user.id).subscribe((res) =>{
         this.postService.getPostById(id).subscribe(result =>
-          {
-            this.like = result.likes; this.likeChange.emit(this.like);
+          { 
             this.posts.find((obj) => {
               if(obj.id === id)
               {
-                obj.likes = this.like;
-                
+                obj.likes = result.likes;
               }
             });
           });
     });
-    // this.postService.getPostById(id).subscribe(result => 
-    //   {
-    //     this.like = result.likes; this.likeChange.emit(this.like);
-    //     this.posts.find((obj) => 
-    //     {
-    //       if(obj.id === id)
-    //       {
-    //         obj.likes = this.like;
-    //         console.log(obj.likes);
-    //       }
-    //     });
-    //   });
-    
-
   }
 
-  test(postid: number, i: number, posts: Array<Post>): boolean
+  showComment(id: number)
+  {   
+    this.postService.getPostById(id).subscribe(result => { 
+      this.posts.find((obj) => {
+        if (obj.id === id)
+        {
+          this.post = obj;
+
+          if (this.post.showComments == false)
+            this.post.showComments = true;
+          else if (this.post.showComments == true)
+            this.post.showComments = false;
+        }
+      });
+    });
+  }
+
+  stuff(id: number)
   {
-    console.log((posts.findIndex(x => x.id == postid)) == i);
-    return (posts.findIndex(x => x.id == postid)) == i;
+    this.comments = [];
+    this.commentService.getAllComments(id).subscribe(results => {
+      for(let i = 0; i < results.length; i++)
+      {
+        if(results[i].entry != "")
+        {
+          this.comments.push(results[i]);
+        }
+      }
+    })
   }
-
-
-  private ChangeCharacters():void
-  {
-    for(let i = 0; i < this.posts.length; i++)
-    {
-      this.posts[i].entry.replaceAll("[ENTER]", '\n');
-    }
-  }
-
 
   LikePost(postid: number, userid: number, likes: number)
   {
@@ -148,11 +177,4 @@ export class HomepageComponent implements OnInit {
       console.log(_post);
     });
   }
-
-
- 
-
-  
-
-
 }

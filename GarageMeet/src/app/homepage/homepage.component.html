@@ -1,50 +1,74 @@
 <div class="page">
-<header>
-    <app-navbar></app-navbar>
-</header>
-<div class = "homeFlex">
-    <app-post class="postButtons"></app-post>
-    <div class="scrollBox">
-        <table class="postFeed">
-            <tr *ngFor="let post of posts">
-                <div class="post">
-                    <div id="postContent" class="postBox" (click)="stuff(post.id)">
-                        <h4 style="display: flex; justify-content: space-between">
-                            {{user.username}}
-                            <ng-container *ngIf= "post.type == Meetup"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
-                            <ng-container *ngIf= "post.type == Venue"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\spotlight-svgrepo-com.svg"></ng-container>
-                            <ng-container *ngIf= "post.type == Update"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\update-icon-svgrepo-com.svg"></ng-container>
-                            <ng-container *ngIf= "post.type == LFB"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></ng-container>
-                        </h4>
-                        {{post.entry}}
-                    </div>
-                    <table id="likeButton" class="likeTable">
-                        <td>
-                            <button (click) = "showComment(post.id)" style="border-width: 0px; background: #00000000">
-                                <img style="width: 20px" src = "../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
-                            </button>
-                            <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
-                                <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
-                            </button>
-                        </td>
-                    </table>
-                    <ng-container *ngIf = "this.post.showComments == true"><app-comment [post]="post"></app-comment></ng-container>
+    <header>
+        <app-navbar></app-navbar>
+    </header>
+    <div class="homeFlex">
+        <app-post class="postButtons"></app-post>
+        <div class="scrollBox">
+            <table class="postFeed">
+                <div class="btn-group d-flex justify-content-center" role="group">
+                    <button type="button" class="btn" [ngStyle]="{'background-color': GetColor('meetup')}"
+                        (click)="SelectedFilter('meetup')"><img style="width: 30px;"
+                            src="../..\assets\vectors\garage-svgrepo-com.svg"></button>
+                    <button type="button" class="btn" [ngStyle]="{'background-color': GetColor('venue')}"
+                        (click)="SelectedFilter('venue')"><img style="width: 30px;"
+                            src="../..\assets\vectors\spotlight-svgrepo-com.svg"></button>
+                    <button type="button" class="btn" [ngStyle]="{'background-color': GetColor('update')}"
+                        (click)="SelectedFilter('update')"><img style="width: 30px;"
+                            src="../..\assets\vectors\update-icon-svgrepo-com.svg"></button>
+                    <button type="button" class="btn" [ngStyle]="{'background-color': GetColor('looking')}"
+                        (click)="SelectedFilter('looking')"><img style="width: 30px;"
+                            src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></button>
                 </div>
-                <br>
-            </tr>
-        </table>
-    </div>
-    <div class="commentsScrollBox">
-        <table class="commentsFeed">
-            <tr *ngFor="let comment of comments">
-                <div class="comment">
-                    <div id="commentContent" class="commentBox">
-                        <h4 class="commentPost">
-                            <span style="margin-left: 10px; margin-right: 10px">{{user.username}}: {{comment.entry}}</span>
-                        </h4>
+                <tr *ngFor="let post of filteredPosts">
+                    <div class="post">
+                        <div id="postContent" class="postBox" (click)="stuff(post.id)">
+                            <h4 style="display: flex; justify-content: space-between">
+                                {{user.username}}
+                                <ng-container *ngIf="post.type == Meetup"><img style="width: 30px; margin-left: 240px"
+                                        src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
+                                <ng-container *ngIf="post.type == Venue"><img style="width: 30px; margin-left: 240px"
+                                        src="../..\assets\vectors\spotlight-svgrepo-com.svg"></ng-container>
+                                <ng-container *ngIf="post.type == Update"><img style="width: 30px; margin-left: 240px"
+                                        src="../..\assets\vectors\update-icon-svgrepo-com.svg"></ng-container>
+                                <ng-container *ngIf="post.type == LFB"><img style="width: 30px; margin-left: 240px"
+                                        src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg">
+                                </ng-container>
+                            </h4>
+                            {{post.entry}}
+                        </div>
+                        <table id="likeButton" class="likeTable">
+                            <td>
+                                <button (click)="showComment(post.id)" style="border-width: 0px; background: #00000000">
+                                    <img style="width: 20px"
+                                        src="../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
+                                </button>
+                                <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
+                                    <img style="width: 20px;"
+                                        src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
+                                </button>
+                            </td>
+                        </table>
+                        <ng-container *ngIf="this.post.showComments == true">
+                            <app-comment [post]="post"></app-comment>
+                        </ng-container>
                     </div>
-                </div>
-            </tr>
-        </table>
+                    <br>
+                </tr>
+            </table>
+        </div>
+        <div class="commentsScrollBox">
+            <table class="commentsFeed">
+                <tr *ngFor="let comment of comments">
+                    <div class="comment">
+                        <div id="commentContent" class="commentBox">
+                            <h4 class="commentPost">
+                                <span style="margin-left: 10px; margin-right: 10px">{{user.username}}:
+                                    {{comment.entry}}</span>
+                            </h4>
+                        </div>
+                    </div>
+                </tr>
+            </table>
+        </div>
     </div>
-</div>

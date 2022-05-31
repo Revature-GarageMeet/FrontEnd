@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from '../post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { PosttypeComponent } from '../posttype/posttype.component';
 
 
 @Component({
@@ -14,6 +16,8 @@ import { UserdataService } from '../services/userdata.service';
 export class PostComponent implements OnInit {
 
   isSubmitted : boolean = false;
+  modalRef: MdbModalRef<PosttypeComponent> | null = null;
+  opacity: string = "100%";
 
   userPost = this.formBuilder.group({
     type: '',
@@ -25,7 +29,8 @@ export class PostComponent implements OnInit {
   private post: Post = new Post();
   postType: string ='';
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient, private userdata: UserdataService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient, private userdata: UserdataService,
+              private modalService: MdbModalService, private createPostNew: PostService) { }
 
   ngOnInit(): void {
 
@@ -100,5 +105,20 @@ export class PostComponent implements OnInit {
     {
       return false;
     }
+  }
+
+  openPostModal(name: string) {
+    this.opacity = "25%";
+    this.post.type = name;
+    this.post.userId = this.userdata.GetUser().id;
+    this.modalRef = this.modalService.open(PosttypeComponent, {
+      modalClass: 'modal-dialog-centered',
+      data: { createPost: this.post }
+    })
+    this.modalRef.onClose.subscribe((message: any) => {
+      this.opacity = message;
+      this.createPostNew.postuser(this.post).subscribe();
+    });
+    
   }
 }

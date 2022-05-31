@@ -16,6 +16,11 @@ export class BandmemberService {
     return this.http.get<User[]>(`${environment.apBaseURL}/BandMember/GetAllBandMembers/${bandId}`);
   }
 
+  getBandMemLimit(bandId: number): Observable<number>
+  {
+    return this.http.get<number>(`${environment.apBaseURL}/BandMember/GetBandMemLimit/${bandId}`);
+  }
+
   getBandMember(userId: number): Observable<Bandmember> {
     return this.http.get<Bandmember>(`${environment.apBaseURL}/BandMember/GetBandMember/${userId}`);
   }

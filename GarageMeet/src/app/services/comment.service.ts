@@ -1,6 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Comments } from '../post';
 
 @Injectable({
@@ -23,10 +24,8 @@ export class CommentService {
   }
 
   // Getting all comments from postId
-  getAllComments(postId: number): Observable<HttpResponse<any>> {
-    return this.http.get<Comments>(`http://garagemeet.azurewebsites.net/Comment/GetAllComments/${postId}`, {
-      'observe': 'response'
-    });
+  getAllComments(postId: number): Observable<any> {
+    return this.http.get<Comments>(`${environment.apBaseURL}/Comment/GetAllComments/${postId}`);
   }
 
   // Updating comment

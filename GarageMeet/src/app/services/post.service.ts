@@ -56,10 +56,16 @@ export class PostService {
     //  return this.http.get<Array<Post>>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
     }
 
+    getAllPosts(): Observable<Post[]>
+    {
+      return this.http.get<Post[]>(`${environment.apBaseURL}/Post/GetAllPosts`)
+    }
+
     putLikePost(postId: number, userId: number)
     {
       return this.http.put(`${environment.apBaseURL}/Post/LikePost/${postId}/${userId}`, postId);
     }
+    
     private handleError<T>(operation = 'operation', result?: T)
     {
       return (error: any): Observable<T> =>{

@@ -19,10 +19,10 @@ import { CommentComponent } from './comment/comment.component';
 import { GrouppageComponent } from './grouppage/grouppage.component';
 import { BandHomePageComponent } from './band-home-page/band-home-page.component';
 import { CreategroupComponent } from './creategroup/creategroup.component';
-import { BandComponent } from './band/band.component';
 import { NgToastModule } from 'ng-angular-popup' //npm i ng-angular-popup ~Leo, pop ups for login and register page
-import { CommonModule } from '@angular/common';
-import { OtherProfileComponent } from './other-profile/other-profile.component'; //did we really not have this? ~Leo
+import { CommonModule } from '@angular/common'; //did we really not have this? ~Leo
+import { OtherProfileComponent } from './other-profile/other-profile.component';
+import { CreateBandPostComponent } from './create-band-post/create-band-post.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +39,8 @@ import { OtherProfileComponent } from './other-profile/other-profile.component';
     CommentComponent,
     BandHomePageComponent,
     CreategroupComponent,
-    BandComponent,
-    OtherProfileComponent
+    OtherProfileComponent,
+    CreateBandPostComponent
 
   ],
   imports: [

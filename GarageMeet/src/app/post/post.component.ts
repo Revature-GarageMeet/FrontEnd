@@ -12,7 +12,7 @@ import { UserdataService } from '../services/userdata.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  
+
   isSubmitted : boolean = false;
 
   userPost = this.formBuilder.group({
@@ -28,14 +28,14 @@ export class PostComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient, private userdata: UserdataService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   public GetPostType(name: string): void{
     this.postType = name;
-    
+
   }
-  
+
   private SetPostType(name: string)
   {
     this.userPost.value.type = name;
@@ -51,15 +51,15 @@ export class PostComponent implements OnInit {
     this.post.type = this.userPost.value.type;
     this.ChangeCharacters();
     //console.log(this.userPost.value);
-    
+
       this.postService.postuser(this.post).subscribe((res) => {
         console.log(res.status);
-        
+
         this.response = res.status;
       });
 
       //response is between 200-299 (success)
-      
+
   }
 
   //  addPokemon() {
@@ -91,7 +91,7 @@ export class PostComponent implements OnInit {
   }
   public CheckPost(): boolean
   {
-    
+
     if (this.userPost.value.type != null || this.userPost.value.text != null || this.userPost.value.userId != null)
     {
       return true;

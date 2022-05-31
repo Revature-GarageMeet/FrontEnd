@@ -35,7 +35,8 @@ export class UserprofileComponent implements OnInit {
     id: 0,
     likes: 0,
     dateCreated: new Date(),
-    postComments: []
+    postComments: [],
+    showComments: false
   }
 
   posts: Array<Post> = [];

@@ -2,25 +2,25 @@
   <app-navbar></app-navbar>
 </header>
 
+<!-- style="background-image: url(../../assets/loginbackground.png); Potential background for band -->
 
-
-<div class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png); background-repeat: no-repeat; background-size: cover ; padding-top: 10px;" [ngStyle]="{'opacity': opacity}">
+<div class="h-100 gradient-form" style="background-repeat: no-repeat; background-size: cover ; padding-top: 10px;" [ngStyle]="{'opacity': opacity}">
   <div class="container">
 
-    <h1 class="d-flex justify-content-center" style="color: #F5756B;"> Band Groups </h1>
-    <button class="btn create-band" style="font-weight: 700; color: #F5756B; border: #F5756B solid 3px; font-size: large;" (click)="openCreateGroupModal()">Start A Band</button>
+    <h1 class="d-flex justify-content-center" style="color: #353d60;"> Band Groups </h1>
+    <button class="btn create-band" style="font-weight: 700; color: #353d60; border: #353d60 solid 3px; font-size: large;" (click)="openCreateGroupModal()">Start A Band</button>
 
     <div class="wrapper">
       <div *ngFor="let band of bands">
         <div class="mt-2"> <!-- Several breakpoints for responsive layout on page size change -->
-          <div class="card-body rounded-3" style="color:#F5756B; border: 3px solid #353d60; background-color: #F5756B;">
-            <div class="card-header rounded-3" style="background-color: #353d60;">
+          <div class="card-body rounded-3" style="color:#353d60; border: 3px solid #F5756B; background-color: #353d60;">
+            <div class="card-header rounded-3" style="background-color: #F5756B;">
               <h5>{{band.title}}</h5> <!-- Band/Group Name -->
             </div>
-            <div class="card-text" style="color: #353d60; font-weight: 500;">
+            <div class="card-text" style="color: #F5756B; font-weight: 500;">
               <p>{{band.description}}</p>
             </div>
-            <div class="card-footer row rounded-3" style="background-color: #353d60;">
+            <div class="card-footer row rounded-3" style="background-color: #F5756B;">
               <h5 class="col-12">Member Slots Left: {{band.memberLimit}}</h5>
               <!-- Might have to add ngif to control whether it says "Join Group" or "Enter" if already joined and even "Closed" *Maybe even hide button?* if member limit is reached -->
               <div *ngIf="band.memberLimit > 0 && currBandMem.bandId != band.id" class="d-flex justify-content-end">

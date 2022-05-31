@@ -14,8 +14,8 @@ import { User } from '../user';
 })
 
 export class HomepageComponent implements OnInit {
-  
-    
+
+
     post: Post = {
       type: '',
       entry: '',
@@ -24,7 +24,8 @@ export class HomepageComponent implements OnInit {
       id: 0,
       likes: 0,
       dateCreated: new Date(),
-      postComments: []
+      postComments: [],
+      showComments: false
     }
     user: User = {
       id: -1,
@@ -35,8 +36,8 @@ export class HomepageComponent implements OnInit {
       email: '',
       bio: ''
     }
-  
-  
+
+
   private initPosts: Array<Post> = new Array<Post>();
   @Input() like!: number;
   @Output() likeChange = new EventEmitter<number>();
@@ -50,10 +51,10 @@ export class HomepageComponent implements OnInit {
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
-    
+
     this.user = this.userData.GetUser();
     console.log(this.user.id);
-    
+
 
     // this.postService.getUserPost(this.userId).subscribe((res: {results: Array<Post>;})=>{ console.log(res); this.posts = res;
     //   for(let i = 0; i < this.posts.length; i++)
@@ -62,7 +63,7 @@ export class HomepageComponent implements OnInit {
     //       // console.log(this.posts[i]);
     //       this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
     //     }
-    // });    
+    // });
     this.postService.getUserPost(11).subscribe(res => {
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
@@ -77,7 +78,7 @@ export class HomepageComponent implements OnInit {
   public GetPostType(name: string): void{
     this.postType = name;
     console.log(name);
-    
+
   }
   onSubmit(): void
   {
@@ -91,9 +92,9 @@ export class HomepageComponent implements OnInit {
 
   GetPostID(id: number)
   {
-    
+
     console.log(`${id}, ${this.userData.GetUser().id}`);
-    
+
     this.postService.putLikePost(id, this.user.id).subscribe((res) =>{
         this.postService.getPostById(id).subscribe(result =>
           {
@@ -102,15 +103,15 @@ export class HomepageComponent implements OnInit {
               if(obj.id === id)
               {
                 obj.likes = this.like;
-                
+
               }
             });
           });
     });
-    // this.postService.getPostById(id).subscribe(result => 
+    // this.postService.getPostById(id).subscribe(result =>
     //   {
     //     this.like = result.likes; this.likeChange.emit(this.like);
-    //     this.posts.find((obj) => 
+    //     this.posts.find((obj) =>
     //     {
     //       if(obj.id === id)
     //       {
@@ -119,7 +120,7 @@ export class HomepageComponent implements OnInit {
     //       }
     //     });
     //   });
-    
+
 
   }
 
@@ -150,9 +151,9 @@ export class HomepageComponent implements OnInit {
   }
 
 
- 
 
-  
+
+
 
 
 }

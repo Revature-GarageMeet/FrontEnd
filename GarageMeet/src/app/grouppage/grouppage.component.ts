@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { CreateBandPostComponent } from '../create-band-post/create-band-post.component';
 import { Band } from '../models/band';
 import { User } from '../models/user';
+import { Post } from '../post';
 import { BandService } from '../services/band.service';
 import { BandmemberService } from '../services/bandmember.service';
+import { PostService } from '../services/post.service';
+import { StringconversionService } from '../services/stringconversion.service';
 import { UserdataService } from '../services/userdata.service';
 
 @Component({
@@ -11,6 +16,7 @@ import { UserdataService } from '../services/userdata.service';
   templateUrl: './grouppage.component.html',
   styleUrls: ['./grouppage.component.css']
 })
+
 export class GrouppageComponent implements OnInit {
 
   constructor(
@@ -18,12 +24,17 @@ export class GrouppageComponent implements OnInit {
     private bandmemberService: BandmemberService,
     private userService: UserdataService,
     private bandService: BandService,
-    private route: Router)
+    private route: Router,
+    private postService: PostService,
+    private postConvert: StringconversionService,
+    private modalService: MdbModalService)
     {
       this.router.params.subscribe(params => {
         this.bandTitle = params['band'];
       });
     }
+
+  modalRef: MdbModalRef<CreateBandPostComponent> | null = null;
 
   bandmembers: User[] = [];
   currBand: Band = {
@@ -32,8 +43,23 @@ export class GrouppageComponent implements OnInit {
     description: '',
     memberLimit: 0
   };
+
+  post: Post = {
+    type: '',
+    entry: '',
+    userId: 0,
+    bandId: 0,
+    id: 0,
+    likes: 0,
+    dateCreated: new Date(),
+    postComments: [],
+    showComments: false
+  };
+
   currUser!: User;
   bandTitle!: string;
+  posts: Post[] = [];
+  opacity: string = "100%";
 
   ngOnInit(): void {
     this.currUser = this.userService.GetUser();
@@ -41,7 +67,36 @@ export class GrouppageComponent implements OnInit {
       this.currBand = message;
       this.bandmemberService.getAllBandMems(this.currBand.id).subscribe((res) => {
         this.bandmembers = res;
+        this.postService.getPostsByBandId(this.currBand.id).subscribe(res => {
+          this.posts = res;
+          for(let i = 0; i < this.posts.length; i++)
+          {
+            this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+            console.log(this.posts.length);
+          }
+        });
       });
+    });
+  }
+
+  showUsername(userId: number) {
+    if(userId === this.currUser.id) {
+      return this.currUser.username;
+    } else {
+      const index = this.bandmembers.findIndex(mem => mem.id === userId)
+      return this.bandmembers[index].username;
+    }
+  }
+
+  openPostModal() {
+    this.opacity = "25%";
+    this.modalRef = this.modalService.open(CreateBandPostComponent, {
+      modalClass: 'modal-dialog-centered',
+      data: { postCurrBand: this.currBand }
+    })
+    this.modalRef.onClose.subscribe((message) => {
+      this.opacity = "100%";
+      this.ngOnInit();
     });
   }
 
@@ -76,5 +131,40 @@ export class GrouppageComponent implements OnInit {
       });
     });
   }
+
+  GetPostID(id: number)
+  {
+
+    // console.log(`${id}, ${this.userData.GetUser().id}`);
+
+    this.postService.putLikePost(id, this.currUser.id).subscribe((res) =>{
+        this.postService.getPostById(id).subscribe(result =>
+          {
+            this.posts.find((obj) => {
+              if(obj.id === id)
+              {
+                obj.likes = result.likes;
+              }
+            });
+          });
+    });
+  }
+
+  // showComment(id: number)
+  // {
+  //   this.postService.getPostById(id).subscribe(result => {
+  //     this.posts.find((obj) => {
+  //       if (obj.id === id)
+  //       {
+  //         this.post = obj;
+
+  //         if (this.post.showComments == false)
+  //           this.post.showComments = true;
+  //         else if (this.post.showComments == true)
+  //           this.post.showComments = false;
+  //       }
+  //     });
+  //   });
+  // }
 
 }

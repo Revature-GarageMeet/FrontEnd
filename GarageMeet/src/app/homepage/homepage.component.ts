@@ -72,63 +72,52 @@ export class HomepageComponent implements OnInit {
   userId: number = 0;
   posts: Array<Post> = [];
   comments: Array<Comments> = [];
+  displayArray: Array<Post> = [];
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();   
-    this.postService.getUserPost(this.user.id).subscribe(res => {
+    
+    this.postService.getAllPosts().subscribe(res => {
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {
         this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
       }
+      this.filterPosts(this.posts, this.user);
     });
-
-    // this.postService.getAllPosts().subscribe(res => {
-    //   this.posts = res;
-    //   for(let i = 0; i < this.posts.length; i++)
-    //   {
-    //     this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-    //   }
-    //   this.posts = this.filterPosts(this.posts, this.user);
-    // });
   }
 
-  // public filterPosts(posts: Array<Post>, user: User): Array<Post>
-  // {
-  //   // for(let i = 0; i < this.posts.length; i++)
-  //   // {
-  //   //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
-  //   //     this.member = res;
-  //   //     this.posts.filter((a => a.bandId != this.member.BandId))
-  //   //   })
-  //   // }
-
-  //   this.bandMemberService.getBandMember(user.id).subscribe(res => {
-  //     this.member = res;
-  //     this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
-  //     this.band.memberlimit = result;
-
-  //     console.log(this.member);
-  //     console.log(this.band.memberlimit);
-
-  //     console.log(this.posts)
+  public filterPosts(posts: Array<Post>, user: User)
+  {
+    this.bandMemberService.getBandMember(user.id).subscribe(res => {
+      this.member = res;
+      this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
+      this.band.memberlimit = result;
       
-  //     this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
-
-  //     console.log(this.posts);
+      let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
       
-  //     if (this.band.memberlimit < 4)
-  //     {
-  //       this.posts = this.posts.filter(a => a.type == "Looking For Band");
-  //     }
+      tempArray.forEach(element => {
+        this.displayArray.push(element);
+      });
+            
+      if (this.band.memberlimit < 4)
+      {
+        tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+        tempArray.forEach(element => {
+          this.displayArray.push(element);
+        });
+      }
 
-  //     console.log(this.posts);
-  //     })
-  //   })
+      tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+      tempArray.forEach(element => {
+        this.displayArray.push(element);
+      });
 
-  //   return posts;
-  // }
+      this.posts = this.displayArray;
+      })
+    })
+  }
 
   public GetPostType(name: string): void {
     this.postType = name;
@@ -204,3 +193,54 @@ export class HomepageComponent implements OnInit {
     });
   }
 }
+
+// public filterPosts(posts: Array<Post>, user: User)
+//   {
+//     // for(let i = 0; i < this.posts.length; i++)
+//     // {
+//     //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+//     //     this.member = res;
+//     //     this.posts.filter((a => a.bandId != this.member.BandId))
+//     //   })
+//     // }
+
+//     this.bandMemberService.getBandMember(user.id).subscribe(res => {
+//       this.member = res;
+//       this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
+//       this.band.memberlimit = result;
+
+//       console.log(this.member);
+//       console.log(this.band.memberlimit);
+
+//       console.log(this.posts)
+      
+//       let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
+      
+//       tempArray.forEach(element => {
+//         this.displayArray.push(element);
+//       });
+      
+//       console.log(this.displayArray);
+      
+//       if (this.band.memberlimit < 4)
+//       {
+//         tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+//         tempArray.forEach(element => {
+//           this.displayArray.push(element);
+//         });
+//       }
+
+//       console.log(this.displayArray);
+
+//       tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+//       tempArray.forEach(element => {
+//         this.displayArray.push(element);
+//       });
+
+//       console.log(this.displayArray);
+//       this.posts = this.displayArray;
+//       console.log(this.posts);
+//       })
+      
+//     })
+//   }

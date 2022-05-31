@@ -20,7 +20,7 @@ import { BandService } from '../services/band.service';
 })
 
 export class HomepageComponent implements OnInit {
-  
+
   post: Post = {
     type: '',
     entry: '',
@@ -278,7 +278,6 @@ export class HomepageComponent implements OnInit {
   }
 
   GetFilteredPosts(): void {
-    // refactor to use filter
     this.filteredPosts = [];
 
     if (this.selectedMeetup || this.selectedVenue || this.selectedUpdate || this.selectedLooking) {
@@ -297,54 +296,3 @@ export class HomepageComponent implements OnInit {
     }
   }
 }
-
-// public filterPosts(posts: Array<Post>, user: User)
-//   {
-//     // for(let i = 0; i < this.posts.length; i++)
-//     // {
-//     //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
-//     //     this.member = res;
-//     //     this.posts.filter((a => a.bandId != this.member.BandId))
-//     //   })
-//     // }
-
-//     this.bandMemberService.getBandMember(user.id).subscribe(res => {
-//       this.member = res;
-//       this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
-//       this.band.memberlimit = result;
-
-//       console.log(this.member);
-//       console.log(this.band.memberlimit);
-
-//       console.log(this.posts)
-      
-//       let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
-      
-//       tempArray.forEach(element => {
-//         this.displayArray.push(element);
-//       });
-      
-//       console.log(this.displayArray);
-      
-//       if (this.band.memberlimit < 4)
-//       {
-//         tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
-//         tempArray.forEach(element => {
-//           this.displayArray.push(element);
-//         });
-//       }
-
-//       console.log(this.displayArray);
-
-//       tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
-//       tempArray.forEach(element => {
-//         this.displayArray.push(element);
-//       });
-
-//       console.log(this.displayArray);
-//       this.posts = this.displayArray;
-//       console.log(this.posts);
-//       })
-      
-//     })
-//   }

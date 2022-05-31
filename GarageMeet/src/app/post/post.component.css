@@ -1,4 +1,4 @@
-.gradient-custom-2 {
+/* .gradient-custom-2 {
     /* fallback for old browsers */
     /* background: #fccb90; */
   
@@ -6,7 +6,7 @@
     /* background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
   
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
+    /* background: linear-gradient(to right, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
     }
   
     @media (min-width: 768px) {
@@ -25,7 +25,7 @@
         padding:20px;
         width:710px;
         position:relative;
-        background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+        background: rgb(204, 204, 204); 
         background: rgba(204, 204, 204, 0.5);
     }
 
@@ -158,23 +158,9 @@ display: block;
     
 }
 
-.icon
-{
-   
-    width: 80px;
-    height: 80px;
-    max-width: 50px;
-    
-    margin: auto;
-    display: block;
-}
 
-.buttonType
-{
-    
-    min-width: 200px;
-    height: 100px; 
-}
+
+
 
 .buttonGroup button
 {
@@ -184,26 +170,47 @@ text-align: center;
 font-size: 16px;
 
 font-kerning: none;
-    background-color: #e5706a; /* Green background */
+    background-color: #e5706a; 
     width: 100%;
     height: 150px;
     display: block;
     margin: 10px 0;
     padding: 10px;
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
+    padding: 10px 24px; 
+    cursor: pointer; 
     
 }
+*/
 
-.buttonGroup button:hover
+.buttonGroup
 {
-    background-color: #955965;
+    display: grid;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.tableButtons
+.icon
 {
-    table-layout: fixed;
-    width: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
 }
+
+#announcement
+{
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    height: 100px; 
+    background: #00000000;
+    border: 1px transparent;
+}
+
+#announcement:hover
+{
+    border-radius: 2px;
+    background-color: rgb(53, 61, 96, .1);
+}
+
 
 

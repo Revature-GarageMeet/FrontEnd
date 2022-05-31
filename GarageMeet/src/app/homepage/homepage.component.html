@@ -1,31 +1,22 @@
 <div class="page">
-<<<<<<< HEAD
-    <table>
-        <tr>
-            <app-navbar></app-navbar>
-        </tr>
-    </table>
-    <br><br>
-=======
 <header>
-
-  <app-navbar></app-navbar>
-
+    <app-navbar></app-navbar>
 </header>
-
-    <form id="DEBUG_ONLY">
->>>>>>> main
-
+<div class = "homeFlex">
+    <app-post class="postButtons"></app-post>
     <div class="scrollBox">
         <table class="postFeed">
             <tr *ngFor="let post of posts">
                 <div class="post">
                     <div id="postContent" class="postBox" (click)="stuff(post.id)">
-                        <h4>
+                        <h4 style="display: flex; justify-content: space-between">
                             {{user.username}}
-                            <ng-container *ngIf= "post.type == blah"><img style="width: 30px; margin-left: 240px" src="../../assets\vectors\music-instruments-drums-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == Meetup"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == Venue"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\spotlight-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == Update"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\update-icon-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == LFB"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></ng-container>
                         </h4>
-                        <body>{{post.entry}}</body>
+                        {{post.entry}}
                     </div>
                     <table id="likeButton" class="likeTable">
                         <td>
@@ -43,14 +34,13 @@
             </tr>
         </table>
     </div>
-<<<<<<< HEAD
     <div class="commentsScrollBox">
         <table class="commentsFeed">
             <tr *ngFor="let comment of comments">
                 <div class="comment">
                     <div id="commentContent" class="commentBox">
-                        <h4>
-                            {{comment.entry}}
+                        <h4 class="commentPost">
+                            <span style="margin-left: 10px; margin-right: 10px">{{user.username}}: {{comment.entry}}</span>
                         </h4>
                     </div>
                 </div>
@@ -58,7 +48,3 @@
         </table>
     </div>
 </div>
-=======
-
-</div>
->>>>>>> main

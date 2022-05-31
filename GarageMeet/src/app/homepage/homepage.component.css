@@ -1,83 +1,56 @@
-.postBox
+.homeFlex
 {
-    position: relative;
-    display: block;
-    overflow-wrap: anywhere;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-}
-
-.post
-{
-    width: 450px;
-    border-style: solid;
-    border-width: 1px;
-}
-
-table.postFeed
-{
-    margin-left: auto;
-    margin-right: auto;
-    margin: auto;
-    white-space: pre-line;
-}
-
-.likeTable
-{
-    margin-left: 5%;
+    display: flex;
 }
 
 .scrollBox
 {
-    margin-top: 7%;
-    height:  800px;
-    width: 600px;
-    overflow-y: scroll;
-    margin-left: 35%;
-    margin-right: auto;
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    border-left: 1px solid #353d60;
+    border-right: 1px solid #353d60;
+}
+
+.post
+{
+    border: 1px transparent;
+}
+
+.postFeed
+{
+    margin-top: 38.5px;
+}
+
+.post:hover
+{
+    border-radius: 2px;
+    /* background-color: rgb(229, 112, 106, .3); */
+    background-color: rgb(53, 61, 96, .1);
+}
+
+.postButtons
+{
+    width: 33.3%;
 }
 
 .commentsScrollBox
 {
-    margin-top: 7%;
-    height:  800px;
-    width: 600px;
-    overflow-y: scroll;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.comment
-{
-    width: 450px;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.commentsBox
-{
-    position: relative;
-    display: block;
-    overflow-wrap: anywhere;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-}
-
-.page
-{
-    height: 100vh;
+    width: 33.3%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
-.likeFont
+.commentsFeed
 {
-    font-family: "Arial";
+    margin-top: 38.5px;
 }
+
+.commentPost
+{
+    width: fit-content;
+    border: 2px solid rgb(229, 112, 106);
+    border-radius: 20px;
+}
+

@@ -38,7 +38,11 @@ export class HomepageComponent implements OnInit {
       bio: ''
     }
   
-  blah: string = "Looking For Band";
+  Meetup: string = "Meetup";
+  Venue: string = "Venue Announcement";
+  Update: string = "Update";
+  LFB: string = "Looking For Band";
+
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService, 
     private postConvert: StringconversionService, private commentService: CommentService) { }
@@ -49,25 +53,8 @@ export class HomepageComponent implements OnInit {
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
-    
-<<<<<<< HEAD
     this.user = this.userData.GetUser();   
     this.postService.getUserPost(this.user.id).subscribe(res => {
-=======
-    this.user = this.userData.GetUser();
-    console.log(this.user.id);
-    
-
-    // this.postService.getUserPost(this.userId).subscribe((res: {results: Array<Post>;})=>{ console.log(res); this.posts = res;
-    //   for(let i = 0; i < this.posts.length; i++)
-    //     {
-    //       this.posts[i].entry = this.posts[i].entry.replaceAll(`[ENTER]`, '\n');
-    //       // console.log(this.posts[i]);
-    //       this.postService.getPostById(this.posts[i].id).subscribe(result => {this.like = result.likes; this.likeChange.emit(this.like);});
-    //     }
-    // });    
-    this.postService.getUserPost(11).subscribe(res => {
->>>>>>> main
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {
@@ -110,8 +97,7 @@ export class HomepageComponent implements OnInit {
   }
 
   showComment(id: number)
-  { 
-    this.stuff(id);  
+  {   
     this.postService.getPostById(id).subscribe(result => { 
       this.posts.find((obj) => {
         if (obj.id === id)

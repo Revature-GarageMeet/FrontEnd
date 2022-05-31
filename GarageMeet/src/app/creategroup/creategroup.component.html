@@ -11,14 +11,14 @@
       </div>
       <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 600;">
         <label for="membersNeeded" style="color: #353d60; font-weight: 600; font-size: x-large;">Members needed</label>
-        <input type="number" max="10" min="2" value="2" name="membersNeeded" [(ngModel)]="newband.memberlimit" required>
+        <input type="number" max="10" min="2" value="2" name="membersNeeded" [(ngModel)]="newband.memberLimit" required>
       </div>
     </div>
     <label for="desc" style="color: #353d60; font-weight: 600; font-size: x-large;">Description</label>
     <textarea name="desc" placeholder="Band Description" maxlength="220" cols="25" rows="4" [(ngModel)]="newband.description" required></textarea>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn submit-btn" style="font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="close()">
+    <button type="button" class="btn submit-btn" style="font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="attemptToClose()">
       Submit
     </button>
   </div>

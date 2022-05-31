@@ -65,6 +65,34 @@ export class HomepageComponent implements OnInit {
         this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
       }
     });
+
+    this.postService.getAllPosts().subscribe(res => {
+      this.posts = res;
+      for (let i = 0; i < this.posts.length; i++) {
+        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+      }
+      this.posts = this.filterPosts(this.posts, this.user);
+    });
+  }
+
+  public filterPosts(posts: Array<Post>, user: User): Array<Post> {
+    // for(let i = 0; i < this.posts.length; i++)
+    // {
+    //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+    //     this.member = res;
+    //     this.posts.filter((a => a.bandId != this.member.BandId))
+    //   })
+    // }
+
+    this.bandMemberService.getBandMember(user.id).subscribe(res => {
+      this.member = res;
+      console.log(posts);
+      console.log(this.member);
+      this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
+      console.log(this.posts);
+    })
+
+    return posts;
   }
 
   public GetPostType(name: string): void {
@@ -144,8 +172,8 @@ export class HomepageComponent implements OnInit {
   currentUserBandMember: Bandmember = {
     id: 0,
     userId: 0,
-    BandId: 0,
-    DateJoined: new Date()
+    bandId: 0,
+    dateJoined: new Date()
   }
 
   GetUserBandID(): void {
@@ -159,24 +187,24 @@ export class HomepageComponent implements OnInit {
     id: 0,
     title: '',
     description: '',
-    memberlimit: 0
+    memberLimit: 0
   }
 
   GetBandLimit(): void {
-    this.bandService.getBandMemberLimit(this.currentUserBandMember.BandId).subscribe(res => {
-      this.band.memberlimit = res;
+    this.bandService.getBandMemberLimit(this.currentUserBandMember.bandId).subscribe(res => {
+      this.band.memberLimit = res;
       this.GetRelevantPost();
     });
   }
 
   GetRelevantPost(): void {
-    let tempArray = this.posts.filter(a => a.bandId == this.currentUserBandMember.BandId);
+    let tempArray = this.posts.filter(a => a.bandId == this.currentUserBandMember.bandId);
 
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);
     });
 
-    if (this.band.memberlimit < 4) {
+    if (this.band.memberLimit < 4) {
       tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
       tempArray.forEach(element => {
         this.userFilteredPosts.push(element);

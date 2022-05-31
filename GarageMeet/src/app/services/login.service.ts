@@ -29,4 +29,8 @@ export class LoginService {
   loginUser(user: string): Observable<any> {
     return this.http.get<User>(`${environment.apBaseURL}/User/Login/${user}`);
   }
+
+  otherUserProfile(userId: number): Observable<User> {
+    return this.http.get<User>(`${environment.apBaseURL}/User/OtherUserProfile/${userId}`);
+  }
 }

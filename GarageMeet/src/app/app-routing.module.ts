@@ -10,6 +10,7 @@ import { PostComponent } from './post/post.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BandHomePageComponent } from './band-home-page/band-home-page.component';
 import { resolve } from 'dns';
+import { OtherProfileComponent } from './other-profile/other-profile.component';
 
 
 const routes: Routes = [
@@ -19,8 +20,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepageComponent },
   { path: 'userprofile', component: UserprofileComponent },
+  { path: 'otherprofile/:userN', component: OtherProfileComponent },
   { path: 'comment', component: CommentComponent },
-  { path: 'bandPage', component: BandHomePageComponent }
+  { path: 'bandPage', component: BandHomePageComponent },
+  { path: 'groupPage/:band', component: GrouppageComponent}
   // resolve:{
   //   singlePost: singlepost
   // },

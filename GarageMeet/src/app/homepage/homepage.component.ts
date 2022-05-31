@@ -9,7 +9,9 @@ import { User } from '../user';
 import { CommentService } from '../services/comment.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { Bandmember } from '../models/bandmember';
+import { resourceLimits } from 'worker_threads';
 import { Band } from '../models/band';
+import { BandService } from '../services/band.service';
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +20,7 @@ import { Band } from '../models/band';
 })
 
 export class HomepageComponent implements OnInit {
-
+  
   post: Post = {
     type: '',
     entry: '',
@@ -48,7 +50,7 @@ export class HomepageComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
-    private postConvert: StringconversionService, private commentService: CommentService, private bandService: BandmemberService) { }
+    private postConvert: StringconversionService, private commentService: CommentService, private bandService: BandService, private bandMemberService: BandmemberService) { }
   postType: string = '';
   userId: number = 0;
   posts: Array<Post> = [];
@@ -66,33 +68,7 @@ export class HomepageComponent implements OnInit {
       }
     });
 
-    this.postService.getAllPosts().subscribe(res => {
-      this.posts = res;
-      for (let i = 0; i < this.posts.length; i++) {
-        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-      }
-      this.posts = this.filterPosts(this.posts, this.user);
-    });
-  }
-
-  public filterPosts(posts: Array<Post>, user: User): Array<Post> {
-    // for(let i = 0; i < this.posts.length; i++)
-    // {
-    //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
-    //     this.member = res;
-    //     this.posts.filter((a => a.bandId != this.member.BandId))
-    //   })
-    // }
-
-    this.bandMemberService.getBandMember(user.id).subscribe(res => {
-      this.member = res;
-      console.log(posts);
-      console.log(this.member);
-      this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
-      console.log(this.posts);
-    })
-
-    return posts;
+    this.GetAllPost();
   }
 
   public GetPostType(name: string): void {
@@ -177,7 +153,7 @@ export class HomepageComponent implements OnInit {
   }
 
   GetUserBandID(): void {
-    this.bandService.getBandMember(this.user.id).subscribe(res => {
+    this.bandMemberService.getBandMember(this.user.id).subscribe(res => {
       this.currentUserBandMember = res;
       this.GetBandLimit();
     });
@@ -321,3 +297,54 @@ export class HomepageComponent implements OnInit {
     }
   }
 }
+
+// public filterPosts(posts: Array<Post>, user: User)
+//   {
+//     // for(let i = 0; i < this.posts.length; i++)
+//     // {
+//     //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+//     //     this.member = res;
+//     //     this.posts.filter((a => a.bandId != this.member.BandId))
+//     //   })
+//     // }
+
+//     this.bandMemberService.getBandMember(user.id).subscribe(res => {
+//       this.member = res;
+//       this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
+//       this.band.memberlimit = result;
+
+//       console.log(this.member);
+//       console.log(this.band.memberlimit);
+
+//       console.log(this.posts)
+      
+//       let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
+      
+//       tempArray.forEach(element => {
+//         this.displayArray.push(element);
+//       });
+      
+//       console.log(this.displayArray);
+      
+//       if (this.band.memberlimit < 4)
+//       {
+//         tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+//         tempArray.forEach(element => {
+//           this.displayArray.push(element);
+//         });
+//       }
+
+//       console.log(this.displayArray);
+
+//       tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+//       tempArray.forEach(element => {
+//         this.displayArray.push(element);
+//       });
+
+//       console.log(this.displayArray);
+//       this.posts = this.displayArray;
+//       console.log(this.posts);
+//       })
+      
+//     })
+//   }

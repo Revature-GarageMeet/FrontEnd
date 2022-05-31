@@ -84,11 +84,11 @@ export class HomepageComponent implements OnInit {
       {
         this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
       }
-      this.filterPosts(this.posts, this.user);
+      this.filterPosts(this.user);
     });
   }
 
-  public filterPosts(posts: Array<Post>, user: User)
+  public filterPosts(user: User)
   {
     this.bandMemberService.getBandMember(user.id).subscribe(res => {
       this.member = res;

@@ -1,0 +1,25 @@
+<div style="background-color: #353d60; color:#353d60; border: 3px solid #F5756B;" class="rounded-2">
+  <div class="modal-header">
+    <h4 class="modal-title" style="color: #F5756B;" id="exampleModalLabel">Band Post</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+  </div>
+  <div class="modal-body d-flex flex-column" style="background-color: #F5756B;">
+    <div class="row">
+      <!-- <div class="col-sm-6" style="font-weight: 600;">
+        <label for="bandname" style="color: #353d60; font-weight: 600; font-size: x-large;">Post Title</label>
+        <input type="text" maxlength="30" placeholder="Enter Band Name" name="bandname" [(ngModel)]="newPost." required>
+      </div> -->
+      <!-- <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 600;">
+        <label for="membersNeeded" style="color: #353d60; font-weight: 600; font-size: x-large;">Post Description</label>
+        <input type="number" max="10" min="2" value="2" name="membersNeeded" [(ngModel)]="newPost.memberLimit" required>
+      </div> -->
+    </div>
+    <label for="desc" style="color: #353d60; font-weight: 600; font-size: x-large;">Post Description</label>
+    <textarea name="desc" placeholder="Band Description" maxlength="220" cols="25" rows="4" [(ngModel)]="newPost.entry" required></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn submit-btn" style="font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="attemptToClose()">
+      Submit
+    </button>
+  </div>
+</div>

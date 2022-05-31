@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BandComponent } from './band.component';
+import { OtherProfileComponent } from './other-profile.component';
 
-describe('BandComponent', () => {
-  let component: BandComponent;
-  let fixture: ComponentFixture<BandComponent>;
+describe('OtherProfileComponent', () => {
+  let component: OtherProfileComponent;
+  let fixture: ComponentFixture<OtherProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BandComponent ]
+      declarations: [ OtherProfileComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BandComponent);
+    fixture = TestBed.createComponent(OtherProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

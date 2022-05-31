@@ -14,7 +14,7 @@ import { PosttypeComponent } from '../posttype/posttype.component';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  
+
   isSubmitted : boolean = false;
   modalRef: MdbModalRef<PosttypeComponent> | null = null;
   opacity: string = "100%";
@@ -33,14 +33,14 @@ export class PostComponent implements OnInit {
               private modalService: MdbModalService, private createPostNew: PostService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   public GetPostType(name: string): void{
     this.postType = name;
-    
+
   }
-  
+
   private SetPostType(name: string)
   {
     this.userPost.value.type = name;
@@ -56,15 +56,15 @@ export class PostComponent implements OnInit {
     this.post.type = this.userPost.value.type;
     this.ChangeCharacters();
     //console.log(this.userPost.value);
-    
+
       this.postService.postuser(this.post).subscribe((res) => {
         console.log(res.status);
-        
+
         this.response = res.status;
       });
 
       //response is between 200-299 (success)
-      
+
   }
 
   //  addPokemon() {
@@ -96,7 +96,7 @@ export class PostComponent implements OnInit {
   }
   public CheckPost(): boolean
   {
-    
+
     if (this.userPost.value.type != null || this.userPost.value.text != null || this.userPost.value.userId != null)
     {
       return true;

@@ -1,30 +1,68 @@
-.gradient-custom-2 {
-  /* fallback for old browsers */
-  /* background: #fccb90; */
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  /* background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to left, #353d60, #454261, #554662, #654b63, #755064, #855465, #955965, #a55e66, #b56267, #c56768, #d56c69, #e5706a, #F5756B);
+.bandmember:hover {
+  border-radius: 2px;
+    background-color: rgb(207, 207, 207);
   }
 
-  @media (min-width: 768px) {
-  .gradient-form {
-  height: 100vh !important;
+  .leave-btn {
+    background-color: #F5756B;
   }
-  }
-  @media (min-width: 769px) {
-  .gradient-custom-2 {
-  border-top-right-radius: .3rem;
-  border-bottom-right-radius: .3rem;
-  }
+  .leave-btn:hover {
+    background-color: #c45f58;
   }
 
-  .bandmember {
-    color: #F5756B;
-  }
 
-  .bandmember:hover {
-    color: #bd5952;
-  }
+.homeFlex
+{
+    display: flex;
+}
+
+.scrollBox
+{
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    border-left: 1px solid #353d60;
+    border-right: 1px solid #353d60;
+}
+
+.post
+{
+    border: 1px transparent;
+}
+
+.postFeed
+{
+    margin-top: 38.5px;
+}
+
+.post:hover
+{
+    border-radius: 2px;
+    /* background-color: rgb(229, 112, 106, .3); */
+    background-color: rgb(53, 61, 96, .1);
+}
+
+.postButtons
+{
+    width: 33.3%;
+}
+
+.commentsScrollBox
+{
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentsFeed
+{
+    margin-top: 38.5px;
+}
+
+.commentPost
+{
+    width: fit-content;
+    border: 2px solid rgb(229, 112, 106);
+    border-radius: 20px;
+}

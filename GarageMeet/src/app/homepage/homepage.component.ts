@@ -18,13 +18,13 @@ import { resourceLimits } from 'worker_threads';
 })
 
 export class HomepageComponent implements OnInit {
-  
-    member: Bandmember = 
+
+    member: Bandmember =
     {
       id: 0,
       userId: 0,
       bandId: 0,
-      DateJoined: new Date()
+      dateJoined: new Date()
     }
 
     post: Post = {
@@ -38,7 +38,7 @@ export class HomepageComponent implements OnInit {
       postComments: [],
       showComments: false
     }
-    
+
     user: User = {
       id: -1,
       username: '',
@@ -48,14 +48,14 @@ export class HomepageComponent implements OnInit {
       email: '',
       bio: ''
     }
-  
+
   Meetup: string = "Meetup";
   Venue: string = "Venue Announcement";
   Update: string = "Update";
   LFB: string = "Looking For Band";
 
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService, 
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
     private postConvert: StringconversionService, private commentService: CommentService, private bandMemberService: BandmemberService) { }
   postType: string ='';
   userId: number = 0;
@@ -64,7 +64,7 @@ export class HomepageComponent implements OnInit {
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
-    this.user = this.userData.GetUser();   
+    this.user = this.userData.GetUser();
     // this.postService.getUserPost(this.user.id).subscribe(res => {
     //   this.posts = res;
     //   for(let i = 0; i < this.posts.length; i++)
@@ -107,7 +107,7 @@ export class HomepageComponent implements OnInit {
   public GetPostType(name: string): void {
     this.postType = name;
     console.log(name);
-    
+
   }
   onSubmit(): void
   {
@@ -121,12 +121,12 @@ export class HomepageComponent implements OnInit {
 
   GetPostID(id: number)
   {
-    
+
     console.log(`${id}, ${this.userData.GetUser().id}`);
-    
+
     this.postService.putLikePost(id, this.user.id).subscribe((res) =>{
         this.postService.getPostById(id).subscribe(result =>
-          { 
+          {
             this.posts.find((obj) => {
               if(obj.id === id)
               {
@@ -138,8 +138,8 @@ export class HomepageComponent implements OnInit {
   }
 
   showComment(id: number)
-  {   
-    this.postService.getPostById(id).subscribe(result => { 
+  {
+    this.postService.getPostById(id).subscribe(result => {
       this.posts.find((obj) => {
         if (obj.id === id)
         {

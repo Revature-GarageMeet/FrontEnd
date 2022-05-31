@@ -65,44 +65,44 @@ export class HomepageComponent implements OnInit {
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();
-    this.postService.getUserPost(this.user.id).subscribe(res => {
-      this.posts = res;
-      for(let i = 0; i < this.posts.length; i++)
-      {
-        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-      }
-    });
-
-    // this.postService.getAllPosts().subscribe(res => {
+    // this.postService.getUserPost(this.user.id).subscribe(res => {
     //   this.posts = res;
     //   for(let i = 0; i < this.posts.length; i++)
     //   {
     //     this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
     //   }
-    //   this.posts = this.filterPosts(this.posts, this.user);
     // });
+
+    this.postService.getAllPosts().subscribe(res => {
+      this.posts = res;
+      for(let i = 0; i < this.posts.length; i++)
+      {
+        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+      }
+      this.posts = this.filterPosts(this.posts, this.user);
+    });
   }
 
-  // public filterPosts(posts: Array<Post>, user: User): Array<Post>
-  // {
-  //   // for(let i = 0; i < this.posts.length; i++)
-  //   // {
-  //   //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
-  //   //     this.member = res;
-  //   //     this.posts.filter((a => a.bandId != this.member.BandId))
-  //   //   })
-  //   // }
+  public filterPosts(posts: Array<Post>, user: User): Array<Post>
+  {
+    // for(let i = 0; i < this.posts.length; i++)
+    // {
+    //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+    //     this.member = res;
+    //     this.posts.filter((a => a.bandId != this.member.BandId))
+    //   })
+    // }
 
-  //   this.bandMemberService.getBandMember(user.id).subscribe(res => {
-  //     this.member = res;
-  //     console.log(posts);
-  //     console.log(this.member);
-  //     this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
-  //     console.log(this.posts);
-  //   })
+    this.bandMemberService.getBandMember(user.id).subscribe(res => {
+      this.member = res;
+      console.log(posts);
+      console.log(this.member);
+      this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
+      console.log(this.posts);
+    })
 
-  //   return posts;
-  // }
+    return posts;
+  }
 
   public GetPostType(name: string): void {
     this.postType = name;

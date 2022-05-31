@@ -7,6 +7,9 @@ import { UserdataService } from '../services/userdata.service';
 import { StringconversionService } from '../services/stringconversion.service';
 import { User } from '../user';
 import { CommentService } from '../services/comment.service';
+import { BandmemberService } from '../services/bandmember.service';
+import { Bandmember } from '../models/bandmember';
+import { resourceLimits } from 'worker_threads';
 
 @Component({
   selector: 'app-homepage',
@@ -16,6 +19,14 @@ import { CommentService } from '../services/comment.service';
 
 export class HomepageComponent implements OnInit {
   
+    member: Bandmember = 
+    {
+      id: 0,
+      userId: 0,
+      bandId: 0,
+      DateJoined: new Date()
+    }
+
     post: Post = {
       type: '',
       entry: '',
@@ -45,7 +56,7 @@ export class HomepageComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService, 
-    private postConvert: StringconversionService, private commentService: CommentService) { }
+    private postConvert: StringconversionService, private commentService: CommentService, private bandMemberService: BandmemberService) { }
   postType: string ='';
   userId: number = 0;
   posts: Array<Post> = [];
@@ -54,13 +65,43 @@ export class HomepageComponent implements OnInit {
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();   
-    this.postService.getUserPost(this.user.id).subscribe(res => {
+    // this.postService.getUserPost(this.user.id).subscribe(res => {
+    //   this.posts = res;
+    //   for(let i = 0; i < this.posts.length; i++)
+    //   {
+    //     this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+    //   }
+    // });
+
+    this.postService.getAllPosts().subscribe(res => {
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {
         this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
       }
+      this.posts = this.filterPosts(this.posts, this.user);
     });
+  }
+
+  public filterPosts(posts: Array<Post>, user: User): Array<Post>
+  {
+    // for(let i = 0; i < this.posts.length; i++)
+    // {
+    //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+    //     this.member = res;
+    //     this.posts.filter((a => a.bandId != this.member.BandId))
+    //   })
+    // }
+
+    this.bandMemberService.getBandMember(user.id).subscribe(res => {
+      this.member = res;
+      console.log(posts);
+      console.log(this.member);
+      this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
+      console.log(this.posts);
+    })
+
+    return posts;
   }
 
   public GetPostType(name: string): void {

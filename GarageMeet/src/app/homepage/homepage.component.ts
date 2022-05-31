@@ -10,6 +10,8 @@ import { CommentService } from '../services/comment.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { Bandmember } from '../models/bandmember';
 import { resourceLimits } from 'worker_threads';
+import { Band } from '../models/band';
+import { BandService } from '../services/band.service';
 
 @Component({
   selector: 'app-homepage',
@@ -18,8 +20,16 @@ import { resourceLimits } from 'worker_threads';
 })
 
 export class HomepageComponent implements OnInit {
+  
+    band: Band = 
+    {
+      id: 0,
+      title: "",
+      description: "",
+      memberLimit: 0
+    }
 
-    member: Bandmember =
+    member: Bandmember = 
     {
       id: 0,
       userId: 0,
@@ -55,53 +65,58 @@ export class HomepageComponent implements OnInit {
   LFB: string = "Looking For Band";
 
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
-    private postConvert: StringconversionService, private commentService: CommentService, private bandMemberService: BandmemberService) { }
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService, 
+    private postConvert: StringconversionService, private commentService: CommentService, private bandMemberService: BandmemberService,
+    private bandService: BandService) { }
   postType: string ='';
   userId: number = 0;
   posts: Array<Post> = [];
   comments: Array<Comments> = [];
+  displayArray: Array<Post> = [];
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
-    this.user = this.userData.GetUser();
-    // this.postService.getUserPost(this.user.id).subscribe(res => {
-    //   this.posts = res;
-    //   for(let i = 0; i < this.posts.length; i++)
-    //   {
-    //     this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-    //   }
-    // });
-
+    this.user = this.userData.GetUser();   
+    
     this.postService.getAllPosts().subscribe(res => {
       this.posts = res;
       for(let i = 0; i < this.posts.length; i++)
       {
         this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
       }
-      this.posts = this.filterPosts(this.posts, this.user);
+      this.filterPosts(this.posts, this.user);
     });
   }
 
-  public filterPosts(posts: Array<Post>, user: User): Array<Post>
+  public filterPosts(posts: Array<Post>, user: User)
   {
-    // for(let i = 0; i < this.posts.length; i++)
-    // {
-    //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
-    //     this.member = res;
-    //     this.posts.filter((a => a.bandId != this.member.BandId))
-    //   })
-    // }
-
     this.bandMemberService.getBandMember(user.id).subscribe(res => {
       this.member = res;
-      console.log(posts);
-      console.log(this.member);
-      this.posts = this.posts.filter(a => a.bandId == this.member.bandId);
-      console.log(this.posts);
-    })
+      this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
+      this.band.memberLimit = result;
+      
+      let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
+      
+      tempArray.forEach(element => {
+        this.displayArray.push(element);
+      });
+            
+      if (this.band.memberLimit < 4)
+      {
+        tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+        tempArray.forEach(element => {
+          this.displayArray.push(element);
+        });
+      }
 
-    return posts;
+      tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+      tempArray.forEach(element => {
+        this.displayArray.push(element);
+      });
+
+      this.posts = this.displayArray;
+      })
+    })
   }
 
   public GetPostType(name: string): void {
@@ -178,3 +193,54 @@ export class HomepageComponent implements OnInit {
     });
   }
 }
+
+// public filterPosts(posts: Array<Post>, user: User)
+//   {
+//     // for(let i = 0; i < this.posts.length; i++)
+//     // {
+//     //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
+//     //     this.member = res;
+//     //     this.posts.filter((a => a.bandId != this.member.BandId))
+//     //   })
+//     // }
+
+//     this.bandMemberService.getBandMember(user.id).subscribe(res => {
+//       this.member = res;
+//       this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
+//       this.band.memberlimit = result;
+
+//       console.log(this.member);
+//       console.log(this.band.memberlimit);
+
+//       console.log(this.posts)
+      
+//       let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
+      
+//       tempArray.forEach(element => {
+//         this.displayArray.push(element);
+//       });
+      
+//       console.log(this.displayArray);
+      
+//       if (this.band.memberlimit < 4)
+//       {
+//         tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+//         tempArray.forEach(element => {
+//           this.displayArray.push(element);
+//         });
+//       }
+
+//       console.log(this.displayArray);
+
+//       tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+//       tempArray.forEach(element => {
+//         this.displayArray.push(element);
+//       });
+
+//       console.log(this.displayArray);
+//       this.posts = this.displayArray;
+//       console.log(this.posts);
+//       })
+      
+//     })
+//   }

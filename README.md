@@ -1,6 +1,8 @@
 # FrontEnd
 FrontEnd of GarageMeet Application :)
 
+## Getting started
+
 ### Checkout the application
 
 You can try out the application at [GarageMeet](https://garagemeetui.azurewebsites.net/).

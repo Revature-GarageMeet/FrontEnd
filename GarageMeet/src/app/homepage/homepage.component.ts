@@ -65,13 +65,13 @@ export class HomepageComponent implements OnInit {
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();
-    // this.postService.getUserPost(this.user.id).subscribe(res => {
-    //   this.posts = res;
-    //   for(let i = 0; i < this.posts.length; i++)
-    //   {
-    //     this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-    //   }
-    // });
+    this.postService.getUserPost(this.user.id).subscribe(res => {
+      this.posts = res;
+      for(let i = 0; i < this.posts.length; i++)
+      {
+        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+      }
+    });
 
     this.postService.getAllPosts().subscribe(res => {
       this.posts = res;

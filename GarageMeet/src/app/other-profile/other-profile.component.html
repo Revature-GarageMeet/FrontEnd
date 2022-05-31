@@ -2,102 +2,70 @@
   <app-navbar></app-navbar>
 </header>
 
-<div class="h-100 gradient-form" style="background-image: url(../../assets/loginbackground.png); background-repeat: no-repeat; background-size: cover; ">
-  <div class="container" style="padding-top: 125px;">
-    <div class="row p-3 rounded-3"
-      style="background-color: #353d60; color: #F5756B; border: 4px solid; border-color: #F5756B;">
-      <div class="col-lg-3 col-sm-12 col-7">
-        <img src="../../assets/GM_ProfileAvatar.jpg" class="mx-auto profile-img" style="border: 3px solid #F5756B;"
-          alt="User Profile Image" />
+<div style="display: flex; flex-direction: row;">
+  <div style="display: flex; flex-direction: column;">
+    <div class="profileBox">
+      <div style="width: 110px; height: 110px; border-radius: 200px; border: 1px solid rgb(53, 61, 96); display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+        <img src="../../assets/GM_ProfileAvatar.jpg" alt="User Profile Image" style="width: 100px; height: 100px; border-radius: 200px;" />
       </div>
-      <div class="col-lg-5 col-sm-6 col-12 d-flex flex-column justify-content-center">
-        <h1>{{profUser.username}}</h1>
-        <h4>
-          {{profUser.firstname}} {{profUser.lastname}}
-        </h4>
-      </div>
-      <div class="col-lg-2 col-sm-3 col-6 d-flex flex-column justify-content-center">
-        <h2 class="ps-4">{{posts.length}}</h2>
-        <h2>Posts</h2>
+      <h1>{{profUser.username}}</h1>
+      <h4>{{profUser.firstname}} {{profUser.lastname}}</h4>
+      <div style="display: flex; margin-top: 50px; width: 100%; justify-content: space-evenly;">
+        <span class="postsAndGroupFlex">
+          0
+          <span>
+            Posts
+          </span>
+        </span>
+        <span class="postsAndGroupFlex">
+          0
+          <span>
+            Group
+          </span>
+        </span>
       </div>
     </div>
-    <div class="row rounded-3 mt-3 profileBody"
-      style="background-color: #F5756B; color: #353d60; border: 4px solid; border-color: #353d60;">
-      <div class="col-8 d-flex flex-column ">
-        <div id="contentHolder">
-          <table class="profileTable" >
-            <tr>
-              <td  class="debugBorders">
-                <h1 class="card-title">User Bio</h1>
-                <p style="font-size: 23px; font-weight: 500; color: white;">
-                  {{profUser.bio}}
-                </p>
-              </td>
 
-              <td  class="debugBorders">
-                <h4 class="card-title">Posts</h4>
-                <div class="scrollBox">
-                  <table class="postFeed">
-                    <h4 *ngIf="hasNoPosts" style="color: white;">~No Posts to show~</h4>
-                    <tr *ngFor="let post of posts">
-                          <div class="post">
-                              <div id="postContent" class="postBox">
-                                  <body>User ID: {{post.userId}}</body>
-                                  <body>Type of post: {{post.type}}</body>
-                                  <body>{{post.entry}}</body>
-                              </div>
+    <div class="bioBox">
+      <h4 style="display:flex; align-items: center; background-color: rgb(53, 61, 96, .5); padding-bottom: 3px; padding-left: 5px; justify-content: space-between;">
+        User Bio
+      </h4>
+        <p>
+          {{profUser.bio}}
+        </p>
+    </div>
+  </div>
 
-                              <br><br><br>
-                          </div>
-                          <br>
-                      </tr>
-                  </table>
-              </div>
-              </td>
-              <td  class="debugBorders">
-                <div class="card-body">
-                  <h4 class="card-title">Comments</h4>
-
-                </div>
-              </td>
-            </tr>
-
-          </table>
-        </div>
+  <div class="postsBox">
+    <h4 style="background-color: rgb(53, 61, 96, .5); padding-bottom: 3px; padding-left: 5px;">
+      Posts
+    </h4>
+    <div *ngIf="hasNoPosts">
+      <h5>~No Posts to Show~</h5>
+    </div>
+    <div *ngIf="hasNoPosts === false">
+      <div *ngFor="let post of posts" class="wrapper">
+          <body>{{post.type}}</body>
+          <body>{{post.entry}}</body>
       </div>
     </div>
   </div>
+
+  <div class="commentsBox">
+    <h4>Comments</h4>
+  </div>
 </div>
 
-        <!-- EVERYTHING BELOW WAS THE OLD OF POSTS, MAY BE DELETED BEFORE SHOWCASE -->
 
-        <!-- Could use a less than 0 Posts.Count (Posts.Count < 0) ~Bailey -->
-        <!-- Placeholder for posts, ideally will be a ngfor loop that shows a few of this user's posts ~Bailey -->
-        <!-- <div *ngIf="hasPosts" style="color:white;">
-           Posts.Count > 0 maybe? ~Bailey
-          <div class="row">
-            <div class="col-lg-5 card m-lg-1" style="background-color: #353d60;">
-              <div class="card-body">
-                <img class="card-img-top rounded-3" src="#" style="width: 90%" alt="Post image"> If they attached an image to their post it would go here ~Bailey
-                <h4 class="card-title"></h4>
-                <p class="card-text"> </p>
-              </div>
-            </div>
-            <div class="col-lg-5 card m-lg-1 mt-1" style="background-color: #353d60;">
-              <div class="card-body">
-                <h4 class="card-title">Comments</h4> -->
-                <!-- Might use a ngFor loop to show some comments attached to this post; Otherwise everything below is a placeholder to show end result look ~Bailey -->
-                <!-- Maybe also an ngIf in case no comments were made on this post ~Bailey -->
-                <!-- <div class="row gradient-custom-2 rounded-3 p-1 mb-1">
-                  <div class="col-12">
-                    <img src="../../assets/GM_ProfileAvatar.jpg" style="width: 60px; height: 60px; border-radius: 50%;"> -->
-                    <!-- Commentors Username -->
-                  <!-- </div>
-                  <div class="col-12">
-                    < class="card-text"> Commentors Comment Message -->
-                  <!-- </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+

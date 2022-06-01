@@ -60,6 +60,8 @@ export class HomepageComponent implements OnInit {
   filteredPosts: Array<Post> = [];
   displayArray: Array<Post> = [];
   nameArray: Array<string> = [];
+  unFilteredNameArray: Array<string> = [];
+  filteredNameArray: Array<string> = [];
   commentsNameArray: Array<string> = [];
 
   //Going to load new posts here from top of the database --Tucker
@@ -79,6 +81,7 @@ export class HomepageComponent implements OnInit {
     for (let i = 0; i < this.posts.length; i++) {
       await new Promise<void>(resolve => this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
         this.nameArray.push(res.username);
+        this.unFilteredNameArray.push(res.username);
         resolve();
       }));
     }
@@ -304,21 +307,35 @@ export class HomepageComponent implements OnInit {
 
   GetFilteredPosts(): void {
     this.filteredPosts = [];
+    this.filteredNameArray = [];
+
+    let counter = 0;
 
     if (this.selectedMeetup || this.selectedVenue || this.selectedUpdate || this.selectedLooking) {
       this.userFilteredPosts.forEach((element) => {
-        if (element.type == "Meetup" && this.selectedMeetup)
+        if (element.type == "Meetup" && this.selectedMeetup) {
           this.filteredPosts.push(element);
-        if (element.type == "Venue Announcement" && this.selectedVenue)
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        if (element.type == "Venue Announcement" && this.selectedVenue) {
           this.filteredPosts.push(element);
-        if (element.type == "Update" && this.selectedUpdate)
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        if (element.type == "Update" && this.selectedUpdate) {
           this.filteredPosts.push(element);
-        if (element.type == "Looking For Band" && this.selectedLooking)
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        if (element.type == "Looking For Band" && this.selectedLooking) {
           this.filteredPosts.push(element);
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        counter++;
       })
       this.posts = this.filteredPosts;
+      this.nameArray = this.filteredNameArray;
     } else {
       this.posts = this.userFilteredPosts;
+      this.nameArray = this.unFilteredNameArray;
     }
   }
 }

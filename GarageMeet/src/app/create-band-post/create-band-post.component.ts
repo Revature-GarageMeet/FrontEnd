@@ -40,9 +40,12 @@ export class CreateBandPostComponent implements OnInit {
   ngOnInit(): void {
     this.newPost.userId = this.userData.GetUser().id;
     this.newPost.bandId = this.postCurrBand.id;
+    this.newPost.type = "Band";
   }
 
   attemptToClose() {
+    const dateCreated = new Date();
+    this.newPost.dateCreated = dateCreated;
     this.postService.createBandPost(this.newPost).subscribe((res) => {
       this.modalRef.close();
     });

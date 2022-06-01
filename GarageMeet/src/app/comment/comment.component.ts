@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommentService } from '../services/comment.service';
-import { Comments, Post } from '../models/post';
+import { Comments, Post } from '../post';
+import { UserdataService } from '../services/userdata.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-comment',
@@ -23,14 +25,25 @@ export class CommentComponent implements OnInit {
     dateCreated: new Date()
   }
 
-  constructor(private api: CommentService) { }
+  user: User = {
+    id: -1,
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    bio: ''
+  }
+
+  constructor(private api: CommentService, private userData: UserdataService) { }
 
   ngOnInit(): void {
+    this.user = this.userData.GetUser();
   }
 
   submitComment(): void {
     this.comment.entry = this.textEntry;
-    this.comment.userId = this.post.userId;
+    this.comment.userId = this.user.id;
     this.api.addComment(this.comment, this.post.id).subscribe((res) => {
       this.textEntry = "";
     }

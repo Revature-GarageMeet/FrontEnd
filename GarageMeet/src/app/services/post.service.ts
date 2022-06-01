@@ -35,8 +35,12 @@ export class PostService {
 
     createBandPost(post: Post): Observable<any>
     {
-      return this.http.post(`${environment.apBaseURL}/Post/PostForBandMembers/${post.bandId}/${post.entry}/${post.userId}`, post);
+      return this.http.post(`${environment.apBaseURL}/Post/PostForBandMembers/${post.bandId}/${post.entry}/${post.userId}/${post.type}`, post);
     }
+
+    // checkIfAlreadyLiked(postId: number, userId: number): Observable<boolean> {
+    //   return this.http.get<boolean>(`${environment.apBaseURL}/Post/VerifyIfLiked/${postId}/${userId}`);
+    // } Potential future implementation for verifying likes for icon change
 
     getPostById(id: number): Observable<Post>
     {
@@ -65,7 +69,7 @@ export class PostService {
     {
       return this.http.put(`${environment.apBaseURL}/Post/LikePost/${postId}/${userId}`, postId);
     }
-    
+
     private handleError<T>(operation = 'operation', result?: T)
     {
       return (error: any): Observable<T> =>{

@@ -20,7 +20,8 @@
         <span class="postsAndGroupFlex">
           <div *ngIf="inABand">
             <span>
-              In A Band
+              Current Band:
+              <h5>{{this.currentBand.title}}</h5>
             </span>
           </div>
           <div *ngIf="inABand === false">

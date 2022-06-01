@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { Post } from '../post';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-posttype',

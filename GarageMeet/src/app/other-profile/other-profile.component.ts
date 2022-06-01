@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Post } from '../post';
+import { Post } from '../models/post';
 import { LoginService } from '../services/login.service';
 import { PostService } from '../services/post.service';
 import { StringconversionService } from '../services/stringconversion.service';
-import { User } from '../user';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-other-profile',

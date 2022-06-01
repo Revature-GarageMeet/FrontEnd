@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { subscribeOn } from 'rxjs';
-import { Post, Comments } from '../post';
+import { Post, Comments } from '../models/post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
 import { StringconversionService } from '../services/stringconversion.service';
-import { User } from '../user';
+import { User } from '../models/user';
 import { CommentService } from '../services/comment.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { Bandmember } from '../models/bandmember';

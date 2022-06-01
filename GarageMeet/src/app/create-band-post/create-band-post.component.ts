@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { Band } from '../models/band';
-import { Post } from '../post';
+import { Post } from '../models/post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
 

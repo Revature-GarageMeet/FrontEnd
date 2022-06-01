@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { EditprofileComponent } from '../editprofile/editprofile.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { UserdataService } from '../services/userdata.service';
-import { User } from '../user';
+import { User } from '../models/user';
 import { PostService } from '../services/post.service';
 import { EditProfileService } from '../services/edit-profile.service';
-import { Post } from '../post';
+import { Post } from '../models/post';
 import { StringconversionService } from '../services/stringconversion.service';
 
 @Component({

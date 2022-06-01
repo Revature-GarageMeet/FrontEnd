@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Post } from '../post';
+import { Post } from '../models/post';
 import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';

@@ -4,7 +4,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { CreateBandPostComponent } from '../create-band-post/create-band-post.component';
 import { Band } from '../models/band';
 import { User } from '../models/user';
-import { Post } from '../post';
+import { Post } from '../models/post';
 import { BandService } from '../services/band.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { PostService } from '../services/post.service';

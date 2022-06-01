@@ -3,7 +3,7 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpResponse } from '@angular/com
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
-import { Post} from '../post';
+import { Post } from '../models/post';
 
 import { catchError } from 'rxjs';
 import { User } from '../user';

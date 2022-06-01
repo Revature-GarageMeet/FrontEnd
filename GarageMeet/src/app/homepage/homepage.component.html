@@ -20,6 +20,9 @@
                         (click)="SelectedFilter('looking')"><img style="width: 30px;"
                             src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></button>
                 </div>
+                <ng-container *ngIf="!posts">
+                    <h4>~No post to show~</h4>
+                </ng-container>
                 <tr *ngFor="let post of posts; let t = index">
                     <div class="post" style="border-bottom: 2px solid black;">
                         <div id="postContent" class="postBox" (click)="showComments(post.id)">

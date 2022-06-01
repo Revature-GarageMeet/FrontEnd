@@ -45,13 +45,13 @@ export class BandHomePageComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.userData.GetUser();
     this.bandservice.getAllBands().subscribe(message => {
+      this.bands = message;
       this.bandMemberService.getBandMember(this.user.id).subscribe((res) => {
         this.currBandMem.bandId = res.bandId;
         this.currBandMem.dateJoined = res.dateJoined;
         this.currBandMem.id = res.id;
         this.currBandMem.userId = res.userId;
         this.bandMemberService.isInABand(this.user.id).subscribe((check) => {
-          this.bands = message;
           if (check) { // This will find the current band a user is in and place it first in the list
             this.tempBands = this.bands.filter(band => band.id != this.currBandMem.bandId);
             const index = this.bands.findIndex(band => band.id === this.currBandMem.bandId);

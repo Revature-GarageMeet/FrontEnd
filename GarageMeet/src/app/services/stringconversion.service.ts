@@ -7,7 +7,7 @@ export class StringconversionService {
 
   constructor() { }
 
-  profRegex = /(fuck|pissed|fag|shit|damnit|faggot)|(nig)\B/gi;
+  profRegex = /(fuck|pissed|fag|shit|damnit|faggot)|(nigg)\B/gi;
 
   public ChangeCharacter(entry: string): string
   {

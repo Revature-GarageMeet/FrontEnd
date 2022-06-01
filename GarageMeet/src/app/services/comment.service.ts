@@ -13,12 +13,12 @@ export class CommentService {
 
   // Adding comment to postId
   addComment(comment: Partial<Comments>, postId: number): Observable<unknown> {
-    return this.http.post(`http://garagemeet.azurewebsites.net/Comment/AddComment/${postId}`, comment);
+    return this.http.post(`${environment.apBaseURL}/Comment/AddComment/${postId}`, comment);
   }
 
   // Getting comment from commentId
   getComment(commentId: number): Observable<HttpResponse<Comments>> {
-    return this.http.get<Comments>(`http://garagemeet.azurewebsites.net/Comment/GetComment/${commentId}`, {
+    return this.http.get<Comments>(`${environment.apBaseURL}/Comment//GetComment/${commentId}`, {
       'observe': 'response'
     });
   }

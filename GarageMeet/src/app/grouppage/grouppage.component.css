@@ -46,3 +46,15 @@
 {
     width: 33.3%;
 }
+
+.commentsFeed
+{
+    margin-top: 38.5px;
+}
+
+.commentPost
+{
+    width: 18em;
+    border: 2px solid rgb(229, 112, 106);
+    border-radius: 20px;
+}

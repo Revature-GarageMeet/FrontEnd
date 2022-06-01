@@ -9,7 +9,7 @@
 
     <h1 class="d-flex justify-content-center mb-3" style="color: #353d60;"> Band Groups </h1>
     <button class="btn create-band" style="font-weight: 700; color: #F5756B; border: #353d60 solid 3px; font-size: large;" (click)="openCreateGroupModal()">Start A Band</button>
-    
+
     <div class="wrapper mt-3">
       <div *ngFor="let band of bands">
         <div *ngIf="band.id === currBandMem.bandId">
@@ -23,13 +23,13 @@
               </div>
               <div class="card-footer row rounded-3">
                 <h5 class="col-12" style="color: #353d60;">Member Slots Left: {{band.memberLimit}}</h5>
-                <div *ngIf="band.memberLimit > 0 && currBandMem.bandId != band.id" class="d-flex justify-content-end">
+                <div *ngIf="band.memberLimit > 0 && currBandMem.bandId != band.id">
                   <a class="btn col-12 band-btn" style="color: #F5756B; font-weight: 700; width: 10em;" (click)="attemptToJoin(band)">Join</a>
                 </div>
                 <div *ngIf="currBandMem.bandId === band.id" class="d-flex justify-content-end">
                   <a class="btn col-12 band-btn" style="color: #F5756B; font-weight: 700; width: 10em;" (click)="goToPage(band)">Enter</a>
                 </div>
-                <div *ngIf="band.memberLimit === 0 && currBandMem.bandId != band.id">
+                <div *ngIf="band.memberLimit === 0 && currBandMem.bandId != band.id" class="d-flex justify-content-end">
                   <a class="btn col-12 band-btn disabled" style="color: #F5756B; font-weight: 700; width: 10em;">Full</a>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import { Bandmember } from '../models/bandmember';
 import { resourceLimits } from 'worker_threads';
 import { Band } from '../models/band';
 import { BandService } from '../services/band.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-homepage',
@@ -50,7 +51,7 @@ export class HomepageComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService,
-    private postConvert: StringconversionService, private commentService: CommentService, private bandService: BandService, private bandMemberService: BandmemberService) { }
+    private postConvert: StringconversionService, private commentService: CommentService, private loginService: LoginService, private bandService: BandService, private bandMemberService: BandmemberService) { }
   postType: string = '';
   userId: number = 0;
   posts: Array<Post> = [];
@@ -60,14 +61,6 @@ export class HomepageComponent implements OnInit {
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();
-    this.postService.getUserPost(this.user.id).subscribe(res => {
-      this.posts = res;
-      this.filteredPosts = res;
-      for (let i = 0; i < this.posts.length; i++) {
-        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-      }
-    });
-
     this.GetAllPost();
   }
 
@@ -152,19 +145,25 @@ export class HomepageComponent implements OnInit {
     dateJoined: new Date()
   }
 
-  GetUserBandID(): void {
-    this.bandMemberService.getBandMember(this.user.id).subscribe(res => {
-      this.currentUserBandMember = res;
-      this.GetBandLimit();
-    });
-  }
-
   band: Band = {
     id: 0,
     title: '',
     description: '',
     memberLimit: 0
   }
+
+  GetUserBandID(): void {
+    this.bandMemberService.getBandMember(this.user.id).subscribe(res => {
+      if (!res) { // USER IS NOT IN A BAND
+        this.GetRelevantPost();
+      }
+      else { // USER IS IN A BAND
+        this.currentUserBandMember = res;
+        this.GetBandLimit();
+      }
+    });
+  }
+
 
   GetBandLimit(): void {
     this.bandService.getBandMemberLimit(this.currentUserBandMember.bandId).subscribe(res => {
@@ -174,20 +173,20 @@ export class HomepageComponent implements OnInit {
   }
 
   GetRelevantPost(): void {
-    let tempArray = this.posts.filter(a => a.bandId == this.currentUserBandMember.bandId);
+    let tempArray = this.unFilteredPosts.filter(a => a.bandId == this.currentUserBandMember.bandId);
 
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);
     });
 
     if (this.band.memberLimit < 4) {
-      tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+      tempArray = this.unFilteredPosts.filter(a => a.type == this.LFB && a.type != "");
       tempArray.forEach(element => {
         this.userFilteredPosts.push(element);
       });
     }
 
-    tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+    tempArray = this.unFilteredPosts.filter(a => a.type == this.Venue && a.type != "");
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);
     });
@@ -198,10 +197,10 @@ export class HomepageComponent implements OnInit {
   GetAllPost(): void {
     this.postService.getAllPosts().subscribe(res => {
       this.unFilteredPosts = res;
-      this.GetUserBandID();
       for (let i = 0; i < this.unFilteredPosts.length; i++) {
         this.unFilteredPosts[i].entry = this.postConvert.ChangeCharacter(this.unFilteredPosts[i].entry);
       }
+      this.GetUserBandID();
     });
   }
 
@@ -291,8 +290,9 @@ export class HomepageComponent implements OnInit {
         if (element.type == "Looking For Band" && this.selectedLooking)
           this.filteredPosts.push(element);
       })
+      this.posts = this.filteredPosts;
     } else {
-      this.filteredPosts = this.posts;
+      this.posts = this.userFilteredPosts;
     }
   }
 }

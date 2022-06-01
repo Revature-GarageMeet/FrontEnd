@@ -20,11 +20,11 @@
                         (click)="SelectedFilter('looking')"><img style="width: 30px;"
                             src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></button>
                 </div>
-                <tr *ngFor="let post of filteredPosts">
+                <tr *ngFor="let post of posts">
                     <div class="post">
                         <div id="postContent" class="postBox" (click)="stuff(post.id)">
                             <h4 style="display: flex; justify-content: space-between">
-                                {{user.username}}
+                                {{post.userId}}
                                 <ng-container *ngIf="post.type == Meetup"><img style="width: 30px; margin-left: 240px"
                                         src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
                                 <ng-container *ngIf="post.type == Venue"><img style="width: 30px; margin-left: 240px"

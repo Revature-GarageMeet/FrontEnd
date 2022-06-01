@@ -1,24 +1,24 @@
-<div style="background-color: #353d60; color:#353d60; border: 3px solid #F5756B;" class="rounded-2">
-  <div class="modal-header">
-    <h4 class="modal-title" style="color: #F5756B;" id="exampleModalLabel">Edit Personal Info</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+<div style="border-radius: 4px; border: 2px solid rgb(53, 61, 96); box-shadow: 0 0 0 2px rgb(53, 61, 96, .1);">
+  <div class="modal-header" style="background-color: rgba(194, 198, 214, 0.5);">
+    <h4 class="modal-title" style="color: #353d60;" id="exampleModalLabel">New Band Info</h4>
+    <button type="button" style="margin-right: 2px;" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
   </div>
-  <div class="modal-body d-flex flex-column" style="background-color: #F5756B;">
+  <div class="modal-body d-flex flex-column">
     <div class="row">
-      <div class="col-sm-6" style="font-weight: 600;">
-        <label for="bandname" style="color: #353d60; font-weight: 600; font-size: x-large;">Band Name</label>
+      <div class="col-sm-6" style="font-weight: 700; color: #353d60;">
+        <label for="bandname">Band Name</label>
         <input type="text" maxlength="30" placeholder="Enter Band Name" name="bandname" [(ngModel)]="newband.title" required>
       </div>
-      <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 600;">
-        <label for="membersNeeded" style="color: #353d60; font-weight: 600; font-size: x-large;">Members needed</label>
-        <input type="number" max="10" min="2" value="2" name="membersNeeded" [(ngModel)]="newband.memberLimit" required>
+      <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 700; color: #353d60;">
+        <label for="membersNeeded" style="margin-right: 3px;">Members needed:</label>
+        <input type="number" max="5" min="2" placeholder="2-5" name="membersNeeded" oninput="validity.valid||(value='')" [(ngModel)]="newband.memberLimit" required>
       </div>
     </div>
-    <label for="desc" style="color: #353d60; font-weight: 600; font-size: x-large;">Description</label>
+    <label for="desc" style="color: #353d60; font-weight: 700;">Description</label>
     <textarea name="desc" placeholder="Band Description" maxlength="220" cols="25" rows="4" [(ngModel)]="newband.description" required></textarea>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn submit-btn" style="font-weight: 700; color: #353d60; border-color: aliceblue;" (click)="attemptToClose()">
+  <div class="modal-footer" style="background-color: rgba(194, 198, 214, 0.5);">
+    <button type="button" class="btn submit-btn" style="color: #F5756B; font-weight: 700; width: 10em; font-size: large;" (click)="attemptToClose()">
       Submit
     </button>
   </div>

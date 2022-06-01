@@ -4,10 +4,10 @@
   }
 
   .leave-btn {
-    background-color: #F5756B;
+    background-color: #353d60;
   }
   .leave-btn:hover {
-    background-color: #c45f58;
+    background-color: #606c9b;
   }
 
 
@@ -18,7 +18,7 @@
 
 .scrollBox
 {
-    width: 33.3%;
+    width: 70%;
     display: flex;
     justify-content: center;
     border-left: 1px solid #353d60;
@@ -45,24 +45,4 @@
 .postButtons
 {
     width: 33.3%;
-}
-
-.commentsScrollBox
-{
-    width: 33.3%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.commentsFeed
-{
-    margin-top: 38.5px;
-}
-
-.commentPost
-{
-    width: fit-content;
-    border: 2px solid rgb(229, 112, 106);
-    border-radius: 20px;
 }

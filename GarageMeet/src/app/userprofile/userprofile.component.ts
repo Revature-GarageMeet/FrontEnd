@@ -102,7 +102,7 @@ export class UserprofileComponent implements OnInit {
           this.bandservice.getAllBands().subscribe((band => {
             this.bandMemService.getBandMember(this.user.id).subscribe((mem) => {
               for(let i = 0; i < band.length; i++){
-                if(band[i].id = mem.bandId) {
+                if(band[i].id === mem.bandId) {
                   this.currentBand = band[i];
                 }
               }

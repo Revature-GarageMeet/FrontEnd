@@ -1,54 +1,56 @@
 <div class="page">
 <header>
-
-  <app-navbar></app-navbar>
-
+    <app-navbar></app-navbar>
 </header>
-
-    <form id="DEBUG_ONLY">
-
-    </form>
-
-    <form>
-
-        <!-- <div class ="btn-group" role="group" aria-label="Basic Example" >
-            <button type="button" class="btn btn-secondary" id="Meetup" (click)="GetPostType('Meetup');">Meetup</button>
-            <button type="button" class="btn btn-secondary" id="Venue Announcement"(click)="GetPostType('Venue Announcement');">Venue Announcement</button>
-            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Update');">Update</button>
-            <button type="button" class="btn btn-secondary" id="Update" (click)="GetPostType('Looking For Band');">Looking for Band</button>
-        </div> -->
-        <br>
-        <!-- DONT USE THIS IN FINAL BUILD. THIS IS JUST TO HARD PASS IN A USER ID -->
-        <!-- User ID(FOR DEBUG PURPOSES ONLY): <input id="userid" type="text" [(ngModel)]="post.userId" name="name">
-        <button type="submit">Get Posts :)</button>  "
-        <br> -->
-
-    </form>
+<div class = "homeFlex">
+    <app-post class="postButtons"></app-post>
     <div class="scrollBox">
         <table class="postFeed">
-
-            <tr *ngFor="let post of posts; let i = index;" [ngClass]="{i}">
-
-
+            <tr *ngFor="let post of posts">
                 <div class="post">
-                    <div id="postContent" class="postBox">
-
-                        <body>User ID: {{post.userId}}</body>
-
-                        <body>Type of post: {{post.type}}</body>
-
-                        <body>{{post.entry}}</body>
+                    <div id="postContent" class="postBox" (click)="stuff(post.id)">
+                        <h4 style="display: flex; justify-content: space-between">
+                            {{user.username}}
+                            <ng-container *ngIf= "post.type == Meetup"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == Venue"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\spotlight-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == Update"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\update-icon-svgrepo-com.svg"></ng-container>
+                            <ng-container *ngIf= "post.type == LFB"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></ng-container>
+                        </h4>
+                        {{post.entry}}
                     </div>
                     <table id="likeButton" class="likeTable">
-                        <td><button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000"><img
-                                    style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg"></button></td>
-                        <td class="likeFont">Likes: {{post.likes}}</td>
+                        <td>
+                            <button (click) = "showComment(post.id)" style="border-width: 0px; background: #00000000">
+                                <img style="width: 20px" src = "../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
+                            </button>
+                            <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
+                                <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
+                            </button>
+                        </td>
                     </table>
-                    <app-comment [post]="post"></app-comment>
+                    <ng-container *ngIf = "this.post.showComments == true"><app-comment [post]="post"></app-comment></ng-container>
                 </div>
                 <br>
             </tr>
         </table>
     </div>
-
+    <div class="commentsScrollBox">
+        <table class="commentsFeed">
+            <tr *ngFor="let comment of comments">
+                <div class="comment">
+                    <div id="commentContent" class="commentBox">
+                        <h4 class="commentPost">
+                            <span style="margin-left: 10px; margin-right: 10px">{{user.username}}: {{comment.entry}}</span>
+                        </h4>
+                    </div>
+                </div>
+            </tr>
+        </table>
+    </div>
 </div>
+
+<!-- Meetup: only displays if you're only in that band. 
+Venue: displays if you follow the band
+Update: displays if you're in the band or following
+LFB: Displays to bands who are not full. 
+Looking for musician: displays to users who are not in a band -->

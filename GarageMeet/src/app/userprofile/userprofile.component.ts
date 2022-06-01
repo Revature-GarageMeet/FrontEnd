@@ -35,7 +35,8 @@ export class UserprofileComponent implements OnInit {
     id: 0,
     likes: 0,
     dateCreated: new Date(),
-    postComments: []
+    postComments: [],
+    showComments: false
   }
 
   posts: Array<Post> = [];
@@ -43,7 +44,7 @@ export class UserprofileComponent implements OnInit {
   ownsProfile: boolean = true;
 
   // Used to notify user of no posts to show or show posts if there are any ~Bailey
-  hasPosts: boolean = false;
+  hasNoPosts: boolean = true;
 
   constructor(private modalService: MdbModalService,
     private userData: UserdataService, private postData: PostService, private editProfileData: EditProfileService,
@@ -81,6 +82,9 @@ export class UserprofileComponent implements OnInit {
         this.posts[i].entry = this.entryChange.ChangeCharacter(this.posts[i].entry);
       }
       console.log(this.posts.length);
+      if(this.posts.length > 0) {
+        this.hasNoPosts = false;
+      }
     });
   }
 

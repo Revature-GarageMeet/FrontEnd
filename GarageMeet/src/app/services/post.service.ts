@@ -3,9 +3,9 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpResponse } from '@angular/com
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs';
-
 import { Post} from '../post';
+
+import { catchError } from 'rxjs';
 import { User } from '../user';
 import { map, tap } from 'rxjs';
 import { PostComponent } from '../post/post.component';
@@ -26,19 +26,27 @@ export class PostService {
       error: (err: Error) => console.log(err),
       complete: () => console.log("Complete"),
     };
-    
+
     responseCode: number = 0;
     postuser(post: Post): Observable<HttpResponse<Post>>
     {
       return this.http.post<Post>(`${environment.apBaseURL}/Post/PostForUserId/${post.userId}/${post.entry}/${post.type}`, post, {observe: 'response'})
     }
-    
 
+    createBandPost(post: Post): Observable<any>
+    {
+      return this.http.post(`${environment.apBaseURL}/Post/PostForBandMembers/${post.bandId}/${post.entry}/${post.userId}`, post);
+    }
 
     getPostById(id: number): Observable<Post>
     {
       //console.log(id);
       return this.http.get<Post>(`${environment.apBaseURL}/Post/GetPostByPostID/${id}`);
+    }
+
+    getPostsByBandId(bandId: number): Observable<Post[]>
+    {
+      return this.http.get<Post[]>(`${environment.apBaseURL}/Post/GetPostByBandID/${bandId}`);
     }
 
     getUserPost(userid: number): Observable<Post[]>
@@ -48,16 +56,22 @@ export class PostService {
     //  return this.http.get<Array<Post>>(`${environment.apBaseURL}/Post/GetPostbyUID/${userid}`);
     }
 
+    getAllPosts(): Observable<Post[]>
+    {
+      return this.http.get<Post[]>(`${environment.apBaseURL}/Post/GetAllPosts`)
+    }
+
     putLikePost(postId: number, userId: number)
     {
       return this.http.put(`${environment.apBaseURL}/Post/LikePost/${postId}/${userId}`, postId);
     }
+    
     private handleError<T>(operation = 'operation', result?: T)
     {
       return (error: any): Observable<T> =>{
         console.error(error);
         this.log(`${operation} failed: ${error.message}`);
-        
+
         return of(result as T);
       }
     }

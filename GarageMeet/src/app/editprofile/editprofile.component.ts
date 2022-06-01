@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 import { UserdataService } from '../services/userdata.service';
-import { User } from '../user';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-editprofile',

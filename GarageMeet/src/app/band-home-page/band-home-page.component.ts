@@ -8,7 +8,7 @@ import { Bandmember } from '../models/bandmember';
 import { BandService } from '../services/band.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { UserdataService } from '../services/userdata.service';
-import { User } from '../user';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-band-home-page',

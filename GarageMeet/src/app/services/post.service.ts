@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Post } from '../models/post';
 
 import { catchError } from 'rxjs';
-import { User } from '../user';
+import { User } from '../models/user';
 import { map, tap } from 'rxjs';
 import { PostComponent } from '../post/post.component';
 import { NumberValueAccessor } from '@angular/forms';

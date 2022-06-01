@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { UserdataService } from '../services/userdata.service';
-import { User } from '../user';
+import { User } from '../models/user';
 
 
 

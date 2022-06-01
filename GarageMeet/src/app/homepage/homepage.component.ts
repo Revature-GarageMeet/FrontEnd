@@ -13,6 +13,7 @@ import { resourceLimits } from 'worker_threads';
 import { Band } from '../models/band';
 import { BandService } from '../services/band.service';
 import { LoginService } from '../services/login.service';
+import { resolve } from 'dns';
 
 @Component({
   selector: 'app-homepage',
@@ -75,6 +76,7 @@ export class HomepageComponent implements OnInit {
   comments: Array<Comments> = [];
   displayArray: Array<Post> = [];
   nameArray: Array<string> = [];
+  commentsNameArray: Array<string> = [];
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
@@ -118,16 +120,21 @@ export class HomepageComponent implements OnInit {
       });
 
       this.posts = this.displayArray;
-
-      for(let i = 0; i < this.posts.length; i++)
-      {
-        this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
-          this.user = res;
-          this.nameArray.push(this.user.username);
-        })
-      }
+      this.displayCorrectUsernameForPosts();
+      
       })
     })
+  }
+
+  public async displayCorrectUsernameForPosts()
+  {
+    for(let i = 0; i < this.posts.length; i++)
+    {
+      await new Promise<void>( resolve => this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
+          this.nameArray.push(res.username);
+          resolve();
+      }));
+    }    
   }
 
   public GetPostType(name: string): void {
@@ -182,6 +189,7 @@ export class HomepageComponent implements OnInit {
 
   showComments(id: number)
   {
+    this.commentsNameArray = [];
     this.comments = [];
     this.commentService.getAllComments(id).subscribe(results => {
       for(let i = 0; i < results.length; i++)
@@ -189,6 +197,10 @@ export class HomepageComponent implements OnInit {
         if(results[i].entry != "")
         {
           this.comments.push(results[i]);
+          
+          this.loginService.otherUserProfile(results[i].userId).subscribe(res => {
+              this.commentsNameArray.push(res.username);
+          })
         }
       }
     })
@@ -204,3 +216,11 @@ export class HomepageComponent implements OnInit {
     });
   }
 }
+
+// for(let i = 0; i < this.posts.length; i++)
+//       {
+//         this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
+//           this.user = res;
+//           this.nameArray.push(this.user.username);
+//         })
+//       }

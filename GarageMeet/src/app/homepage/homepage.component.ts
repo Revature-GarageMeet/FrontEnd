@@ -198,7 +198,7 @@ export class HomepageComponent implements OnInit {
   }
 
   GetRelevantPost(memberlimit: number): void {
-    let tempArray = this.unFilteredPosts.filter(a => a.bandId == this.currentUserBandMember.bandId);
+    let tempArray = this.unFilteredPosts.filter(a => a.bandId == 0); //this.currentUserBandMember.bandId);
 
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);

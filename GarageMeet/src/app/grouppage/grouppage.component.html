@@ -6,7 +6,7 @@
   <div class="container">
     <h1 class="d-flex justify-content-center mb-4">-{{currBand.title}}-</h1>
     <div class="row">
-      <div class="col-lg-4 d-flex flex-column mt-2">
+      <div class="col-lg-3 d-flex flex-column mt-2">
         <h3 class="d-flex"><u>Band Members</u></h3>
         <div class="card-body rounded-3">
           <div class="card-text d-flex justify-content-center list-group">
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8 d-flex flex-column mt-2">
+      <div class="col-lg-6 d-flex flex-column mt-2">
         <h3 class="d-flex"><u>Band Posts</u></h3>
         <div class="card-body rounded-3">
           <button class="btn leave-btn mb-4" style="color: #F5756B; font-weight: 700;" (click)="openPostModal()">Make A Post</button>
@@ -30,21 +30,28 @@
             </div>
             <ng-template #allPosts>
               <table class="postFeed">
-                  <tr *ngFor="let post of posts">
+                  <tr *ngFor="let post of posts" (click)="showComments(post.id)">
                       <div class="post">
-                          <div id="postContent" class="postBox">
-                              <h4 style="display: flex; justify-content: space-between">
-                                  {{showUsername(post.userId)}}
-                              </h4>
-                              {{post.entry}}
-                          </div>
-                          <table id="likeButton" class="likeTable">
-                              <td>
-                                <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
-                                  <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
-                                </button>
-                              </td>
-                          </table>
+                        <div id="postContent" class="postBox">
+                            <h4 style="display: flex; justify-content: space-between">
+                                {{showUsername(post.userId)}}
+                            </h4>
+                            {{post.entry}}
+                        </div>
+                        <table id="likeButton" class="likeTable">
+                            <td>
+                              <button (click)="showComment(post.id)" style="border-width: 0px; background: #00000000">
+                                <img style="width: 20px"
+                                    src="../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
+                              </button>
+                              <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
+                                <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
+                              </button>
+                            </td>
+                        </table>
+                        <ng-container *ngIf="this.post.showComments == true">
+                          <app-comment [post]="post"></app-comment>
+                        </ng-container>
                       </div>
                       <br>
                   </tr>
@@ -52,6 +59,25 @@
             </ng-template>
           </div>
         </div>
+      </div>
+      <div class="commentsScrollBox col-lg-3 d-flex flex-column">
+        <table class="commentsFeed">
+          <div *ngIf="comments.length > 0; else noComments">
+            <tr *ngFor="let comment of comments; let s = index">
+              <div class="comment">
+                <div id="commentContent" class="commentBox">
+                  <h4 class="commentPost p-2">
+                      <span>{{commentsNameArray[s]}}:
+                          {{comment.entry}}</span>
+                  </h4>
+                </div>
+              </div>
+            </tr>
+          </div>
+          <ng-template #noComments>
+            <h3>~No Comments~</h3>
+          </ng-template>
+        </table>
       </div>
     </div>
   </div>

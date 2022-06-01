@@ -13,6 +13,7 @@ import { resourceLimits } from 'worker_threads';
 import { Band } from '../models/band';
 import { BandService } from '../services/band.service';
 import { LoginService } from '../services/login.service';
+import { resolve } from 'dns';
 
 @Component({
   selector: 'app-homepage',
@@ -57,11 +58,70 @@ export class HomepageComponent implements OnInit {
   posts: Array<Post> = [];
   comments: Array<Comments> = [];
   filteredPosts: Array<Post> = [];
+  displayArray: Array<Post> = [];
+  nameArray: Array<string> = [];
+  commentsNameArray: Array<string> = [];
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();
-    this.GetAllPost();
+    // this.GetAllPost(); 
+
+    this.postService.getAllPosts().subscribe(res => {
+      this.posts = res;
+      for (let i = 0; i < this.posts.length; i++) {
+        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
+      }
+      this.filterPosts(this.user);
+    });
+  }
+
+  member: Bandmember = {
+    id: 0,
+    userId: 0,
+    bandId: 0,
+    dateJoined: new Date()
+  }
+
+  public filterPosts(user: User) {
+    console.log(user.id);
+    this.bandMemberService.getBandMember(user.id).subscribe(res => {
+      this.member = res;
+      this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
+        this.band.memberLimit = result;
+
+        let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
+
+        tempArray.forEach(element => {
+          this.displayArray.push(element);
+        });
+
+        if (this.band.memberLimit < 4) {
+          tempArray = this.posts.filter(a => a.type == this.LFB && a.userId != 0);
+          tempArray.forEach(element => {
+            this.displayArray.push(element);
+          });
+        }
+
+        tempArray = this.posts.filter(a => a.type == this.Venue && a.userId != 0);
+        tempArray.forEach(element => {
+          this.displayArray.push(element);
+        });
+
+        this.posts = this.displayArray;
+        this.displayCorrectUsernameForPosts();
+
+      })
+    })
+  }
+
+  public async displayCorrectUsernameForPosts() {
+    for (let i = 0; i < this.posts.length; i++) {
+      await new Promise<void>(resolve => this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
+        this.nameArray.push(res.username);
+        resolve();
+      }));
+    }
   }
 
   public GetPostType(name: string): void {
@@ -107,12 +167,17 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  stuff(id: number) {
+  showComments(id: number) {
+    this.commentsNameArray = [];
     this.comments = [];
     this.commentService.getAllComments(id).subscribe(results => {
       for (let i = 0; i < results.length; i++) {
         if (results[i].entry != "") {
           this.comments.push(results[i]);
+
+          this.loginService.otherUserProfile(results[i].userId).subscribe(res => {
+            this.commentsNameArray.push(res.username);
+          })
         }
       }
     })

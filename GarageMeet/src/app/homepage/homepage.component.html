@@ -20,11 +20,11 @@
                         (click)="SelectedFilter('looking')"><img style="width: 30px;"
                             src="../..\assets\vectors\music-instruments-drums-svgrepo-com.svg"></button>
                 </div>
-                <tr *ngFor="let post of posts">
+                <tr *ngFor="let post of posts; let t = index">
                     <div class="post">
-                        <div id="postContent" class="postBox" (click)="stuff(post.id)">
+                        <div id="postContent" class="postBox" (click)="showComments(post.id)">
                             <h4 style="display: flex; justify-content: space-between">
-                                {{post.userId}}
+                                {{nameArrary[t]}}
                                 <ng-container *ngIf="post.type == Meetup"><img style="width: 30px; margin-left: 240px"
                                         src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
                                 <ng-container *ngIf="post.type == Venue"><img style="width: 30px; margin-left: 240px"
@@ -59,11 +59,11 @@
         </div>
         <div class="commentsScrollBox">
             <table class="commentsFeed">
-                <tr *ngFor="let comment of comments">
+                <tr *ngFor="let comment of comments; let s = index">
                     <div class="comment">
                         <div id="commentContent" class="commentBox">
                             <h4 class="commentPost">
-                                <span style="margin-left: 10px; margin-right: 10px">{{user.username}}:
+                                <span style="margin-left: 10px; margin-right: 10px">{{commentsNameArray[s]}}:
                                     {{comment.entry}}</span>
                             </h4>
                         </div>

@@ -63,6 +63,7 @@ export class HomepageComponent implements OnInit {
   unFilteredNameArray: Array<string> = [];
   filteredNameArray: Array<string> = [];
   commentsNameArray: Array<string> = [];
+  commentCount: number = 0;
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
@@ -134,11 +135,12 @@ export class HomepageComponent implements OnInit {
   showComments(id: number) {
     this.commentsNameArray = [];
     this.comments = [];
+    this.commentCount = 0;
     this.commentService.getAllComments(id).subscribe(results => {
       for (let i = 0; i < results.length; i++) {
         if (results[i].entry != "") {
           this.comments.push(results[i]);
-
+          this.commentCount++;
           this.loginService.otherUserProfile(results[i].userId).subscribe(res => {
             this.commentsNameArray.push(res.username);
           })

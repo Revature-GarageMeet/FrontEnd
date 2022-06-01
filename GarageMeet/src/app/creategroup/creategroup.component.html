@@ -1,7 +1,7 @@
 <div style="border-radius: 4px; border: 2px solid rgb(53, 61, 96); box-shadow: 0 0 0 2px rgb(53, 61, 96, .1);">
   <div class="modal-header" style="background-color: rgba(194, 198, 214, 0.5);">
-    <h4 class="modal-title" style="color: #353d60;" id="exampleModalLabel">Edit Personal Info</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    <h4 class="modal-title" style="color: #353d60;" id="exampleModalLabel">New Band Info</h4>
+    <button type="button" style="margin-right: 2px;" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
   </div>
   <div class="modal-body d-flex flex-column">
     <div class="row">
@@ -10,7 +10,7 @@
         <input type="text" maxlength="30" placeholder="Enter Band Name" name="bandname" [(ngModel)]="newband.title" required>
       </div>
       <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 700; color: #353d60;">
-        <label for="membersNeeded">Members needed</label>
+        <label for="membersNeeded" style="margin-right: 3px;">Members needed:</label>
         <input type="number" max="5" min="2" placeholder="2-5" name="membersNeeded" oninput="validity.valid||(value='')" [(ngModel)]="newband.memberLimit" required>
       </div>
     </div>

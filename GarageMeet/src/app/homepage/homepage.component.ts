@@ -60,6 +60,8 @@ export class HomepageComponent implements OnInit {
   filteredPosts: Array<Post> = [];
   displayArray: Array<Post> = [];
   nameArray: Array<string> = [];
+  unFilteredNameArray: Array<string> = [];
+  filteredNameArray: Array<string> = [];
   commentsNameArray: Array<string> = [];
 
   //Going to load new posts here from top of the database --Tucker
@@ -79,6 +81,7 @@ export class HomepageComponent implements OnInit {
     for (let i = 0; i < this.posts.length; i++) {
       await new Promise<void>(resolve => this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
         this.nameArray.push(res.username);
+        this.unFilteredNameArray.push(res.username);
         resolve();
       }));
     }
@@ -181,31 +184,31 @@ export class HomepageComponent implements OnInit {
   GetUserBandID(): void {
     this.bandMemberService.getBandMember(this.user.id).subscribe(res => {
       if (!res) { // USER IS NOT IN A BAND
-        this.GetRelevantPost();
+        this.GetRelevantPost(0);
       }
       else { // USER IS IN A BAND
         this.currentUserBandMember = res;
-        this.GetBandLimit();
+        this.GetBandLimit(res.bandId);
       }
     });
   }
 
 
-  GetBandLimit(): void {
-    this.bandService.getBandMemberLimit(this.currentUserBandMember.bandId).subscribe(res => {
+  GetBandLimit(bandid: number): void {
+    this.bandService.getBandMemberLimit(bandid).subscribe(res => {
       this.band.memberLimit = res;
-      this.GetRelevantPost();
+      this.GetRelevantPost(res);
     });
   }
 
-  GetRelevantPost(): void {
-    let tempArray = this.unFilteredPosts.filter(a => a.bandId == this.currentUserBandMember.bandId);
+  GetRelevantPost(memberlimit: number): void {
+    let tempArray = this.unFilteredPosts.filter(a => a.bandId == 0); //this.currentUserBandMember.bandId);
 
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);
     });
 
-    if (this.band.memberLimit < 4) {
+    if (memberlimit < 4) {
       tempArray = this.unFilteredPosts.filter(a => a.type == this.LFB && a.type != "" && a.userId != 0);
       tempArray.forEach(element => {
         this.userFilteredPosts.push(element);
@@ -305,21 +308,35 @@ export class HomepageComponent implements OnInit {
 
   GetFilteredPosts(): void {
     this.filteredPosts = [];
+    this.filteredNameArray = [];
+
+    let counter = 0;
 
     if (this.selectedMeetup || this.selectedVenue || this.selectedUpdate || this.selectedLooking) {
       this.userFilteredPosts.forEach((element) => {
-        if (element.type == "Meetup" && this.selectedMeetup)
+        if (element.type == "Meetup" && this.selectedMeetup) {
           this.filteredPosts.push(element);
-        if (element.type == "Venue Announcement" && this.selectedVenue)
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        if (element.type == "Venue Announcement" && this.selectedVenue) {
           this.filteredPosts.push(element);
-        if (element.type == "Update" && this.selectedUpdate)
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        if (element.type == "Update" && this.selectedUpdate) {
           this.filteredPosts.push(element);
-        if (element.type == "Looking For Band" && this.selectedLooking)
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        if (element.type == "Looking For Band" && this.selectedLooking) {
           this.filteredPosts.push(element);
+          this.filteredNameArray.push(this.nameArray[counter]);
+        }
+        counter++;
       })
       this.posts = this.filteredPosts;
+      this.nameArray = this.filteredNameArray;
     } else {
       this.posts = this.userFilteredPosts;
+      this.nameArray = this.unFilteredNameArray;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { filter, subscribeOn } from 'rxjs';
 import { Post, Comments } from '../post';
@@ -100,15 +100,16 @@ export class HomepageComponent implements OnInit {
     return this.userData.GetUser();
   }
 
-  GetPostID(id: number) {
+  GetPostID(post: Post) {
 
-    console.log(`${id}, ${this.userData.GetUser().id}`);
-
-    this.postService.putLikePost(id, this.user.id).subscribe((res) => {
-      this.postService.getPostById(id).subscribe(result => {
+    console.log(`${post.id}, ${this.userData.GetUser().id}`);
+    console.log(post);
+    this.postService.SetLikes(post, this.user.id).subscribe((res) => {
+      this.postService.getPostById(post.id).subscribe(result => {
         this.posts.find((obj) => {
-          if (obj.id === id) {
+          if (obj.id === post.id) {
             obj.likes = result.likes;
+            console.log(obj.likes)
           }
         });
       });
@@ -315,19 +316,19 @@ export class HomepageComponent implements OnInit {
       this.userFilteredPosts.forEach((element) => {
         if (element.type == "Meetup" && this.selectedMeetup) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         if (element.type == "Venue Announcement" && this.selectedVenue) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         if (element.type == "Update" && this.selectedUpdate) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         if (element.type == "Looking For Band" && this.selectedLooking) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         counter++;
       })

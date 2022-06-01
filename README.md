@@ -1,20 +1,49 @@
-# FrontEnd
-FrontEnd of GarageMeet Application :)
+# GarageMeet
 
-## Getting started
+## Description
+GarageMeet is a social media web application built for musicians, artists, and anyone who just wants to get together to jam out. With a sleek, modern bootstrap-based UI and Angular powered front-end, users have the ability to post about their latest projects for all their friends and fellow musicians to admire. In addition, users are able interact with others via liking, commenting, and replying to comments. GarageMeet's core feature will allow its users to create a band and recruit other users to come join the fun!
 
-### Checkout the application
+## Technologies Used
 
-You can try out the application at [GarageMeet](https://garagemeetui.azurewebsites.net/).
+- Angular (Angular 13)
+- HTML
+- CSS
+- TypeScript
+- Bootstrap
 
-### Contribute to the project
+_Testing:_
+ - Karma
+ - Jasmine
+ 
+_DevOps:_
+ - Docker
+ - GitHub Actions
+ - Azure Cloud Services
 
-#### Windows/Linux/MacOS
 
-- Set up [Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
-- Clone this repository to your machine with `git clone https://github.com/Revature-GarageMeet/FrontEnd.git`
-- Install [Node.js](https://nodejs.org/en/download/)
-- Check that you have node package manager with `npm -v`
-- Install the Angular Command Line Interface globally with `npm install -g @angular/cli`
-- To launch the application locally, go to your repository directory and `cd GarageMeet` and `ng serve`
-- If you have made changes that you would like to add to the project then fork this repository to yor GitHub account, `git add <file>` your changes, `git commit -m <commit message>` to commit your changes, push your commit with `git push`, and [create a pull request](https://github.com/marketplace/actions/create-pull-request#:~:text=Action%20inputs%20%20%20%20Name%20%20,%5Bcreate-pull-request%5D%20automated%20change%20%2016%20more%20rows%20) on this GitHub repository.
+## Contributors
+Donte Jean-Pierre
+
+Mo Elsamahi
+
+Leo Doan
+
+Gianny Brea
+
+Lara Tchani
+
+Rey Vergara
+
+Matthew Cooper
+
+Brandon Childs
+
+Tucker Fabin
+
+Austin Burns
+
+Arrion Wilson
+
+Bailey Barton
+
+Jose Mendoza

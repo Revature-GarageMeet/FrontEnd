@@ -60,6 +60,7 @@ export class GrouppageComponent implements OnInit {
   bandTitle!: string;
   posts: Post[] = [];
   opacity: string = "100%";
+  hasLiked: boolean = false;
 
   ngOnInit(): void {
     this.currUser = this.userService.GetUser();
@@ -80,6 +81,7 @@ export class GrouppageComponent implements OnInit {
   }
 
   showUsername(userId: number) {
+    console.log(userId);
     if(userId === this.currUser.id) {
       return this.currUser.username;
     } else {
@@ -130,6 +132,10 @@ export class GrouppageComponent implements OnInit {
         });
       });
     });
+  }
+
+  checkIfLiked(postId: number) {
+    return false;
   }
 
   GetPostID(id: number)

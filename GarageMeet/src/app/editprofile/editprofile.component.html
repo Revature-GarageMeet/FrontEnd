@@ -1,20 +1,20 @@
 <div style="border: 1px solid rgb(53, 61, 96); box-shadow: 0 0 0 2px rgb(53, 61, 96, .1);" class="rounded-2">
-  <div class="modal-header">
+  <div class="modal-header" style="background-color: rgba(194, 198, 214, 0.5);">
     <h4 class="modal-title" id="exampleModalLabel">Edit Personal Info</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    <button type="button" style="margin-right: 2px;" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
   </div>
   <div class="modal-body d-flex flex-column">
     <div class="row">
-      <div class="col-sm-6" style="font-weight: 700;">
+      <div class="col-sm-6" style="font-weight: 700; color: #353d60;">
         <label class="col-12" for="firstname">First Name: </label>
         <input class="w-50" type="text" id="firstname" [(ngModel)]="userFirstName" name="firstname" required minlength="3">
       </div>
-      <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 700;">
+      <div class="col-sm-6 mt-1 mt-sm-0" style="font-weight: 700; color: #353d60;">
         <label class="col-12" for="lastname">Last Name: </label>
         <input class="w-50" type="text" id="lastname" [(ngModel)]="userLastName" name="lastname" required minlength="3">
       </div>
     </div>
-    <label for="email" style="font-weight: 700;">Email:</label>
+    <label for="email" style="font-weight: 700; color: #353d60;">Email:</label>
     <input class="w-50" type="text" [(ngModel)]="userEmail" id="email" name="email" required minlength="3">
     <h5>Bio:</h5>
     <textarea maxlength="250" cols="28" rows="6" [(ngModel)]="userBio"></textarea>
@@ -27,8 +27,8 @@
       <label class="form-check-label" style="font-weight: 700;" for="flexSwitchCheckDefault">Hide Actual Name</label>
     </div> -->
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn submit-btn" style="font-weight: 700; color: #353d60;" (click)="close()">
+  <div class="modal-footer" style="background-color: rgba(194, 198, 214, 0.5);">
+    <button type="button" class="btn submit-btn" style="color: #F5756B; font-weight: 700; width: 10em; font-size: large;" (click)="close()">
       Submit
     </button>
   </div>

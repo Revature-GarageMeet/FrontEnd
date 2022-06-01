@@ -12,16 +12,22 @@
       <h4>{{user.firstname}} {{user.lastname}}</h4>
       <div style="display: flex; margin-top: 50px; width: 100%; justify-content: space-evenly;">
         <span class="postsAndGroupFlex">
-          0
+          {{posts.length}}
           <span>
             Posts
           </span>
         </span>
         <span class="postsAndGroupFlex">
-          0
-          <span>
-            Group
-          </span>
+          <div *ngIf="inABand">
+            <span>
+              In A Band
+            </span>
+          </div>
+          <div *ngIf="inABand === false">
+            <span>
+              Not In A Band
+            </span>
+          </div>
         </span>
       </div>
     </div>
@@ -33,7 +39,7 @@
           <img style="width: 20px;" src = "../../assets/vectors/edit-button-svgrepo-com.svg">
         </button>
       </h4>
-        <p>
+        <p style="padding-left: 3px;">
           {{user.bio}}
         </p>
     </div>
@@ -43,10 +49,17 @@
     <h4 style="background-color: rgb(53, 61, 96, .5); padding-bottom: 3px; padding-left: 5px;">
       Posts
     </h4>
+    <div *ngIf="hasNoPosts">
+      <h5>~No Posts to Show~</h5>
+    </div>
+    <div *ngIf="hasNoPosts === false">
       <div *ngFor="let post of posts" class="wrapper">
-          <body>{{post.type}}</body>
+        <div style="border-bottom: 2px solid rgb(53, 61, 96, .5); padding-left: 3px; padding-right: 3px;">
+          <body style="font-weight: 700;">{{post.type}}</body>
           <body>{{post.entry}}</body>
+        </div>
       </div>
+    </div>
   </div>
 
   <div class="commentsBox">

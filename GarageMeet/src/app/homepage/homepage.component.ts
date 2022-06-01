@@ -180,31 +180,31 @@ export class HomepageComponent implements OnInit {
   GetUserBandID(): void {
     this.bandMemberService.getBandMember(this.user.id).subscribe(res => {
       if (!res) { // USER IS NOT IN A BAND
-        this.GetRelevantPost();
+        this.GetRelevantPost(0);
       }
       else { // USER IS IN A BAND
         this.currentUserBandMember = res;
-        this.GetBandLimit();
+        this.GetBandLimit(res.bandId);
       }
     });
   }
 
 
-  GetBandLimit(): void {
-    this.bandService.getBandMemberLimit(this.currentUserBandMember.bandId).subscribe(res => {
+  GetBandLimit(bandid: number): void {
+    this.bandService.getBandMemberLimit(bandid).subscribe(res => {
       this.band.memberLimit = res;
-      this.GetRelevantPost();
+      this.GetRelevantPost(res);
     });
   }
 
-  GetRelevantPost(): void {
+  GetRelevantPost(memberlimit: number): void {
     let tempArray = this.unFilteredPosts.filter(a => a.bandId == this.currentUserBandMember.bandId);
 
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);
     });
 
-    if (this.band.memberLimit < 4) {
+    if (memberlimit < 4) {
       tempArray = this.unFilteredPosts.filter(a => a.type == this.LFB && a.type != "" && a.userId != 0);
       tempArray.forEach(element => {
         this.userFilteredPosts.push(element);

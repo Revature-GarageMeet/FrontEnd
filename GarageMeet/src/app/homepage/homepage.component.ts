@@ -12,6 +12,7 @@ import { Bandmember } from '../models/bandmember';
 import { resourceLimits } from 'worker_threads';
 import { Band } from '../models/band';
 import { BandService } from '../services/band.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-homepage',
@@ -67,12 +68,13 @@ export class HomepageComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, private userData: UserdataService, 
     private postConvert: StringconversionService, private commentService: CommentService, private bandMemberService: BandmemberService,
-    private bandService: BandService) { }
+    private bandService: BandService, private loginService: LoginService ) { }
   postType: string ='';
   userId: number = 0;
   posts: Array<Post> = [];
   comments: Array<Comments> = [];
   displayArray: Array<Post> = [];
+  nameArray: Array<string> = [];
 
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
@@ -90,6 +92,7 @@ export class HomepageComponent implements OnInit {
 
   public filterPosts(user: User)
   {
+    console.log(user.id);
     this.bandMemberService.getBandMember(user.id).subscribe(res => {
       this.member = res;
       this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
@@ -103,18 +106,26 @@ export class HomepageComponent implements OnInit {
             
       if (this.band.memberLimit < 4)
       {
-        tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
+        tempArray = this.posts.filter(a => a.type == this.LFB && a.userId != 0);
         tempArray.forEach(element => {
           this.displayArray.push(element);
         });
       }
 
-      tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
+      tempArray = this.posts.filter(a => a.type == this.Venue && a.userId != 0);
       tempArray.forEach(element => {
         this.displayArray.push(element);
       });
 
       this.posts = this.displayArray;
+
+      for(let i = 0; i < this.posts.length; i++)
+      {
+        this.loginService.otherUserProfile(this.posts[i].userId).subscribe(res => {
+          this.user = res;
+          this.nameArray.push(this.user.username);
+        })
+      }
       })
     })
   }
@@ -152,7 +163,7 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  showComment(id: number)
+  showCommentBox(id: number)
   {
     this.postService.getPostById(id).subscribe(result => {
       this.posts.find((obj) => {
@@ -169,7 +180,7 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  stuff(id: number)
+  showComments(id: number)
   {
     this.comments = [];
     this.commentService.getAllComments(id).subscribe(results => {
@@ -193,54 +204,3 @@ export class HomepageComponent implements OnInit {
     });
   }
 }
-
-// public filterPosts(posts: Array<Post>, user: User)
-//   {
-//     // for(let i = 0; i < this.posts.length; i++)
-//     // {
-//     //   this.bandMemberService.getBandMember(posts[i].bandId).subscribe(res => {
-//     //     this.member = res;
-//     //     this.posts.filter((a => a.bandId != this.member.BandId))
-//     //   })
-//     // }
-
-//     this.bandMemberService.getBandMember(user.id).subscribe(res => {
-//       this.member = res;
-//       this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
-//       this.band.memberlimit = result;
-
-//       console.log(this.member);
-//       console.log(this.band.memberlimit);
-
-//       console.log(this.posts)
-      
-//       let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
-      
-//       tempArray.forEach(element => {
-//         this.displayArray.push(element);
-//       });
-      
-//       console.log(this.displayArray);
-      
-//       if (this.band.memberlimit < 4)
-//       {
-//         tempArray = this.posts.filter(a => a.type == this.LFB && a.type != "");
-//         tempArray.forEach(element => {
-//           this.displayArray.push(element);
-//         });
-//       }
-
-//       console.log(this.displayArray);
-
-//       tempArray = this.posts.filter(a => a.type == this.Venue && a.type != "");
-//       tempArray.forEach(element => {
-//         this.displayArray.push(element);
-//       });
-
-//       console.log(this.displayArray);
-//       this.posts = this.displayArray;
-//       console.log(this.posts);
-//       })
-      
-//     })
-//   }

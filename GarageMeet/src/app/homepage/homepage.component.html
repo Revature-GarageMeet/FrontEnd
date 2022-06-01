@@ -6,11 +6,11 @@
     <app-post class="postButtons"></app-post>
     <div class="scrollBox">
         <table class="postFeed">
-            <tr *ngFor="let post of posts">
+            <tr *ngFor="let post of posts; let i = index">
                 <div class="post">
-                    <div id="postContent" class="postBox" (click)="stuff(post.id)">
+                    <div id="postContent" class="postBox" (click)="showComments(post.id)">
                         <h4 style="display: flex; justify-content: space-between">
-                            {{user.username}}
+                            {{nameArray[i]}}
                             <ng-container *ngIf= "post.type == Meetup"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\garage-svgrepo-com.svg"></ng-container>
                             <ng-container *ngIf= "post.type == Venue"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\spotlight-svgrepo-com.svg"></ng-container>
                             <ng-container *ngIf= "post.type == Update"><img style="width: 30px; margin-left: 240px" src="../..\assets\vectors\update-icon-svgrepo-com.svg"></ng-container>
@@ -20,7 +20,7 @@
                     </div>
                     <table id="likeButton" class="likeTable">
                         <td>
-                            <button (click) = "showComment(post.id)" style="border-width: 0px; background: #00000000">
+                            <button (click) = "showCommentBox(post.id)" style="border-width: 0px; background: #00000000">
                                 <img style="width: 20px" src = "../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
                             </button>
                             <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">

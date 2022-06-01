@@ -4,10 +4,10 @@
 <!-- style="background-image: url(../../assets/loginbackground.png)"; band background incase we still want it -->
 <div class="h-100 gradient-form" style="background-repeat: no-repeat; background-size: cover ; padding-top: 10px; color: #353d60;" [ngStyle]="{'opacity': opacity}">
   <div class="container">
-    <h1 class="d-flex justify-content-center">-{{currBand.title}}-</h1> <!-- Put band/group name here -->
+    <h1 class="d-flex justify-content-center mb-4">-{{currBand.title}}-</h1>
     <div class="row">
-      <div class="col-lg-3 d-flex flex-column mt-2">
-        <h3 class="d-flex justify-content-center"><u>Band Members</u></h3>
+      <div class="col-lg-4 d-flex flex-column mt-2">
+        <h3 class="d-flex"><u>Band Members</u></h3>
         <div class="card-body rounded-3">
           <div class="card-text d-flex justify-content-center list-group">
             <ul>
@@ -16,42 +16,48 @@
                 <li><button class="list-group-item bandmember" style="border-color: transparent; font-weight: 600; font-size: larger;" (click)="goToProfile(member)">{{member.username}}</button></li>
               </div>
             </ul>
-            <button class="btn btn-lg leave-btn w-50" (click)="leaveBand()">Leave Band</button>
+            <button class="btn leave-btn w-50" style="color: #F5756B; font-weight: 700; width: 10em;" (click)="leaveBand()">Leave Band</button>
           </div>
         </div>
       </div>
-      <div class="col-lg-9 d-flex flex-column mt-2">
+      <div class="col-lg-8 d-flex flex-column mt-2">
         <h3 class="d-flex"><u>Band Posts</u></h3>
         <div class="card-body rounded-3">
-          <button class="btn leave-btn mb-2" (click)="openPostModal()">Make A Post</button>
+          <button class="btn leave-btn mb-4" style="color: #F5756B; font-weight: 700;" (click)="openPostModal()">Make A Post</button>
           <div class="scrollBox">
-            <table class="postFeed">
-                <tr *ngFor="let post of posts">
-                    <div class="post">
-                        <div id="postContent" class="postBox">
-                            <h4 style="display: flex; justify-content: space-between">
-                                {{showUsername(post.userId)}}<!-- {{currUser.username}} Output proper user's name -->
-                            </h4>
-                            {{post.entry}}
-                        </div>
-                        <table id="likeButton" class="likeTable">
-                            <td>
-                                <!-- <button (click) = "showComment(post.id)" style="border-width: 0px; background: #00000000">
-                                    <img style="width: 20px" src = "../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
-                                </button> -->
-                                <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
-                                    <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
-                                </button>
-                            </td>
-                        </table>
-                        <ng-container *ngIf = "this.post.showComments == true"><app-comment [post]="post"></app-comment></ng-container>
-                    </div>
-                    <br>
-                </tr>
-            </table>
+            <div *ngIf="posts.length === 0; else allPosts">
+              <h2>~No Posts To Show~</h2>
+            </div>
+            <ng-template #allPosts>
+              <table class="postFeed">
+                  <tr *ngFor="let post of posts">
+                      <div class="post">
+                          <div id="postContent" class="postBox">
+                              <h4 style="display: flex; justify-content: space-between">
+                                  {{showUsername(post.userId)}}
+                              </h4>
+                              {{post.entry}}
+                          </div>
+                          <table id="likeButton" class="likeTable">
+                              <td>
+                                  <div *ngIf="checkIfLiked(post.id); else notLiked">
+                                    <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
+                                      <img style="width: 20px;" src="../../assets/vectors/red-heart-svgrepo-com.svg">{{post.likes}}
+                                    </button>
+                                  </div>
+                                  <ng-template #notLiked>
+                                    <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
+                                        <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
+                                    </button>
+                                  </ng-template>
+                              </td>
+                          </table>
+                      </div>
+                      <br>
+                  </tr>
+              </table>
+            </ng-template>
           </div>
-          <!-- <div class="card-text" style="font-weight: 600;">
-          </div> -->
         </div>
       </div>
     </div>

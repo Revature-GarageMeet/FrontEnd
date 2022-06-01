@@ -7,6 +7,7 @@ import { PostService } from '../services/post.service';
 import { EditProfileService } from '../services/edit-profile.service';
 import { Post } from '../post';
 import { StringconversionService } from '../services/stringconversion.service';
+import { BandmemberService } from '../services/bandmember.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -42,13 +43,14 @@ export class UserprofileComponent implements OnInit {
   posts: Array<Post> = [];
   opacity: string = "100%";
   ownsProfile: boolean = true;
+  inABand!: boolean;
 
   // Used to notify user of no posts to show or show posts if there are any ~Bailey
   hasNoPosts: boolean = true;
 
   constructor(private modalService: MdbModalService,
     private userData: UserdataService, private postData: PostService, private editProfileData: EditProfileService,
-    private entryChange: StringconversionService ) { }
+    private entryChange: StringconversionService, private bandMemService: BandmemberService) { }
 
   openEditModal() {
     this.opacity = "25%";
@@ -85,6 +87,9 @@ export class UserprofileComponent implements OnInit {
       if(this.posts.length > 0) {
         this.hasNoPosts = false;
       }
+      this.bandMemService.isInABand(this.user.id).subscribe((message) => {
+        this.inABand = message;
+      });
     });
   }
 

@@ -38,14 +38,14 @@
                             </h4>
                             {{post.entry}}
                         </div>
-                        <table id="likeButton" class="likeTable">
+                        <table id="likeButton" class="likeTable" style="margin-bottom: 2px;">
                             <td>
-                              <button (click)="showComment(post.id)" style="border-width: 0px; background: #00000000">
+                              <button (click)="showComment(post.id)" style="margin-right: 20px; border-width: 0px; background: #00000000">
                                 <img style="width: 20px"
                                     src="../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
                               </button>
                               <button (click)="GetPostID(post.id)" style="border-width: 0px; background: #00000000">
-                                <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
+                                <img style="width: 20px;" src="../../assets/vectors/heart-svgrepo-com.svg"> {{post.likes}}
                               </button>
                             </td>
                         </table>

@@ -131,17 +131,18 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-  showComments(id: number) {
+  public showComments(id: number) {
     this.commentsNameArray = [];
     this.comments = [];
-    this.commentService.getAllComments(id).subscribe(results => {
+    this.commentService.getAllComments(id).subscribe(async results => {
       for (let i = 0; i < results.length; i++) {
         if (results[i].entry != "") {
           this.comments.push(results[i]);
 
-          this.loginService.otherUserProfile(results[i].userId).subscribe(res => {
+          await new Promise<void>(resolve => this.loginService.otherUserProfile(results[i].userId).subscribe(res => {
             this.commentsNameArray.push(res.username);
-          })
+            resolve();
+          }))
         }
       }
     })

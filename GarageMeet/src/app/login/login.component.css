@@ -1,4 +1,17 @@
+h4 {
+  font-family: visbyroundcf;
+  font-weight: 700;
+  letter-spacing: .07rem;
+  text-align: center;
+}
 
+.small {
+  font-family: visbyroundcf;
+  font-weight: 500;
+  letter-spacing: .087rem;
+  text-align: center;
+  line-height: 2;
+}
 
 .gradient-custom-2 {
   /* fallback for old browsers */

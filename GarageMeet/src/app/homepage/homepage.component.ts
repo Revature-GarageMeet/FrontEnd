@@ -257,6 +257,7 @@ export class HomepageComponent implements OnInit {
     });
 
     this.posts = this.userFilteredPosts;
+    this.displayCorrectUsernameForPosts();
   }
 
   GetAllPost(): void {

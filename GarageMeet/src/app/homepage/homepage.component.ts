@@ -65,15 +65,7 @@ export class HomepageComponent implements OnInit {
   //Going to load new posts here from top of the database --Tucker
   ngOnInit(): void {
     this.user = this.userData.GetUser();
-    // this.GetAllPost(); 
-
-    this.postService.getAllPosts().subscribe(res => {
-      this.posts = res;
-      for (let i = 0; i < this.posts.length; i++) {
-        this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-      }
-      this.filterPosts(this.user);
-    });
+    this.GetAllPost();
   }
 
   member: Bandmember = {
@@ -81,38 +73,6 @@ export class HomepageComponent implements OnInit {
     userId: 0,
     bandId: 0,
     dateJoined: new Date()
-  }
-
-  public filterPosts(user: User) {
-    console.log(user.id);
-    this.bandMemberService.getBandMember(user.id).subscribe(res => {
-      this.member = res;
-      this.bandService.getBandMemberLimit(this.member.bandId).subscribe(result => {
-        this.band.memberLimit = result;
-
-        let tempArray = this.posts.filter(a => a.bandId == this.member.bandId);
-
-        tempArray.forEach(element => {
-          this.displayArray.push(element);
-        });
-
-        if (this.band.memberLimit < 4) {
-          tempArray = this.posts.filter(a => a.type == this.LFB && a.userId != 0);
-          tempArray.forEach(element => {
-            this.displayArray.push(element);
-          });
-        }
-
-        tempArray = this.posts.filter(a => a.type == this.Venue && a.userId != 0);
-        tempArray.forEach(element => {
-          this.displayArray.push(element);
-        });
-
-        this.posts = this.displayArray;
-        this.displayCorrectUsernameForPosts();
-
-      })
-    })
   }
 
   public async displayCorrectUsernameForPosts() {
@@ -245,13 +205,13 @@ export class HomepageComponent implements OnInit {
     });
 
     if (this.band.memberLimit < 4) {
-      tempArray = this.unFilteredPosts.filter(a => a.type == this.LFB && a.type != "");
+      tempArray = this.unFilteredPosts.filter(a => a.type == this.LFB && a.type != "" && a.userId != 0);
       tempArray.forEach(element => {
         this.userFilteredPosts.push(element);
       });
     }
 
-    tempArray = this.unFilteredPosts.filter(a => a.type == this.Venue && a.type != "");
+    tempArray = this.unFilteredPosts.filter(a => a.type == this.Venue && a.type != "" && a.userId != 0);
     tempArray.forEach(element => {
       this.userFilteredPosts.push(element);
     });
@@ -346,7 +306,7 @@ export class HomepageComponent implements OnInit {
     this.filteredPosts = [];
 
     if (this.selectedMeetup || this.selectedVenue || this.selectedUpdate || this.selectedLooking) {
-      this.posts.forEach((element) => {
+      this.userFilteredPosts.forEach((element) => {
         if (element.type == "Meetup" && this.selectedMeetup)
           this.filteredPosts.push(element);
         if (element.type == "Venue Announcement" && this.selectedVenue)

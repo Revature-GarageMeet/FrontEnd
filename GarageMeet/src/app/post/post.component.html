@@ -1,10 +1,15 @@
 <div class="background">
     <form class="postbutton" [formGroup]="userPost" (ngSubmit)="onSubmit()">
-        <div  id="buttons" class="buttonGroup" >
-            <button type="button" id="announcement" (click)="openPostModal('Meetup');"><img class="icon" src ="../../assets/vectors/garage-svgrepo-com.svg"><span>Meetup</span></button>
-            <button type="button" id="announcement"(click)="openPostModal('Venue Announcement');"><img class="icon" src="../../assets/vectors/spotlight-svgrepo-com.svg">Venue Announcement</button>
-            <button type="button" id="announcement" (click)="openPostModal('Update');"><img class="icon" src="../../assets/vectors/update-icon-svgrepo-com.svg">Update</button>
-            <button type="button" id="announcement" (click)="openPostModal('Looking For Band');"><img class="icon" src="../../assets/vectors/music-instruments-drums-svgrepo-com.svg">Looking for Band</button>
-        </div>   
+        <div id="buttons" class="buttonGroup">
+            <button type="button" id="announcement" (click)="openPostModal('Meetup');"><img class="icon"
+                    src="../../assets/vectors/garage-svgrepo-com.svg"><span>Meetup</span></button>
+            <button type="button" class="btn disabled" id="announcement"
+                (click)="openPostModal('Venue Announcement');"><img class="icon"
+                    src="../../assets/vectors/spotlight-svgrepo-com.svg">Venue Announcement</button>
+            <button type="button" id="announcement" (click)="openPostModal('Update');"><img class="icon"
+                    src="../../assets/vectors/update-icon-svgrepo-com.svg">Update</button>
+            <button type="button" id="announcement" (click)="openPostModal('Looking For Band');"><img class="icon"
+                    src="../../assets/vectors/music-instruments-drums-svgrepo-com.svg">Looking for Band</button>
+        </div>
     </form>
 </div>

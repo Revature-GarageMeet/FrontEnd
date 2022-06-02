@@ -318,19 +318,19 @@ export class HomepageComponent implements OnInit {
       this.userFilteredPosts.forEach((element) => {
         if (element.type == "Meetup" && this.selectedMeetup) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         if (element.type == "Venue Announcement" && this.selectedVenue) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         if (element.type == "Update" && this.selectedUpdate) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         if (element.type == "Looking For Band" && this.selectedLooking) {
           this.filteredPosts.push(element);
-          this.filteredNameArray.push(this.nameArray[counter]);
+          this.filteredNameArray.push(this.unFilteredNameArray[counter]);
         }
         counter++;
       })

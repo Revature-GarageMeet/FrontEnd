@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Band } from '../models/band';
 import { Post } from '../post';
+import { BandService } from '../services/band.service';
 import { BandmemberService } from '../services/bandmember.service';
 import { LoginService } from '../services/login.service';
 import { PostService } from '../services/post.service';
@@ -20,7 +22,8 @@ export class OtherProfileComponent implements OnInit {
     private postData: PostService,
     private entryChange: StringconversionService,
     private route: Router,
-    private bandMemService: BandmemberService)
+    private bandMemService: BandmemberService,
+    private bandservice: BandService)
   { // Grabbing user ID passed from band page when clicking on a member's name
     this.router.params.subscribe(params => {
       this.userId = params['userN'];
@@ -37,6 +40,13 @@ export class OtherProfileComponent implements OnInit {
     email: '',
     bio: ''
   };
+
+  currentBand: Band = {
+    id: 0,
+    title: '',
+    memberLimit: 0,
+    description: ''
+  }
   posts: Array<Post> = [];
   hasNoPosts: boolean = true;
   inABand!: boolean;
@@ -56,6 +66,17 @@ export class OtherProfileComponent implements OnInit {
         }
         this.bandMemService.isInABand(this.profUser.id).subscribe((message) => {
           this.inABand = message;
+        if (message) {
+          this.bandservice.getAllBands().subscribe((band => {
+            this.bandMemService.getBandMember(this.profUser.id).subscribe((mem) => {
+              for(let i = 0; i < band.length; i++){
+                if(band[i].id === mem.bandId) {
+                  this.currentBand = band[i];
+                }
+              }
+            });
+          }));
+        }
         });
       });
     });

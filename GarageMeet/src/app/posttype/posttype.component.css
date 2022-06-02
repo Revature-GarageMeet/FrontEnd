@@ -1,9 +1,6 @@
-.submit-btn 
-{
-    background-color: #F5756B;
+.submit-btn {
+  background-color: #353d60;
 }
-  
-.submit-btn:hover 
-{
-    background-color: #c45f58;
+.submit-btn:hover {
+  background-color: #606c9b;
 }

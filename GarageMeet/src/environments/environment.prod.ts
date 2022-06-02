@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   apBaseURL: "https://garagemeet.azurewebsites.net"
 };

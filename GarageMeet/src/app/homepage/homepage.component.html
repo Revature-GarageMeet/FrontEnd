@@ -25,7 +25,7 @@
                 </ng-container>
                 <ng-container>
                 <tr *ngFor="let post of posts; let t = index">
-                    <div class="post">
+                    <div class="post" style="border-bottom: 2px solid black;">
                         <div id="postContent" class="postBox" (click)="showComments(post.id)">
                             <h4 style="display: flex; justify-content: space-between">
                                 {{nameArray[t]}}
@@ -41,15 +41,15 @@
                             </h4>
                             {{post.entry}}
                         </div>
-                        <table id="likeButton" class="likeTable">
+                        <table id="likeButton" class="likeTable" style="margin-bottom: 2px;">
                             <td>
-                                <button (click)="showComment(post.id)" style="border-width: 0px; background: #00000000">
+                                <button (click)="showComment(post.id)" style="margin-right: 20px; border-width: 0px; background: #00000000">
                                     <img style="width: 20px"
                                         src="../..\assets\vectors\chat-speech-bubble-svgrepo-com.svg">
                                 </button>
                                 <button (click)="GetPostID(post)" style="border-width: 0px; background: #00000000">
                                     <img style="width: 20px;"
-                                        src="../../assets/vectors/heart-svgrepo-com.svg">{{post.likes}}
+                                        src="../../assets/vectors/heart-svgrepo-com.svg"> {{post.likes}}
                                 </button>
                             </td>
                         </table>
@@ -63,17 +63,22 @@
             </table>
         </div>
         <div class="commentsScrollBox">
-            <table class="commentsFeed">
-                <tr *ngFor="let comment of comments; let s = index">
-                    <div class="comment">
-                        <div id="commentContent" class="commentBox">
-                            <h4 class="commentPost">
-                                <span style="margin-left: 10px; margin-right: 10px">{{commentsNameArray[s]}}:
-                                    {{comment.entry}}</span>
-                            </h4>
-                        </div>
-                    </div>
-                </tr>
-            </table>
+          <table class="commentsFeed">
+            <div *ngIf="comments.length > 0; else noComments">
+              <tr *ngFor="let comment of comments; let s = index">
+                <div class="comment">
+                  <div id="commentContent" class="commentBox">
+                      <h4 class="commentPost">
+                        <span style="margin-left: 10px; margin-right: 10px">{{commentsNameArray[s]}}:
+                          {{comment.entry}}</span>
+                      </h4>
+                  </div>
+                </div>
+              </tr>
+            </div>
+            <ng-template #noComments>
+              <h3>~No Comments~</h3>
+            </ng-template>
+          </table>
         </div>
     </div>

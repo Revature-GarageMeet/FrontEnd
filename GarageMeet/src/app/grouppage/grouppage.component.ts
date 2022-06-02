@@ -4,9 +4,11 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { CreateBandPostComponent } from '../create-band-post/create-band-post.component';
 import { Band } from '../models/band';
 import { User } from '../models/user';
-import { Post } from '../post';
+import { Comments, Post } from '../post';
 import { BandService } from '../services/band.service';
 import { BandmemberService } from '../services/bandmember.service';
+import { CommentService } from '../services/comment.service';
+import { LoginService } from '../services/login.service';
 import { PostService } from '../services/post.service';
 import { StringconversionService } from '../services/stringconversion.service';
 import { UserdataService } from '../services/userdata.service';
@@ -27,7 +29,9 @@ export class GrouppageComponent implements OnInit {
     private route: Router,
     private postService: PostService,
     private postConvert: StringconversionService,
-    private modalService: MdbModalService)
+    private modalService: MdbModalService,
+    private commentService: CommentService,
+    private loginService: LoginService)
     {
       this.router.params.subscribe(params => {
         this.bandTitle = params['band'];
@@ -51,7 +55,7 @@ export class GrouppageComponent implements OnInit {
     bandId: 0,
     id: 0,
     likes: 0,
-    dateCreated: new Date(),
+    dateCreated: new Date('0'),
     postComments: [],
     showComments: false
   };
@@ -59,6 +63,8 @@ export class GrouppageComponent implements OnInit {
   currUser!: User;
   bandTitle!: string;
   posts: Post[] = [];
+  comments: Array<Comments> = [];
+  commentsNameArray: Array<string> = [];
   opacity: string = "100%";
   hasLiked: boolean = false;
 
@@ -73,7 +79,6 @@ export class GrouppageComponent implements OnInit {
           for(let i = 0; i < this.posts.length; i++)
           {
             this.posts[i].entry = this.postConvert.ChangeCharacter(this.posts[i].entry);
-            console.log(this.posts.length);
           }
         });
       });
@@ -156,21 +161,36 @@ export class GrouppageComponent implements OnInit {
     });
   }
 
-  // showComment(id: number)
-  // {
-  //   this.postService.getPostById(id).subscribe(result => {
-  //     this.posts.find((obj) => {
-  //       if (obj.id === id)
-  //       {
-  //         this.post = obj;
+  showComment(id: number) {
+    this.postService.getPostById(id).subscribe(result => {
+      this.posts.find((obj) => {
+        if (obj.id === id) {
+          this.post = obj;
 
-  //         if (this.post.showComments == false)
-  //           this.post.showComments = true;
-  //         else if (this.post.showComments == true)
-  //           this.post.showComments = false;
-  //       }
-  //     });
-  //   });
-  // }
+          if (this.post.showComments == false)
+            this.post.showComments = true;
+          else if (this.post.showComments == true)
+            this.post.showComments = false;
+        }
+      });
+    });
+  }
+
+  public showComments(id: number) {
+    this.commentsNameArray = [];
+    this.comments = [];
+    this.commentService.getAllComments(id).subscribe(async results => {
+      for (let i = 0; i < results.length; i++) {
+        if (results[i].entry != "") {
+          this.comments.push(results[i]);
+
+          await new Promise<void>(resolve => this.loginService.otherUserProfile(results[i].userId).subscribe(res => {
+            this.commentsNameArray.push(res.username);
+            resolve();
+          }))
+        }
+      }
+    })
+  }
 
 }

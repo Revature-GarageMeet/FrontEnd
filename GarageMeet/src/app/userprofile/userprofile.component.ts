@@ -8,6 +8,8 @@ import { EditProfileService } from '../services/edit-profile.service';
 import { Post } from '../post';
 import { StringconversionService } from '../services/stringconversion.service';
 import { BandmemberService } from '../services/bandmember.service';
+import { BandService } from '../services/band.service';
+import { Band } from '../models/band';
 
 @Component({
   selector: 'app-userprofile',
@@ -40,6 +42,13 @@ export class UserprofileComponent implements OnInit {
     showComments: false
   }
 
+  currentBand: Band = {
+    id: 0,
+    title: '',
+    memberLimit: 0,
+    description: ''
+  }
+
   posts: Array<Post> = [];
   opacity: string = "100%";
   ownsProfile: boolean = true;
@@ -50,7 +59,7 @@ export class UserprofileComponent implements OnInit {
 
   constructor(private modalService: MdbModalService,
     private userData: UserdataService, private postData: PostService, private editProfileData: EditProfileService,
-    private entryChange: StringconversionService, private bandMemService: BandmemberService) { }
+    private entryChange: StringconversionService, private bandMemService: BandmemberService, private bandservice: BandService) { }
 
   openEditModal() {
     this.opacity = "25%";
@@ -89,6 +98,17 @@ export class UserprofileComponent implements OnInit {
       }
       this.bandMemService.isInABand(this.user.id).subscribe((message) => {
         this.inABand = message;
+        if (message) {
+          this.bandservice.getAllBands().subscribe((band => {
+            this.bandMemService.getBandMember(this.user.id).subscribe((mem) => {
+              for(let i = 0; i < band.length; i++){
+                if(band[i].id === mem.bandId) {
+                  this.currentBand = band[i];
+                }
+              }
+            });
+          }));
+        }
       });
     });
   }

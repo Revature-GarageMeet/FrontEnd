@@ -6,6 +6,7 @@ import { PostService } from '../services/post.service';
 import { UserdataService } from '../services/userdata.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { PosttypeComponent } from '../posttype/posttype.component';
+import { HomepageComponent } from '../homepage/homepage.component';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class PostComponent implements OnInit {
   postType: string ='';
 
   constructor(private formBuilder: FormBuilder, private postService: PostService, http: HttpClient, private userdata: UserdataService,
-              private modalService: MdbModalService, private createPostNew: PostService) { }
+              private modalService: MdbModalService, private createPostNew: PostService, private home: HomepageComponent) { }
 
   ngOnInit(): void {
 
@@ -119,6 +120,10 @@ export class PostComponent implements OnInit {
       this.opacity = message;
       this.createPostNew.postuser(this.post).subscribe();
     });
-    
+  }
+
+  public test()
+  {
+    this.home.GetAllPost();
   }
 }

@@ -222,6 +222,7 @@ export class HomepageComponent implements OnInit {
     });
 
     this.posts = this.userFilteredPosts;
+    console.log(this.posts);
     this.displayCorrectUsernameForPosts();
   }
 

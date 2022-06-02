@@ -23,6 +23,7 @@
                 <ng-container *ngIf="!posts">
                     <h4>~No post to show~</h4>
                 </ng-container>
+                <ng-container>
                 <tr *ngFor="let post of posts; let t = index">
                     <div class="post">
                         <div id="postContent" class="postBox" (click)="showComments(post.id)">
@@ -58,6 +59,7 @@
                     </div>
                     <br>
                 </tr>
+            </ng-container>
             </table>
         </div>
         <div class="commentsScrollBox">

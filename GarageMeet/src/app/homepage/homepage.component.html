@@ -61,17 +61,22 @@
             </table>
         </div>
         <div class="commentsScrollBox">
-            <table class="commentsFeed">
-                <tr *ngFor="let comment of comments; let s = index">
-                    <div class="comment">
-                        <div id="commentContent" class="commentBox">
-                            <h4 class="commentPost">
-                                <span style="margin-left: 10px; margin-right: 10px">{{commentsNameArray[s]}}:
-                                    {{comment.entry}}</span>
-                            </h4>
-                        </div>
-                    </div>
-                </tr>
-            </table>
+          <table class="commentsFeed">
+            <div *ngIf="comments.length > 0; else noComments">
+              <tr *ngFor="let comment of comments; let s = index">
+                <div class="comment">
+                  <div id="commentContent" class="commentBox">
+                      <h4 class="commentPost">
+                        <span style="margin-left: 10px; margin-right: 10px">{{commentsNameArray[s]}}:
+                          {{comment.entry}}</span>
+                      </h4>
+                  </div>
+                </div>
+              </tr>
+            </div>
+            <ng-template #noComments>
+              <h3>~No Comments~</h3>
+            </ng-template>
+          </table>
         </div>
     </div>

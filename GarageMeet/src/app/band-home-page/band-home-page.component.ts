@@ -35,7 +35,7 @@ export class BandHomePageComponent implements OnInit {
   currBandMem: Bandmember = {
     id: 0,
     userId: 0,
-    dateJoined: new Date(0),
+    dateJoined: new Date('0'),
     bandId: 0
   };
   bands: Band[] = [{id:0, title: "", memberLimit: 0, description: ""}];
@@ -45,22 +45,37 @@ export class BandHomePageComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.userData.GetUser();
     this.bandservice.getAllBands().subscribe(message => {
-      this.bands = message;
-      this.bandMemberService.getBandMember(this.user.id).subscribe((res) => {
-        this.currBandMem.bandId = res.bandId;
-        this.currBandMem.dateJoined = res.dateJoined;
-        this.currBandMem.id = res.id;
-        this.currBandMem.userId = res.userId;
-        this.bandMemberService.isInABand(this.user.id).subscribe((check) => {
-          if (check) { // This will find the current band a user is in and place it first in the list
-            this.tempBands = this.bands.filter(band => band.id != this.currBandMem.bandId);
-            const index = this.bands.findIndex(band => band.id === this.currBandMem.bandId);
-            this.tempBands.push(this.bands[index]);
-            this.bands = this.tempBands.reverse();
-          }
-        });
+      this.bandMemberService.isInABand(this.user.id).subscribe((check) => {
+        if(check) {
+          this.bandMemberService.getBandMember(this.user.id).subscribe((res) => {
+            this.currBandMem.bandId = res.bandId;
+            this.currBandMem.dateJoined = res.dateJoined;
+            this.currBandMem.id = res.id;
+            this.currBandMem.userId = res.userId;
+            this.showBandsFiltered(); // This method will add the currently joined band to the front of the list
+          });
+        }
+        else
+        {
+          this.showBands(); // This method will show all lists unsorted
+        }
       });
     });
+  }
+
+  showBands() {
+    this.bandservice.getAllBands().subscribe((res) => {
+      this.bands = res;
+    })
+  }
+
+  showBandsFiltered() {
+    this.bandservice.getAllBands().subscribe((message) => {
+      this.tempBands = message.filter(band => band.id != this.currBandMem.bandId);
+      const index = message.findIndex(band => band.id === this.currBandMem.bandId);
+      this.tempBands.push(message[index]);
+      this.bands = this.tempBands.reverse();
+    })
   }
 
   openCreateGroupModal() {
